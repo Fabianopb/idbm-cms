@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Idbmcms</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>IDBM Industry Project</title>
+  <%= stylesheet_link_tag    'screen', media: 'all' %>
+  <%= javascript_include_tag 'effects' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+  <div id="page">
+    
+    <header>
+      <h1>IDBM Industry Project</h1>
+      <div class="access">
+        <p>Welcome 'USERNAME' | </p>
+        <%= link_to 'log out', '#' %></a>
+      </div>
+    </header>
+    
+    <nav>
+      <ul>
+        <li><%= link_to 'main', '#' %></li>
+        <li><%= link_to 'travel plans', '#' %></li>
+        <li><%= link_to 'refund claims', '#' %></li>
+        <li><%= link_to 'personal info', '#' %></li>
+        <li><%= link_to 'FAQ', '#' %></li>
+        <li><%= link_to 'admin', '#' %></li>
+      </ul>
+    </nav>
+    
+    <section class="main_section">
+      ---
+      
+      <%= yield %>
+      
+      ---
+    </section>
+    
+    <footer>
+      <p>&copy; IDBM 2016</p>
+    </footer>
 
-<%= yield %>
+  </div>
 
 </body>
 </html>
