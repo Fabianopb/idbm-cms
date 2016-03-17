@@ -1,4 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', {:action => 'edit', :id => @user.id} %> |
+<%= link_to 'Back', :action => 'index' %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<table>
+    <tr>
+        <th>Name</th>
+        <td><%= @user.name %></td>
+    </tr>
+    <tr>
+        <th>e-mail</th>
+        <td><%= @user.e_mail %></td>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <td><%= @user.password_digest %></td>
+    </tr>
+    <tr>
+        <th>Role</th>
+        <td><%= @user.role %></td>
+    </tr>
+</table>

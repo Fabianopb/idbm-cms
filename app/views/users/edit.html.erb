@@ -1,6 +1,13 @@
 <h1>Editing User</h1>
 
-<%= render 'form' %>
+<%= link_to 'Back', {:action => 'show', :id => @user.id} %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= form_for :user, :url => {:action => 'update', :id => @user.id} do |f| %>
+
+    <%= render :partial => "form", :locals => {:f => f} %>
+
+    <div class="form-buttons">
+      <%= submit_tag "Update User" %>
+    </div>
+
+<% end %>

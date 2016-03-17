@@ -12,9 +12,9 @@
   <tbody>
     <% @travel_plans.each do |travel_plan| %>
       <tr>
-        <td><%= link_to 'Show', travel_plan %></td>
-        <td><%= link_to 'Edit', edit_travel_plan_path(travel_plan) %></td>
-        <td><%= link_to 'Destroy', travel_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', '#' %></td>
+        <td><%= link_to 'Edit', '#' %></td>
+        <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Travel plan', new_travel_plan_path %>
+<%= link_to 'New Travel plan', '#' %>

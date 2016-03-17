@@ -20,12 +20,12 @@
     
     <nav>
       <ul>
-        <li><%= link_to 'main', '#' %></li>
-        <li><%= link_to 'travel plans', '#' %></li>
-        <li><%= link_to 'refund claims', '#' %></li>
-        <li><%= link_to 'personal info', '#' %></li>
-        <li><%= link_to 'FAQ', '#' %></li>
-        <li><%= link_to 'admin', '#' %></li>
+        <li><%= link_to 'main', :controller => 'main' %></li>
+        <li><%= link_to 'travel plans', :controller => "travel_plans" %></li>
+        <li><%= link_to 'refund claims', :controller => "refund_claims" %></li>
+        <li><%= link_to 'personal info', :controller => "accounts" %></li>
+        <li><%= link_to 'FAQ', :controller => "fa_qs" %></li>
+        <li><%= link_to 'users', :controller => "users" %></li>
       </ul>
     </nav>
     

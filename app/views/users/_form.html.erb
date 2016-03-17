@@ -1,17 +1,25 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<table summary="User form fields">
+  <tr>
+    <th><%= f.label :first_name, "First Name" %></th>
+    <td><%= f.text_field :first_name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :last_name, "Last Name" %></th>
+    <td><%= f.text_field :last_name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :e_mail, "e-mail" %></th>
+    <td><%= f.text_field :e_mail %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :password_digest, "Password" %></th>
+    <td><%= f.password_field :password_digest %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :role, "Role" %></th>
+    <td>
+      <%= f.radio_button(:role, "Admin") %> Admin
+      <%= f.radio_button(:role, "Student") %> Student
+    </td>
+  </tr>
+</table>
