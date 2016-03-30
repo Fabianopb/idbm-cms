@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   
-  # before action verify user permissions through role
+  # before action verify user permissions through role to not allow students creating users
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  
+  before_action :confirm_logged_in
 
   def index
     @users = User.sorted

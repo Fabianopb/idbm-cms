@@ -1,5 +1,7 @@
 class TravelPlansController < ApplicationController
   before_action :set_travel_plan, only: [:show, :edit, :update, :destroy]
+  
+  before_action :confirm_logged_in
 
   # GET /travel_plans
   def index

@@ -1,5 +1,7 @@
 class RefundClaimsController < ApplicationController
   before_action :set_refund_claim, only: [:show, :edit, :update, :destroy]
+  
+  before_action :confirm_logged_in
 
   # GET /refund_claims
   def index
