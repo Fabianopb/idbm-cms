@@ -14,10 +14,10 @@
       <h1>IDBM Industry Project</h1>
       <div class="access">
         <p>Welcome 'USERNAME' | </p>
-        <%= link_to 'log out', '#' %></a>
+        <%= link_to 'log out', :controller => 'access', :action => 'logout' %></a>
       </div>
     </header>
-    
+    <% if session[:user_id] %>
     <nav>
       <ul>
         <li><%= link_to 'main', :controller => 'main' %></li>
@@ -28,6 +28,7 @@
         <li><%= link_to 'users', :controller => "users" %></li>
       </ul>
     </nav>
+    <% end %>
     
     <section class="main_section">
       ---
