@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Username</th>
       <th>e-mail</th>
       <th>Actions</th>
     </tr>
@@ -17,6 +18,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
+        <td><%= user.username %></td>
         <td><%= user.e_mail %></td>
         <td>
           <%= link_to 'Show', :action => 'show', :id => user.id %>
