@@ -13,8 +13,10 @@
     <header>
       <h1>IDBM Industry Project</h1>
       <div class="access">
-        <p>Welcome 'USERNAME' | </p>
-        <%= link_to 'log out', :controller => 'access', :action => 'logout' %></a>
+        <p>
+          Welcome<%= session[:user_id] ? " #{session[:name]} | " : ", please log in." %>
+          <%= link_to 'log out', :controller => 'access', :action => 'logout' if session[:user_id]  %>
+        </p>
       </div>
     </header>
     <% if session[:user_id] %>

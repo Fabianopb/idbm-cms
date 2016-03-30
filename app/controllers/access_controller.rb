@@ -20,7 +20,7 @@ class AccessController < ApplicationController
     if authorized_user
       # mark user as logged in
       session[:user_id] = authorized_user.id
-      session[:username] = authorized_user.username
+      session[:name] = authorized_user.name
       # flash[:notice] = "You are logged in."
       redirect_to(:controller => 'main', :action => 'index')
     else
@@ -32,7 +32,7 @@ class AccessController < ApplicationController
   def logout
     # mark user as logged out
     session[:user_id] = nil
-    session[:username] = nil
+    session[:name] = nil
     # flash[:notice] = "Logged out"
     redirect_to(:action => "login")
   end
