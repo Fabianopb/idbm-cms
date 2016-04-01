@@ -2,7 +2,7 @@
 
 <%= link_to 'Back', 'index' %>
 
-<%= form_for :user, :url => {:action => 'create', :user_id => @user.id} do |f| %>
+<%= form_for :user, :url => {:action => 'create'} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 
