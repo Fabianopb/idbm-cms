@@ -2,12 +2,12 @@
 
 <%= link_to 'Back', 'index' %>
 
-<%= form_for :account, :url => {:action => 'create', :user_id => @account.user.id} do |f| %>
+<%= form_for :account, :url => {:action => 'create', :user_id => @user.id} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 
     <div class="form-buttons">
-      <%= submit_tag "Create User" %>
+      <%= submit_tag "Create Account" %>
     </div>
 
 <% end %>

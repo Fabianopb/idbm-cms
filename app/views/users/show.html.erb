@@ -1,6 +1,10 @@
-<%= link_to 'Edit', {:action => 'edit', :id => @user.id} %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Back', :action => 'index' %> | 
+<%= link_to 'Edit Basic Info', :action => 'edit', :id => @user.id %> | 
+<% if !@account.nil? %>
+<%= link_to 'Edit Account Info', :controller => 'accounts', :action => 'edit', :id => @account.id, :user_id => @user.id %>
+<% end %>
 
+<h2>Basic Info</h2>
 <table>
     <tr>
         <th>Name</th>
@@ -19,3 +23,43 @@
         <td><%= @user.role %></td>
     </tr>
 </table>
+
+<% if !@account.nil? %>
+<h2>Account Info</h2>
+<table>
+    <tr>
+        <th>Social security number</th>
+        <td><%= @account.social_security %></td>
+    </tr>
+    <tr>
+        <th>Phone number</th>
+        <td><%= @account.phone_number %></td>
+    </tr>
+    <tr>
+        <th>IBAN</th>
+        <td><%= @account.iban %></td>
+    </tr>
+    <tr>
+        <th>Swift</th>
+        <td><%= @account.swift %></td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td><%= @account.address %></td>
+    </tr>
+    <tr>
+        <th>Postal code</th>
+        <td><%= @account.postal_code %></td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td><%= @account.city %></td>
+    </tr>
+    <tr>
+        <th>Project: </th>
+        <td><%= @account.project.nil? ? "Unallocated" : @account.project %></td>
+    </tr>
+</table>
+<% elsif @account.nil? && @user.role == "Student" %>
+<p>Bank account missing! Please fill the info <%= link_to 'here', :controller => 'accounts', :action => 'new', :user_id => @user.id %>.</p>
+<% end %>
