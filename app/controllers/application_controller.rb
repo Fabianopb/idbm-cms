@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def find_user
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    end
+  end
+  
 end

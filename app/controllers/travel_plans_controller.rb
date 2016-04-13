@@ -1,50 +1,50 @@
 class TravelPlansController < ApplicationController
-  before_action :set_travel_plan, only: [:show, :edit, :update, :destroy]
+  # before_action :set_travel_plan, only: [:show, :edit, :update, :destroy]
   
   before_action :confirm_logged_in
+  before_action :find_user
 
-  # GET /travel_plans
   def index
-    @travel_plans = TravelPlan.all
+    @travel_plans = @user.travel_plans.newest_first
   end
 
-  # GET /travel_plans/1
   def show
+    @travel_plan = TravelPlan.find(params[:id])
   end
 
-  # GET /travel_plans/new
   def new
     @travel_plan = TravelPlan.new
   end
 
-  # GET /travel_plans/1/edit
-  def edit
-  end
-
-  # POST /travel_plans
   def create
     @travel_plan = TravelPlan.new(travel_plan_params)
-
     if @travel_plan.save
-      redirect_to @travel_plan, notice: 'Travel plan was successfully created.'
+      redirect_to :action => 'show', :user_id => @user.id
     else
-      render :new
+      render 'new'
     end
   end
+  
+  def edit
+    @travel_plan = TravelPlan.find(params[:id])
+  end
 
-  # PATCH/PUT /travel_plans/1
   def update
-    if @travel_plan.update(travel_plan_params)
-      redirect_to @travel_plan, notice: 'Travel plan was successfully updated.'
+    @travel_plan = TravelPlan.find(params[:id])
+    if @travel_plan.update_attributes(travel_plan_params)
+      redirect_to :action => 'show', :user_id => @user.id
     else
-      render :edit
+      render 'edit'
     end
   end
+  
+  def delete
+    @travel_plan = TravelPlan.find(params[:id])
+  end
 
-  # DELETE /travel_plans/1
   def destroy
-    @travel_plan.destroy
-    redirect_to travel_plans_url, notice: 'Travel plan was successfully destroyed.'
+    TravelPlan.find(params[:id]).destroy
+    redirect_to :action => 'index', :user_id => @user.id
   end
 
   private
@@ -53,8 +53,7 @@ class TravelPlansController < ApplicationController
       @travel_plan = TravelPlan.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def travel_plan_params
-      params[:travel_plan]
+      params.require(:travel_plan).permit!
     end
 end

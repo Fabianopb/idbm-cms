@@ -60,9 +60,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :role)
     end
     
-    def find_travel_plans
-    if params[:subject_id]
-      @subject = Subject.find(params[:subject_id])
-    end
-  end
 end
