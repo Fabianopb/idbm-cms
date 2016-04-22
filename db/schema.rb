@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317093753) do
+ActiveRecord::Schema.define(version: 20160422110339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,20 @@ ActiveRecord::Schema.define(version: 20160317093753) do
   end
 
   add_index "refund_claims", ["user_id"], name: "index_refund_claims_on_user_id", using: :btree
+
+  create_table "transports", force: :cascade do |t|
+    t.string   "transport_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "transports_travel_plans", force: :cascade do |t|
+    t.integer "transport_id"
+    t.integer "travel_plan_id"
+  end
+
+  add_index "transports_travel_plans", ["transport_id"], name: "index_transports_travel_plans_on_transport_id", using: :btree
+  add_index "transports_travel_plans", ["travel_plan_id"], name: "index_transports_travel_plans_on_travel_plan_id", using: :btree
 
   create_table "travel_plans", force: :cascade do |t|
     t.string   "destination"
