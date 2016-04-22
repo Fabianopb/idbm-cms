@@ -52,8 +52,14 @@ class TravelPlansController < ApplicationController
     def set_travel_plan
       @travel_plan = TravelPlan.find(params[:id])
     end
-
+    
+    def find_user
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      end
+    end
+  
     def travel_plan_params
-      params.require(:travel_plan).permit!
+      params.require(:travel_plan).permit(:destination, :departure_date, :return_date, :trip_description, :tickets_description, :tickets_cost, :paid_days, :daily_allowance, :accommodation_costs, :accommodation_aalto_paid, :events_costs, :events_aalto_paid, :other_description, :other_costs, :status, :transport_ids => [])
     end
 end
