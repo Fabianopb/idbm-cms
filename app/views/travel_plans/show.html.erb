@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Back to Travel Plans', :action => 'index', :user_id => @user.id %> | 
+<%= link_to 'Edit this plan', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id %>
 
-<%= link_to 'Edit', edit_travel_plan_path(@travel_plan) %> |
-<%= link_to 'Back', travel_plans_path %>
+
+

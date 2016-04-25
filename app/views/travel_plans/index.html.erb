@@ -2,7 +2,7 @@
 
 <h1>Listing Travel Plans</h1>
 
-<%= link_to 'New Travel Plan', :action => 'new' %>
+<%= link_to 'New Travel Plan', :action => 'new', :user_id => @user.id %>
 
 <table>
   <thead>
@@ -18,10 +18,10 @@
     <% @travel_plans.each do |travel_plan| %>
       <tr>
         <td><%= travel_plan.destination %></td>
-        <td><%= travel_plan.deprature %></td>
-        <td><%= travel_plan.return %></td>
+        <td><%= travel_plan.departure_date %></td>
+        <td><%= travel_plan.return_date %></td>
         <td>
-          <%= link_to 'Show', '#' %>
+          <%= link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id %>
           <%= link_to 'Edit', '#' %>
           <%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

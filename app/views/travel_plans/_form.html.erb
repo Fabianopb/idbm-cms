@@ -72,4 +72,15 @@
     <th><%= f.label :other_costs, "Other costs value" %></th>
     <td><%= f.number_field :other_costs %></td>
   </tr>
+  <tr>
+    <th><%= f.label "Members travelling" %></th>
+    <td>
+      <%= f.collection_check_boxes :user_ids, User.all, :id, :first_name do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </td>
+  </tr>
 </table>

@@ -19,7 +19,7 @@ class TravelPlansController < ApplicationController
   def create
     @travel_plan = TravelPlan.new(travel_plan_params)
     if @travel_plan.save
-      redirect_to :action => 'show', :user_id => @user.id
+      redirect_to :action => 'show', :user_id => @user.id, :id => @travel_plan.id
     else
       render 'new'
     end
@@ -32,7 +32,7 @@ class TravelPlansController < ApplicationController
   def update
     @travel_plan = TravelPlan.find(params[:id])
     if @travel_plan.update_attributes(travel_plan_params)
-      redirect_to :action => 'show', :user_id => @user.id
+      redirect_to :action => 'show', :user_id => @user.id, :id => @travel_plan.id
     else
       render 'edit'
     end
@@ -60,6 +60,6 @@ class TravelPlansController < ApplicationController
     end
   
     def travel_plan_params
-      params.require(:travel_plan).permit(:destination, :departure_date, :return_date, :trip_description, :tickets_description, :tickets_cost, :paid_days, :daily_allowance, :accommodation_costs, :accommodation_aalto_paid, :events_costs, :events_aalto_paid, :other_description, :other_costs, :status, :transport_ids => [])
+      params.require(:travel_plan).permit(:destination, :departure_date, :return_date, :trip_description, :tickets_description, :tickets_cost, :paid_days, :daily_allowance, :accommodation_costs, :accommodation_aalto_paid, :events_costs, :events_aalto_paid, :other_description, :other_costs, :status, :transport_ids => [], :user_ids => [])
     end
 end
