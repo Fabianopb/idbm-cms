@@ -19,7 +19,7 @@ class TravelPlansController < ApplicationController
   def create
     @travel_plan = TravelPlan.new(travel_plan_params)
     if @travel_plan.save
-      redirect_to :action => 'show', :user_id => @user.id, :id => @travel_plan.id
+      redirect_to :action => 'index', :user_id => @user.id
     else
       render 'new'
     end

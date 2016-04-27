@@ -1,5 +1,71 @@
 <%= link_to 'Back to Travel Plans', :action => 'index', :user_id => @user.id %> | 
 <%= link_to 'Edit this plan', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id %>
 
-
+<h2>Travel plan</h2>
+<table>
+    <tr>
+        <th>Destination</th>
+        <td><%= @travel_plan.destination %></td>
+    </tr>
+    <tr>
+        <th>Departure</th>
+        <td><%= @travel_plan.departure_date %></td>
+    </tr>
+    <tr>
+        <th>Return</th>
+        <td><%= @travel_plan.return_date %></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td><%= @travel_plan.trip_description %></td>
+    </tr>
+    <tr>
+        <th>Transport</th>
+        <td><%= @travel_plan.transports.pluck(:transport_type).join('; ') %></td>
+    </tr>
+    <tr>
+        <th>Tickets description</th>
+        <td><%= @travel_plan.tickets_description %></td>
+    </tr>
+    <tr>
+        <th>Tickets cost</th>
+        <td><%= @travel_plan.tickets_cost %></td>
+    </tr>
+    <tr>
+        <th>Days for daily allowance</th>
+        <td><%= @travel_plan.paid_days %></td>
+    </tr>
+    <tr>
+        <th>Daily allowance value</th>
+        <td><%= @travel_plan.daily_allowance %></td>
+    </tr>
+    <tr>
+        <th>Accommodation costs</th>
+        <td><%= @travel_plan.accommodation_costs %></td>
+    </tr>
+    <tr>
+        <th>Accommodation paid by</th>
+        <td><%= @travel_plan.accommodation_aalto_paid %></td>
+    </tr>
+    <tr>
+        <th>Events costs</th>
+        <td><%= @travel_plan.events_costs %></td>
+    </tr>
+    <tr>
+        <th>Events paid by</th>
+        <td><%= @travel_plan.events_aalto_paid %></td>
+    </tr>
+    <tr>
+        <th>Other costs description</th>
+        <td><%= @travel_plan.other_description %></td>
+    </tr>
+    <tr>
+        <th>Other costs value</th>
+        <td><%= @travel_plan.other_costs %></td>
+    </tr>
+    <tr>
+        <th>Members</th>
+        <td><%= @travel_plan.users.pluck(:first_name).join('; ') %></td>
+    </tr>
+</table>
 
