@@ -1,0 +1,15 @@
+<h1>Delete Claim</h1>
+
+<%= link_to 'Back to claims', {:action => 'index', :user_id => @user.id} %>
+
+<%= form_for :refund_claim, :url => {:action => 'destroy', :user_id => @user.id, :id => @refund_claim.id} do |f| %>
+
+    <p>Are you sure you want to permanently delete this claim?</p>
+
+    <p class="reference-name">Claim created at: <%= @refund_claim.created_at %><br />Description: <%= @refund_claim.description %></p>
+
+    <div class="form-buttons">
+      <%= submit_tag("Detele claim") %>
+    </div>
+
+  <% end %>

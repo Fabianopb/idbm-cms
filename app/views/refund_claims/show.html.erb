@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Back to claims', :action => 'index', :user_id => @user.id %> | 
+<%= link_to 'Edit this claim', :action => 'edit', :user_id => @user.id, :id => @refund_claim.id %>
 
-<%= link_to 'Edit', edit_refund_claim_path(@refund_claim) %> |
-<%= link_to 'Back', refund_claims_path %>
+<h2>Refund claim</h2>
+<table>
+    <tr>
+        <th>Description</th>
+        <td><%= @refund_claim.description %></td>
+    </tr>
+</table>

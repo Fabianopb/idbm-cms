@@ -1,6 +1,13 @@
 <h1>Editing Refund Claim</h1>
 
-<%= render 'form' %>
+<%= link_to 'Back to claim', {:action => 'index', :user_id => @user.id} %>
 
-<%= link_to 'Show', @refund_claim %> |
-<%= link_to 'Back', refund_claims_path %>
+<%= form_for :refund_claim, :url => {:action => 'update', :user_id => @user.id, :id => @refund_claim.id} do |f| %>
+
+    <%= render :partial => "form", :locals => {:f => f} %>
+
+    <div class="form-buttons">
+      <%= submit_tag "Update claim" %>
+    </div>
+
+<% end %>
