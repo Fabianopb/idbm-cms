@@ -24,7 +24,7 @@
       <ul>
         <li><%= link_to 'main', :controller => 'main' %></li>
         <li><%= link_to 'travel plans', :controller => "travel_plans", :user_id => session[:user_id] %></li>
-        <li><%= link_to 'refund claims', :controller => "refund_claims" %></li>
+        <li><%= link_to 'refund claims', :controller => "refund_claims", :user_id => session[:user_id] %></li>
         <li><%= link_to 'personal info', :controller => "users", :action => "show", :id => session[:user_id] %></li>
         <li><%= link_to 'FAQ', :controller => "fa_qs" %></li>
         <li><%= link_to 'users', :controller => "users" %></li>
