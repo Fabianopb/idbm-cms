@@ -1,6 +1,6 @@
 <h1>New Account</h1>
 
-<%= link_to 'Back', 'index' %>
+<%= link_to 'Back', :controller => 'users', :action => 'show', :id => @user.id %>
 
 <%= form_for :account, :url => {:action => 'create', :user_id => @user.id} do |f| %>
 
