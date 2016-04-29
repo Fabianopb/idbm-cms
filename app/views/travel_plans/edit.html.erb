@@ -1,6 +1,13 @@
 <h1>Editing Travel Plan</h1>
 
-<%= render 'form' %>
+<%= link_to 'Back to travel plans', {:action => 'index', :user_id => @user.id} %>
 
-<%= link_to 'Show', @travel_plan %> |
-<%= link_to 'Back', travel_plans_path %>
+<%= form_for :travel_plan, :url => {:action => 'update', :user_id => @user.id, :id => @travel_plan.id} do |f| %>
+
+    <%= render :partial => "form", :locals => {:f => f} %>
+
+    <div class="form-buttons">
+      <%= submit_tag "Update Travel Plan" %>
+    </div>
+
+<% end %>

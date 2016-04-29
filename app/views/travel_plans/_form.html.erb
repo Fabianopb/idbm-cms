@@ -75,7 +75,7 @@
   <tr>
     <th><%= f.label "Members travelling" %></th>
     <td>
-      <%= f.collection_check_boxes :user_ids, User.all, :id, :first_name do |b| %>
+      <%= f.collection_check_boxes :user_ids, User.where("role = ?", "Student"), :id, :first_name do |b| %>
         <div class="collection-check-box">
           <%= b.check_box %>
           <%= b.label %>

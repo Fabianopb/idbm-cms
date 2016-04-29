@@ -1,0 +1,13 @@
+<h1>Delete User</h1>
+
+<%= form_for :travel_plan, :url => {:action => 'destroy', :user_id => @user.id, :id => @travel_plan.id} do |f| %>
+
+    <p>Are you sure you want to permanently delete this travel plan?</p>
+
+    <p class="reference-name">Travel plan created at: <%= @travel_plan.created_at %>; Destination: <%= @travel_plan.destination %></p>
+
+    <div class="form-buttons">
+      <%= submit_tag("Detele Travel Plan") %>
+    </div>
+
+  <% end %>
