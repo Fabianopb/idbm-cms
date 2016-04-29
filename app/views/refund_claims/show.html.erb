@@ -1,5 +1,9 @@
 <%= link_to 'Back to claims', :action => 'index', :user_id => @user.id %> | 
 <%= link_to 'Edit this claim', :action => 'edit', :user_id => @user.id, :id => @refund_claim.id %>
+<br /><br />
+<%= link_to 'Include receipt', :controller => 'receipts', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %> | 
+<%= link_to 'Include daily allowance', :controller => 'daily_allowances', :action => 'new', :user_id => @user.id, :id => @refund_claim.id %> | 
+<%= link_to 'Include km allowance', :controller => 'km_allowances', :action => 'new', :user_id => @user.id, :id => @refund_claim.id %>
 
 <h2>Refund claim</h2>
 <table>
@@ -7,4 +11,20 @@
         <th>Description</th>
         <td><%= @refund_claim.description %></td>
     </tr>
+</table>
+
+<h3>Receipts</h3>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Value</th>
+    </tr>
+    <% @receipts.each do |receipt| %>
+    <tr>
+        <td><%= receipt.expense_date %></td>
+        <td><%= receipt.description %></td>
+        <td><%= "#{receipt.value} #{receipt.currency}" %></td>
+    </tr>
+    <% end %>
 </table>

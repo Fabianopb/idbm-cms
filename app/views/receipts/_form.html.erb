@@ -1,0 +1,19 @@
+<table summary="Receipts form fields">
+  <tr>
+      <th><%= f.label :expense_date, "Expense date" %></th>
+      <td><%= f.date_select :expense_date, {:order => [:day, :month, :year]} %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :description, "Description" %></th>
+    <td><%= f.text_field :description %></td>
+  </tr>
+  <tr>
+      <th><%= f.label :value, "Value" %></th>
+      <td><%= f.number_field :value %></td>
+  </tr>
+  <tr>
+      <th><%= f.label :currency, "Currency" %></th>
+      <td><%= f.select :currency, ['BRL','EUR','USD'] %></td>
+  </tr>
+</table>
+<%= f.hidden_field :refund_claim_id, value: @refund_claim.id %>

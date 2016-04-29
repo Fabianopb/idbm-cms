@@ -7,6 +7,10 @@ class RefundClaimsController < ApplicationController
   def index
     @refund_claims = @user.refund_claims.newest_first
   end
+  
+  def show
+    @receipts = @refund_claim.receipts.newest_first
+  end
 
   def new
     @refund_claim = RefundClaim.new

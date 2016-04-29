@@ -1,0 +1,13 @@
+<h1>New Receipt</h1>
+
+<%= link_to 'Back to claims', {:controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id} %>
+
+<%= form_for :receipt, :url => {:action => 'create', :user_id => @user.id, :refund_claim_id => @refund_claim.id} do |f| %>
+
+    <%= render :partial => "form", :locals => {:f => f} %>
+
+    <div class="form-buttons">
+      <%= submit_tag "Create Receipt" %>
+    </div>
+
+<% end %>

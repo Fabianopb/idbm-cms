@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def find_refund_claim
+    if params[:refund_claim_id]
+      @refund_claim = RefundClaim.find(params[:refund_claim_id])
+    end
+  end
+  
 end
