@@ -37,10 +37,4 @@ class AccountsController < ApplicationController
     params.require(:account).permit(:user_id, :social_security, :phone_number, :iban, :swift, :address, :postal_code, :city, :project)
   end
   
-  def find_user
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-    end
-  end
-  
 end
