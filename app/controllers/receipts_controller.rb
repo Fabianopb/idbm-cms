@@ -19,7 +19,7 @@ class ReceiptsController < ApplicationController
   end
   
   def update
-    if @receipt.update_attributes(refund_claim_params)
+    if @receipt.update_attributes(receipt_params)
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
       render 'edit'
@@ -28,7 +28,7 @@ class ReceiptsController < ApplicationController
 
   def destroy
     Receipt.find(params[:id]).destroy
-    redirect_to :controller => 'refund_claims', :action => 'index', :user_id => @user.id, :id => @refund_claim.id
+    redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
   end
   
   private

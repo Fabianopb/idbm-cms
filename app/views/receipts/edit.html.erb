@@ -1,2 +1,13 @@
-<h1>Receipts#edit</h1>
-<p>Find me in app/views/receipts/edit.html.erb</p>
+<h1>Edit Receipt</h1>
+
+<%= link_to 'Back to claims', {:controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id} %>
+
+<%= form_for :receipt, :url => {:action => 'update', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => @receipt.id} do |f| %>
+
+    <%= render :partial => "form", :locals => {:f => f} %>
+
+    <div class="form-buttons">
+      <%= submit_tag "Update Receipt" %>
+    </div>
+
+<% end %>

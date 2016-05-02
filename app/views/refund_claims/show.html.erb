@@ -19,12 +19,17 @@
         <th>Date</th>
         <th>Description</th>
         <th>Value</th>
+        <th>Actions</th>
     </tr>
     <% @receipts.each do |receipt| %>
     <tr>
         <td><%= receipt.expense_date %></td>
         <td><%= receipt.description %></td>
         <td><%= "#{receipt.value} #{receipt.currency}" %></td>
+        <td>
+            <%= link_to 'Edit', :controller => 'receipts', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %> | 
+            <%= link_to 'Delete', :controller => 'receipts', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %>
+        </td>
     </tr>
     <% end %>
 </table>
