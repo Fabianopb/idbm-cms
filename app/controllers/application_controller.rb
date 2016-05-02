@@ -5,15 +5,23 @@ class ApplicationController < ActionController::Base
   
   private
 
-  def confirm_logged_in
-    unless session[:user_id]
-      #flash[:notice] = "Please log in."
-      redirect_to(:controller => 'access', :action => 'login')
-      return false # halts the before_action
-    else
-      return true
+    def current_user_session
+      return @current_user_session if defined?(@current_user_session)
+      @current_user_session = UserSession.find
     end
-  end
+    
+    def current_user
+      return @current_user if defined?(@current_user)
+      @current_user = current_user_session && current_user_session.user
+    end
+    
+    helper_method :current_user_session, :current_user
+
+   def confirm_logged_in
+     unless current_user
+      redirect_to sign_in_path
+     end
+   end
   
   def find_user
     if params[:user_id]

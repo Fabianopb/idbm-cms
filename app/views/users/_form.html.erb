@@ -20,6 +20,10 @@
     <td><%= f.password_field :password %></td>
   </tr>
   <tr>
+    <th><%= f.label :password_confirmation, "Password confirmation" %></th>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
+  <tr>
     <th><%= f.label :role, "Role" %></th>
     <td>
       <%= f.radio_button(:role, "Admin") %> Admin

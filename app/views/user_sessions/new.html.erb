@@ -1,0 +1,22 @@
+<h1>Sign In</h1>
+
+<%= form_for @user_session do |f| %>
+    <%= render 'application/errors', object: @user_session %>
+
+  <table>
+      <tr>
+          <th><%= f.label :username %></th>
+          <td><%= f.text_field :username %></td>
+      </tr>
+      <tr>
+          <th><%= f.label :password %></th>
+          <td><%= f.password_field :password, class: 'form-control' %></td>
+      </tr>
+      <tr>
+          <th><%= f.label :remember_me %></th>
+          <td><%= f.check_box :remember_me %></td>
+      </tr>
+  </table>
+
+  <%= f.submit "Log in" %>
+<% end %>

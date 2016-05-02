@@ -144,11 +144,14 @@ ActiveRecord::Schema.define(version: 20160502111001) do
     t.string   "last_name"
     t.string   "username"
     t.string   "e_mail"
-    t.string   "password_digest"
+    t.string   "crypted_password"
     t.string   "role"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "password_salt"
     t.string   "persistence_token"
   end
+
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
     has_many :refund_claims
     has_many :comments
     
-    has_secure_password
+    acts_as_authentic do |c|
+        c.crypto_provider = Authlogic::CryptoProviders::BCrypt
+    end
     
     scope :sorted, lambda { order("users.role ASC", "users.first_name ASC") }
     
