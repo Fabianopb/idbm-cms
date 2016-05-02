@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425123437) do
+ActiveRecord::Schema.define(version: 20160502075814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20160425123437) do
     t.integer  "refund_claim_id"
     t.datetime "departure"
     t.datetime "arrival"
-    t.datetime "return"
+    t.datetime "return_date"
     t.string   "destination"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(version: 20160425123437) do
     t.date     "departure_date"
     t.date     "return_date"
     t.string   "trip_description"
-    t.string   "transport"
     t.string   "tickets_description"
     t.decimal  "tickets_cost"
     t.integer  "paid_days"

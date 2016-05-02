@@ -1,2 +1,15 @@
-<h1>DailyAllowances#delete</h1>
-<p>Find me in app/views/daily_allowances/delete.html.erb</p>
+<h1>Delete daily allowance</h1>
+
+<%= link_to 'Back to claims', {:controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id} %>
+
+<%= form_for :daily_allowance, :url => {:action => 'destroy', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => @daily_allowance.id} do |f| %>
+
+    <p>Are you sure you want to permanently delete this daily allowance?</p>
+
+    <p class="reference-name"><%= "Arrival at #{@daily_allowance.destination} in #{@daily_allowance.arrival}" %></p>
+
+    <div class="form-buttons">
+      <%= submit_tag("Detele daily allowance") %>
+    </div>
+
+<% end %>

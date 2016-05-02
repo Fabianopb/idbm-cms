@@ -1,0 +1,19 @@
+<table summary="Km allowances form fields">
+  <tr>
+      <th><%= f.label :date, "Date" %></th>
+      <td><%= f.date_select :date, {:order => [:day, :month, :year]} %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :description, "Description" %></th>
+    <td><%= f.text_field :description %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :route, "Route" %></th>
+    <td><%= f.text_field :route %></td>
+  </tr>
+  <tr>
+      <th><%= f.label :kms, "km" %></th>
+      <td><%= f.number_field :kms %></td>
+  </tr>
+</table>
+<%= f.hidden_field :refund_claim_id, value: @refund_claim.id %>

@@ -10,6 +10,8 @@ class RefundClaimsController < ApplicationController
   
   def show
     @receipts = @refund_claim.receipts.newest_first
+    @daily_allowances = @refund_claim.daily_allowances.sort_by_arrival
+    @km_allowances = @refund_claim.km_allowances.sort_by_date
   end
 
   def new

@@ -1,0 +1,20 @@
+<p>Please use only local times</p>
+<table summary="Daily allowances form fields">
+  <tr>
+      <th><%= f.label :departure, "Departure from Finland" %></th>
+      <td><%= f.datetime_select :departure, {:order => [:day, :month, :year]} %></td>
+  </tr>
+  <tr>
+      <th><%= f.label :arrival, "Arrival in country" %></th>
+      <td><%= f.datetime_select :arrival, {:order => [:day, :month, :year]} %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :destination, "Destination" %></th>
+    <td><%= f.text_field :destination %></td>
+  </tr>
+  <tr>
+      <th><%= f.label :return_date, "Return to Finland" %></th>
+      <td><%= f.datetime_select :return_date, {:order => [:day, :month, :year]} %></td>
+  </tr>
+</table>
+<%= f.hidden_field :refund_claim_id, value: @refund_claim.id %>

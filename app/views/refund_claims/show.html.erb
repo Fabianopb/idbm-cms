@@ -1,9 +1,6 @@
 <%= link_to 'Back to claims', :action => 'index', :user_id => @user.id %> | 
 <%= link_to 'Edit this claim', :action => 'edit', :user_id => @user.id, :id => @refund_claim.id %>
 <br /><br />
-<%= link_to 'Include receipt', :controller => 'receipts', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %> | 
-<%= link_to 'Include daily allowance', :controller => 'daily_allowances', :action => 'new', :user_id => @user.id, :id => @refund_claim.id %> | 
-<%= link_to 'Include km allowance', :controller => 'km_allowances', :action => 'new', :user_id => @user.id, :id => @refund_claim.id %>
 
 <h2>Refund claim</h2>
 <table>
@@ -14,6 +11,9 @@
 </table>
 
 <h3>Receipts</h3>
+<%= pluralize(@receipts.size, 'receipt') %> found<br />
+<%= link_to 'Add new receipt', :controller => 'receipts', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %>
+<br /><br />
 <table>
     <tr>
         <th>Date</th>
@@ -33,3 +33,57 @@
     </tr>
     <% end %>
 </table>
+
+<h3>Daily allowances</h3>
+<%= pluralize(@daily_allowances.size, 'daily allowance') %> found<br />
+<%= link_to 'Add new daily allowance', :controller => 'daily_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %>
+<br /><br />
+<% if @daily_allowances.size > 0 %>
+<table>
+    <tr>
+        <th>Departure date</th>
+        <th>Arrival in country</th>
+        <th>Return date</th>
+        <th>Actions</th>
+    </tr>
+    <% @daily_allowances.each do |daily_allowance| %>
+    <tr>
+        <td><%= daily_allowance.departure %></td>
+        <td><%= "#{daily_allowance.arrival} in #{daily_allowance.destination}" %></td>
+        <td><%= daily_allowance.return_date %></td>
+        <td>
+            <%= link_to 'Edit', :controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> | 
+            <%= link_to 'Delete', :controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+<% end %>
+
+<h3>km allowances</h3>
+<%= pluralize(@km_allowances.size, 'km allowance') %> found<br />
+<%= link_to 'Add new km allowance', :controller => 'km_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %>
+<br /><br />
+<% if @km_allowances.size > 0 %>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Route</th>
+        <th>Description</th>
+        <th>km</th>
+        <th>Actions</th>
+    </tr>
+    <% @km_allowances.each do |km_allowance| %>
+    <tr>
+        <td><%= km_allowance.date %></td>
+        <td><%= km_allowance.route %></td>
+        <td><%= km_allowance.description %></td>
+        <td><%= km_allowance.kms %></td>
+        <td>
+            <%= link_to 'Edit', :controller => 'km_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %> | 
+            <%= link_to 'Delete', :controller => 'km_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+<% end %>
