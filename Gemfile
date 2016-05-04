@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 # User Authlogic for authentication and handling sessions
 gem 'authlogic', '3.4.6'
 
+gem 'acts_as_list', '~> 0.7.2'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
