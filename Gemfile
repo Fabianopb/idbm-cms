@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 # User Authlogic for authentication and handling sessions
 gem 'authlogic', '3.4.6'
+# role permissions with cancancan
+gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
 gem 'acts_as_list', '~> 0.7.2'
 

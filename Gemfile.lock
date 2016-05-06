@@ -49,6 +49,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (8.2.2)
+    cancancan (1.13.1)
     concurrent-ruby (1.0.1)
     debug_inspector (0.0.2)
     erubis (2.7.0)
@@ -147,6 +148,7 @@ DEPENDENCIES
   authlogic (= 3.4.6)
   bcrypt (~> 3.1.7)
   byebug
+  cancancan (~> 1.13, >= 1.13.1)
   jquery-rails
   pg (~> 0.15)
   puma
