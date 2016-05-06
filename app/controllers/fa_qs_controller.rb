@@ -9,6 +9,7 @@ class FaQsController < ApplicationController
   
   def new
     @faq = Faq.new
+    @faq_count = Faq.count + 1
   end
   
   def create
@@ -16,14 +17,20 @@ class FaQsController < ApplicationController
     if @faq.save
       redirect_to :action => 'index'
     else
+      @faq_count = Faq.count + 1
       render 'new'
     end
+  end
+  
+  def edit
+    @faq_count = Faq.count
   end
   
   def update
     if @faq.update_attributes(faq_params)
       redirect_to :action => 'index'
     else
+      @faq_count = Faq.count
       render 'edit'
     end
   end
