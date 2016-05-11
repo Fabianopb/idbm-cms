@@ -3,6 +3,8 @@ class AccountsController < ApplicationController
   before_action :confirm_logged_in
   before_action :find_user
   
+  load_and_authorize_resource
+  
   def new
     @account = Account.new({:user_id => @user.id})
   end

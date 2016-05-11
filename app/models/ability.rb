@@ -5,8 +5,10 @@ class Ability
     
     user ||= User.new
     if user.role == "Admin"
+      can :show, Account
       can :manage, User
     else
+      can :manage, Account, :user_id => user.id
       can [:show, :update], User, :id => user.id
     end
     

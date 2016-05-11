@@ -1,6 +1,6 @@
 <%= link_to 'Back', :action => 'index' %> | 
 <%= link_to 'Edit Basic Info', :action => 'edit', :id => @user.id %> | 
-<% if !@account.nil? %>
+<% if !@account.nil? && (can? :edit, Account) %>
 <%= link_to 'Edit Account Info', :controller => 'accounts', :action => 'edit', :id => @account.id, :user_id => @user.id %>
 <% end %>
 
@@ -24,7 +24,7 @@
     </tr>
 </table>
 
-<% if !@account.nil? %>
+<% if !@account.nil? && (can? :show, Account) %>
 <h2>Account Info</h2>
 <table>
     <tr>
@@ -61,5 +61,8 @@
     </tr>
 </table>
 <% elsif @account.nil? && @user.role == "Student" %>
-<p>Bank account missing! Please fill the info <%= link_to 'here', :controller => 'accounts', :action => 'new', :user_id => @user.id %>.</p>
+<p>Bank account missing!
+    <% if can? :create, Account %> Please fill the info <%= link_to 'here', :controller => 'accounts', :action => 'new', :user_id => @user.id %>.
+    <% end %>
+</p>
 <% end %>
