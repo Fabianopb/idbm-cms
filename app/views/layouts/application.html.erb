@@ -12,13 +12,23 @@
     
     <header>
       <h1>IDBM Industry Project</h1>
+      
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+      
       <div class="access">
         <p>
           Welcome<%= current_user ? " #{current_user.username} | " : ", please log in." %>
           <%= link_to 'log out', sign_out_path, method: :delete if current_user  %>
         </p>
       </div>
+      
     </header>
+    
+    
     <% if current_user %>
     <nav>
       <ul>
@@ -27,10 +37,14 @@
         <li><%= link_to 'refund claims', :controller => "refund_claims", :user_id => current_user.id %></li>
         <li><%= link_to 'personal info', :controller => "users", :action => "show", :id => current_user.id %></li>
         <li><%= link_to 'FAQ', :controller => "fa_qs" %></li>
-        <li><%= link_to 'users', :controller => "users" %></li>
+        <% if can? :manage, User %>
+          <li><%= link_to 'users', :controller => "users" %></li>
+        <% end %>
       </ul>
     </nav>
     <% end %>
+    
+    
       ---
     <section class="main_section">
       
@@ -38,6 +52,7 @@
       
     </section>
       ---
+    
     
     <footer>
       <p>&copy; IDBM 2016</p>

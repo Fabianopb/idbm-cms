@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
         c.crypto_provider = Authlogic::CryptoProviders::BCrypt
     end
     
-    scope :sorted, lambda { order("users.role ASC", "users.first_name ASC") }
+    scope :sorted, -> { order("users.role ASC", "users.first_name ASC") }
+    scope :all_except, ->(user) { where(["id != ?", user.id]) }
     
     def name
         "#{first_name} #{last_name}"

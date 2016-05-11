@@ -23,6 +23,7 @@
     <th><%= f.label :password_confirmation, "Password confirmation" %></th>
     <td><%= f.password_field :password_confirmation %></td>
   </tr>
+  <% if (@user.id != current_user.id) && (can? :manage, User) %>
   <tr>
     <th><%= f.label :role, "Role" %></th>
     <td>
@@ -30,5 +31,6 @@
       <%= f.radio_button(:role, "Student") %> Student
     </td>
   </tr>
+  <% end %>
 </table>
 

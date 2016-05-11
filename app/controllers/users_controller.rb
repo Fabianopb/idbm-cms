@@ -4,9 +4,11 @@ class UsersController < ApplicationController
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   before_action :confirm_logged_in
+  
+  load_and_authorize_resource
 
   def index
-    @users = User.sorted
+    @users = User.all_except(current_user).sorted
   end
 
   def show
@@ -57,7 +59,11 @@ class UsersController < ApplicationController
   private
     
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :password_confirmation, :role)
+      if current_user.role == "Admin"
+        params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :password_confirmation, :role)
+      else
+        params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :password_confirmation)
+      end
     end
     
 end
