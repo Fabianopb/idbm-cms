@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'New Refund Claim', :action => 'new', :user_id => @user.id %>
+<%= (link_to 'New Refund Claim', :action => 'new', :user_id => @user.id) if can? :new, RefundClaim %>
 
 <table>
   <thead>
     <tr>
       <th>Created at</th>
       <th>Description</th>
+      <%= "<th>User</th>".html_safe if current_user.admin? %>
       <th>Status</th>
       <th>Actions</th>
     </tr>
@@ -17,11 +18,18 @@
       <tr>
         <td><%= refund_claim.created_at %></td>
         <td><%= refund_claim.description %></td>
+        <% if current_user.admin? %>
+          <td><%= refund_claim.user.name %></td>
+        <% end %>
         <td><%= refund_claim.status %></td>
         <td>
-          <%= link_to 'Show', :action => 'show', :user_id => @user.id, :id => refund_claim.id %>
-          <%= link_to 'Edit', :action => 'edit', :user_id => @user.id, :id => refund_claim.id  %>
-          <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => refund_claim.id %></td>
+          <% if current_user.admin? %>
+            <%= (can? :read, refund_claim) ? (link_to 'Show', :action => 'show', :user_id => refund_claim.user.id, :id => refund_claim.id) : '---' %>
+          <% else %>
+            <%= link_to 'Show', :action => 'show', :user_id => @user.id, :id => refund_claim.id %>
+            <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => refund_claim.id %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

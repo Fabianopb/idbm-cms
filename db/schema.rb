@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504141845) do
+ActiveRecord::Schema.define(version: 20160511141424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 20160504141845) do
   create_table "refund_claims", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "description"
-    t.string   "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "status",      default: "not submitted"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "refund_claims", ["user_id"], name: "index_refund_claims_on_user_id", using: :btree
@@ -127,9 +127,9 @@ ActiveRecord::Schema.define(version: 20160504141845) do
     t.boolean  "events_aalto_paid"
     t.string   "other_description"
     t.decimal  "other_costs"
-    t.string   "status"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "status",                   default: "not submitted"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "travel_plans_users", id: false, force: :cascade do |t|

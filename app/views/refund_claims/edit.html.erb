@@ -1,6 +1,6 @@
 <h1>Editing Refund Claim</h1>
 
-<%= link_to 'Back to claim', {:action => 'index', :user_id => @user.id} %>
+<%= link_to 'Back to claim', {:action => 'show', :user_id => @user.id, :id => @refund_claim.id} %>
 
 <%= form_for :refund_claim, :url => {:action => 'update', :user_id => @user.id, :id => @refund_claim.id} do |f| %>
 

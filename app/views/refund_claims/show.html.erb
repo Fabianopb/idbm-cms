@@ -1,5 +1,5 @@
 <%= link_to 'Back to claims', :action => 'index', :user_id => @user.id %> | 
-<%= link_to 'Edit this claim', :action => 'edit', :user_id => @user.id, :id => @refund_claim.id %>
+<%= current_user.admin? ? (link_to 'Modify status', :action => 'edit', :user_id => @user.id, :id => @refund_claim.id) : (link_to 'Edit this claim', :action => 'edit', :user_id => @user.id, :id => @refund_claim.id) %>
 <br /><br />
 
 <h2>Refund claim</h2>
@@ -8,18 +8,22 @@
         <th>Description</th>
         <td><%= @refund_claim.description %></td>
     </tr>
+    <tr>
+        <th>Status</th>
+        <td><%= @refund_claim.status %></td>
+    </tr>
 </table>
 
 <h3>Receipts</h3>
 <%= pluralize(@receipts.size, 'receipt') %> found<br />
-<%= link_to 'Add new receipt', :controller => 'receipts', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %>
+<%= (link_to 'Add new receipt', :controller => 'receipts', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id) if can? :new, Receipt %>
 <br /><br />
 <table>
     <tr>
         <th>Date</th>
         <th>Description</th>
         <th>Value</th>
-        <th>Actions</th>
+        <%= "<th>Actions</th>".html_safe unless current_user.admin? %>
     </tr>
     <% @receipts.each do |receipt| %>
     <tr>
@@ -27,8 +31,11 @@
         <td><%= receipt.description %></td>
         <td><%= "#{receipt.value} #{receipt.currency}" %></td>
         <td>
-            <%= link_to 'Edit', :controller => 'receipts', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %> | 
-            <%= link_to 'Delete', :controller => 'receipts', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %>
+            <% if current_user.admin? %>
+            <% else %>
+                <%= link_to 'Edit', :controller => 'receipts', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %> | 
+                <%= link_to 'Delete', :controller => 'receipts', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %>
+            <% end %>
         </td>
     </tr>
     <% end %>
@@ -36,7 +43,7 @@
 
 <h3>Daily allowances</h3>
 <%= pluralize(@daily_allowances.size, 'daily allowance') %> found<br />
-<%= link_to 'Add new daily allowance', :controller => 'daily_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %>
+<%= (link_to 'Add new daily allowance', :controller => 'daily_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id) if can? :new, DailyAllowance %>
 <br /><br />
 <% if @daily_allowances.size > 0 %>
 <table>
@@ -44,7 +51,7 @@
         <th>Departure date</th>
         <th>Arrival in country</th>
         <th>Return date</th>
-        <th>Actions</th>
+        <%= "<th>Actions</th>".html_safe unless current_user.admin? %>
     </tr>
     <% @daily_allowances.each do |daily_allowance| %>
     <tr>
@@ -52,8 +59,11 @@
         <td><%= "#{daily_allowance.arrival} in #{daily_allowance.destination}" %></td>
         <td><%= daily_allowance.return_date %></td>
         <td>
-            <%= link_to 'Edit', :controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> | 
-            <%= link_to 'Delete', :controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %>
+            <% if current_user.admin? %>
+            <% else %>
+                <%= link_to 'Edit', :controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> | 
+                <%= link_to 'Delete', :controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %>
+            <% end %>
         </td>
     </tr>
     <% end %>
@@ -62,7 +72,7 @@
 
 <h3>km allowances</h3>
 <%= pluralize(@km_allowances.size, 'km allowance') %> found<br />
-<%= link_to 'Add new km allowance', :controller => 'km_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id %>
+<%= (link_to 'Add new km allowance', :controller => 'km_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id) if can? :new, KmAllowance %>
 <br /><br />
 <% if @km_allowances.size > 0 %>
 <table>
@@ -71,7 +81,7 @@
         <th>Route</th>
         <th>Description</th>
         <th>km</th>
-        <th>Actions</th>
+        <%= "<th>Actions</th>".html_safe unless current_user.admin? %>
     </tr>
     <% @km_allowances.each do |km_allowance| %>
     <tr>
@@ -80,8 +90,11 @@
         <td><%= km_allowance.description %></td>
         <td><%= km_allowance.kms %></td>
         <td>
-            <%= link_to 'Edit', :controller => 'km_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %> | 
-            <%= link_to 'Delete', :controller => 'km_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %>
+            <% if current_user.admin? %>
+            <% else %>
+                <%= link_to 'Edit', :controller => 'km_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %> | 
+                <%= link_to 'Delete', :controller => 'km_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %>
+            <% end %>
         </td>
     </tr>
     <% end %>

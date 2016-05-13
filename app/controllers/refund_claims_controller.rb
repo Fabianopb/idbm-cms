@@ -3,9 +3,15 @@ class RefundClaimsController < ApplicationController
   before_action :confirm_logged_in
   before_action :find_user
   before_action :set_refund_claim, only: [:show, :edit, :update, :delete]
-
+  
+  load_and_authorize_resource
+  
   def index
-    @refund_claims = @user.refund_claims.newest_first
+    if current_user.role == "Admin"
+      @refund_claims = RefundClaim.newest_first
+    else
+      @refund_claims = @user.refund_claims.newest_first
+    end
   end
   
   def show

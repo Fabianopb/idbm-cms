@@ -30,16 +30,24 @@
     
     
     <% if current_user %>
+    <p>My name is <%= current_user.name %> and my id is <%= current_user.id %>.</p>
     <nav>
       <ul>
+        
         <li><%= link_to 'main', :controller => 'main' %></li>
+        
         <li><%= link_to 'travel plans', :controller => "travel_plans", :user_id => current_user.id %></li>
+        
         <li><%= link_to 'refund claims', :controller => "refund_claims", :user_id => current_user.id %></li>
+        
         <li><%= link_to 'personal info', :controller => "users", :action => "show", :id => current_user.id %></li>
+        
         <li><%= link_to 'FAQ', :controller => "fa_qs" %></li>
+        
         <% if can? :manage, User %>
           <li><%= link_to 'users', :controller => "users" %></li>
         <% end %>
+        
       </ul>
     </nav>
     <% end %>
