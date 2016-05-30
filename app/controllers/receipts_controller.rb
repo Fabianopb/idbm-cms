@@ -5,6 +5,8 @@ class ReceiptsController < ApplicationController
   before_action :find_refund_claim
   before_action :set_receipt, only: [:edit, :update, :delete]
   
+  load_and_authorize_resource
+  
   def new
     @receipt = Receipt.new
   end
@@ -38,7 +40,7 @@ class ReceiptsController < ApplicationController
     end
     
     def receipt_params
-      params.require(:receipt).permit(:refund_claim_id, :expense_date, :description, :value, :currency)
+      params.require(:receipt).permit(:refund_claim_id, :expense_date, :description, :value, :currency, :user_id)
     end
   
 end

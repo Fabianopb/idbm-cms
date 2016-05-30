@@ -5,6 +5,8 @@ class DailyAllowancesController < ApplicationController
   before_action :find_refund_claim
   before_action :set_daily_allowance, only: [:edit, :update, :delete]
   
+  load_and_authorize_resource
+  
   def new
     @daily_allowance = DailyAllowance.new
   end
@@ -38,7 +40,7 @@ class DailyAllowancesController < ApplicationController
     end
     
     def daily_allowance_params
-      params.require(:daily_allowance).permit(:refund_claim_id, :departure, :arrival, :return_date, :destination)
+      params.require(:daily_allowance).permit(:refund_claim_id, :departure, :arrival, :return_date, :destination, :user_id)
     end
   
 end

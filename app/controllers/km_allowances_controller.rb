@@ -5,6 +5,8 @@ class KmAllowancesController < ApplicationController
   before_action :find_refund_claim
   before_action :set_km_allowance, only: [:edit, :update, :delete]
   
+  load_and_authorize_resource
+  
   def new
     @km_allowance = KmAllowance.new
   end
@@ -38,7 +40,7 @@ class KmAllowancesController < ApplicationController
     end
     
     def km_allowance_params
-      params.require(:km_allowance).permit(:refund_claim_id, :date, :route, :kms, :description)
+      params.require(:km_allowance).permit(:refund_claim_id, :date, :route, :kms, :description, :user_id)
     end
   
 end

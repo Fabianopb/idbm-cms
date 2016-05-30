@@ -8,7 +8,6 @@ class Ability
       can :show, Account
       can :manage, User
       can [:read, :update], [RefundClaim, TravelPlan] {|demand| demand.status != "not submitted"}
-      can :read, [Receipt, DailyAllowance, KmAllowance]
       can :manage, Faq
     else
       can :manage, [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance, TravelPlan], :user_id => user.id
