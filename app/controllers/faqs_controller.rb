@@ -1,4 +1,4 @@
-class FaQsController < ApplicationController
+class FaqsController < ApplicationController
   
   before_action :confirm_logged_in
   before_action :set_faq, only: [:edit, :update, :delete]

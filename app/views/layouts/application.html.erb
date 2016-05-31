@@ -42,7 +42,7 @@
         
         <li><%= link_to 'personal info', :controller => "users", :action => "show", :id => current_user.id %></li>
         
-        <li><%= link_to 'FAQ', :controller => "fa_qs" %></li>
+        <li><%= link_to 'FAQ', :controller => "faqs" %></li>
         
         <% if can? :manage, User %>
           <li><%= link_to 'users', :controller => "users" %></li>
