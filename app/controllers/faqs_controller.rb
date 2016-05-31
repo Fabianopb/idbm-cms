@@ -3,6 +3,8 @@ class FaqsController < ApplicationController
   before_action :confirm_logged_in
   before_action :set_faq, only: [:edit, :update, :delete]
   
+  load_and_authorize_resource
+  
   def index
     @faqs = Faq.sorted
   end

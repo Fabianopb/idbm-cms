@@ -2,7 +2,9 @@
 
 <h1>FAQs</h1>
 
-<%= link_to 'Create Q&A', :action => 'new' %>
+<% if can? :manage, Faq %>
+  <%= link_to 'Create Q&A', :action => 'new' %>
+<% end %>
 
 <table>
   <% @faqs.each do |faq| %>
@@ -12,11 +14,13 @@
     <tr>
       <td><%= faq.answer %></td>
     </tr>
-    <tr>
-      <td>
-        <%= link_to 'Edit', :action => 'edit', :id => faq.id %>
-        <%= link_to 'Delete', :action => 'delete', :id => faq.id %>
-      </td>
-    </tr>
+    <% if can? :manage, Faq %>
+      <tr>
+        <td>
+          <%= link_to 'Edit', :action => 'edit', :id => faq.id %>
+          <%= link_to 'Delete', :action => 'delete', :id => faq.id %>
+        </td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
