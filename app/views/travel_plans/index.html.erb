@@ -2,14 +2,16 @@
 
 <h1>Listing Travel Plans</h1>
 
-<%= link_to 'New Travel Plan', :action => 'new', :user_id => @user.id %>
+<%= (link_to 'New Travel Plan', :action => 'new', :user_id => @user.id) if can? :new, TravelPlan %>
 
 <table>
   <thead>
     <tr>
       <th>Destination</th>
+      <%= "<th>Travellers</th>".html_safe if current_user.admin? %>
       <th>Departure</th>
       <th>Return</th>
+      <th>Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -18,12 +20,18 @@
     <% @travel_plans.each do |travel_plan| %>
       <tr>
         <td><%= travel_plan.destination %></td>
+        <% if current_user.admin? %>
+          <td><%= travel_plan.users.pluck(:first_name).join('; ') %></td>
+        <% end %>
         <td><%= travel_plan.departure_date %></td>
         <td><%= travel_plan.return_date %></td>
+        <td><%= travel_plan.status %></td>
         <td>
-          <%= link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id %>
-          <%= link_to 'Edit', :action => 'edit', :user_id => @user.id, :id => travel_plan.id  %>
-          <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => travel_plan.id %></td>
+          <%= (can? :read, travel_plan) ? (link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id) : '---' %>
+          <% unless current_user.admin? %>
+            <%= link_to 'Edit', :action => 'edit', :user_id => @user.id, :id => travel_plan.id  %>
+            <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => travel_plan.id %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

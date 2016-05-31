@@ -7,7 +7,7 @@ class RefundClaimsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    if current_user.role == "Admin"
+    if current_user.admin?
       @refund_claims = RefundClaim.newest_first
     else
       @refund_claims = @user.refund_claims.newest_first

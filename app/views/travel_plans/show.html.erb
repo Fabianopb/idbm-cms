@@ -1,8 +1,12 @@
 <%= link_to 'Back to Travel Plans', :action => 'index', :user_id => @user.id %> | 
-<%= link_to 'Edit this plan', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id %>
+<%= current_user.admin? && @travel_plan.status == "not submitted" ? (link_to 'Modify status', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id) : (link_to 'Edit this plan', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id) %>
 
 <h2>Travel plan</h2>
 <table>
+    <tr>
+        <th>Status</th>
+        <td><%= @travel_plan.status %></td>
+    </tr>
     <tr>
         <th>Destination</th>
         <td><%= @travel_plan.destination %></td>

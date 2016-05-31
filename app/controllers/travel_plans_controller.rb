@@ -3,9 +3,15 @@ class TravelPlansController < ApplicationController
   before_action :confirm_logged_in
   before_action :find_user
   before_action :set_travel_plan, only: [:show, :edit, :update, :delete]
+  
+  load_and_authorize_resource
 
   def index
-    @travel_plans = @user.travel_plans.newest_first
+    if current_user.admin?
+      @travel_plans = TravelPlan.newest_first
+    else
+      @travel_plans = @user.travel_plans.newest_first
+    end
   end
 
   def new

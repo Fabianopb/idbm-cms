@@ -1,86 +1,99 @@
 <table summary="Travel plan form fields">
-  <tr>
-    <th><%= f.label :destination, "Destination" %></th>
-    <td><%= f.text_field :destination %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :departure_date, "Departure" %></th>
-    <td><%= f.date_select :departure_date, {:order => [:day, :month, :year]} %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :return_date, "Return" %></th>
-    <td><%= f.date_select :return_date, {:order => [:day, :month, :year]} %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :trip_description, "Description" %></th>
-    <td><%= f.text_field :trip_description %></td>
-  </tr>
-  <tr>
-    <th><%= f.label "Transport types" %></th>
-    <td>
-      <%= f.collection_check_boxes :transport_ids, Transport.all, :id, :transport_type do |b| %>
-        <div class="collection-check-box">
-          <%= b.check_box %>
-          <%= b.label %>
-        </div>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th><%= f.label :tickets_description, "Tickets description" %></th>
-    <td><%= f.text_field :tickets_description %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :tickets_cost, "Tickets cost" %></th>
-    <td><%= f.number_field :tickets_cost %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :paid_days, "Days for daily allowance" %></th>
-    <td><%= f.number_field :paid_days %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :daily_allowance, "Daily allowance value" %></th>
-    <td><%= f.number_field :daily_allowance %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :accommodation_costs, "Accommodation costs" %></th>
-    <td><%= f.number_field :accommodation_costs %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :accommodation_aalto_paid, "Accomodation paid..." %></th>
-    <td>
-      <%= f.radio_button(:accommodation_aalto_paid, true) %> ...directly by Aalto
-      <%= f.radio_button(:accommodation_aalto_paid, false) %> ...by the student and reimbursed later
-    </td>
-  </tr>
-  <tr>
-    <th><%= f.label :events_costs, "Events costs" %></th>
-    <td><%= f.number_field :events_costs %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :events_aalto_paid, "Event paid..." %></th>
-    <td>
-      <%= f.radio_button(:events_aalto_paid, true) %> ...directly by Aalto
-      <%= f.radio_button(:events_aalto_paid, false) %> ...by the student and reimbursed later
-    </td>
-  </tr>
-  <tr>
-    <th><%= f.label :other_description, "Other costs description" %></th>
-    <td><%= f.text_field :other_description %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :other_costs, "Other costs value" %></th>
-    <td><%= f.number_field :other_costs %></td>
-  </tr>
-  <tr>
-    <th><%= f.label "Members travelling" %></th>
-    <td>
-      <%= f.collection_check_boxes :user_ids, User.where("role = ?", "Student"), :id, :first_name do |b| %>
-        <div class="collection-check-box">
-          <%= b.check_box %>
-          <%= b.label %>
-        </div>
-      <% end %>
-    </td>
-  </tr>
+  
+  <% unless current_user.admin? %>
+  
+    <tr>
+      <th><%= f.label :destination, "Destination" %></th>
+      <td><%= f.text_field :destination %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :departure_date, "Departure" %></th>
+      <td><%= f.date_select :departure_date, {:order => [:day, :month, :year]} %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :return_date, "Return" %></th>
+      <td><%= f.date_select :return_date, {:order => [:day, :month, :year]} %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :trip_description, "Description" %></th>
+      <td><%= f.text_field :trip_description %></td>
+    </tr>
+    <tr>
+      <th><%= f.label "Transport types" %></th>
+      <td>
+        <%= f.collection_check_boxes :transport_ids, Transport.all, :id, :transport_type do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :tickets_description, "Tickets description" %></th>
+      <td><%= f.text_field :tickets_description %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :tickets_cost, "Tickets cost" %></th>
+      <td><%= f.number_field :tickets_cost %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :paid_days, "Days for daily allowance" %></th>
+      <td><%= f.number_field :paid_days %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :daily_allowance, "Daily allowance value" %></th>
+      <td><%= f.number_field :daily_allowance %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :accommodation_costs, "Accommodation costs" %></th>
+      <td><%= f.number_field :accommodation_costs %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :accommodation_aalto_paid, "Accomodation paid..." %></th>
+      <td>
+        <%= f.radio_button(:accommodation_aalto_paid, true) %> ...directly by Aalto
+        <%= f.radio_button(:accommodation_aalto_paid, false) %> ...by the student and reimbursed later
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :events_costs, "Events costs" %></th>
+      <td><%= f.number_field :events_costs %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :events_aalto_paid, "Event paid..." %></th>
+      <td>
+        <%= f.radio_button(:events_aalto_paid, true) %> ...directly by Aalto
+        <%= f.radio_button(:events_aalto_paid, false) %> ...by the student and reimbursed later
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :other_description, "Other costs description" %></th>
+      <td><%= f.text_field :other_description %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :other_costs, "Other costs value" %></th>
+      <td><%= f.number_field :other_costs %></td>
+    </tr>
+    <tr>
+      <th><%= f.label "Members travelling" %></th>
+      <td>
+        <%= f.collection_check_boxes :user_ids, User.where("role = ?", "Student"), :id, :first_name do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  
+  <% else %>
+    
+    <tr>
+      <th><%= f.label :status, "Status" %></th>
+      <td><%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'] %></td>
+    </tr>
+  
+  <% end %>
+  
 </table>
