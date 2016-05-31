@@ -1,0 +1,50 @@
+@import "materialize";
+
+//basic styles
+body {
+    @extend .grey-text, .text-darken-1;
+    margin: 0; padding: 0;
+}
+
+h1, h2 {
+    font-weight: 200;
+}
+
+//header styles
+header {
+    display: inline-block;
+    width: 100%;
+}
+
+
+//main styles
+main::after {
+    content:''; display: block; clear: both;
+}
+
+.navigation {
+    width: 20%;
+    min-height: 500px;
+    float: left;
+    
+    ul {
+        margin: 0; padding: 0;
+    }
+    
+    li a {
+       padding: 20px;
+       display: block;
+       width: 100%;
+       transition: background-color .5s;
+       @extend .white-text
+    }
+    
+    li a:hover {
+       background-color: rgba(0, 0, 0, .2);
+    }
+}
+
+.main_section {
+    width: 80%;
+    float: left;
+}

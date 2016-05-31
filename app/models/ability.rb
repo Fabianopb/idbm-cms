@@ -10,7 +10,8 @@ class Ability
       can [:read, :update], [RefundClaim, TravelPlan] {|demand| demand.status != "not submitted"}
       can :manage, Faq
     else
-      can :manage, [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance, TravelPlan], :user_id => user.id
+      can :manage, [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance], :user_id => user.id
+      can :manage, [TravelPlan] # permit only team members
       can [:show, :update], User, :id => user.id
       can :read, Faq
     end
