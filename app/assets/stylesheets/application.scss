@@ -22,29 +22,37 @@ main::after {
     content:''; display: block; clear: both;
 }
 
-.navigation {
-    width: 20%;
-    min-height: 500px;
-    float: left;
+#main_area {
     
-    ul {
+    border-collapse: collapse;
+    margin: 0; padding: 0;
+    
+    .navigation {
+        border-radius: 0;
         margin: 0; padding: 0;
+        width: 25%;
+        vertical-align: top;
+        
+        ul {
+            margin: 0; padding: 0;
+        }
+        
+        li a {
+           padding: 20px;
+           display: block;
+           width: 100%;
+           transition: background-color .5s;
+           @extend .white-text
+        }
+        
+        li a:hover {
+           background-color: rgba(0, 0, 0, .2);
+        }
     }
     
-    li a {
-       padding: 20px;
-       display: block;
-       width: 100%;
-       transition: background-color .5s;
-       @extend .white-text
+    .main_section {
+        margin: 0; padding: 0;
+        width: 75%;
+        vertical-align: top;
     }
-    
-    li a:hover {
-       background-color: rgba(0, 0, 0, .2);
-    }
-}
-
-.main_section {
-    width: 80%;
-    float: left;
 }
