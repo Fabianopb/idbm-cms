@@ -1,38 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Travel Plans</h1>
+<h4>Travel Plans</h4>
 
 <%= (link_to 'New Travel Plan', :action => 'new', :user_id => @user.id) if can? :new, TravelPlan %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Destination</th>
-      <%= "<th>Travellers</th>".html_safe if current_user.admin? %>
-      <th>Departure</th>
-      <th>Return</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @travel_plans.each do |travel_plan| %>
-      <tr>
-        <td><%= travel_plan.destination %></td>
-        <% if current_user.admin? %>
-          <td><%= travel_plan.users.pluck(:first_name).join('; ') %></td>
+<div class="row">
+  <% @travel_plans.each do |travel_plan| %>
+  <div class="col s12 m4">
+    <div class="card grey lighten-5">
+      <div class="card-content">
+        <span class="card-title grey-text text-darken-3"><%= travel_plan.destination %></span>
+        <p><strong>Departure: </strong><%= travel_plan.departure_date %></p>
+        <p><strong>Return: </strong><%= travel_plan.return_date %></p>
+        <p><strong>Travellers: </strong><%= travel_plan.travellers %></p>
+        <p><strong>Status: </strong><%= travel_plan.status %></p>
+      </div>
+      <div class="card-action">
+        <%= (can? :read, travel_plan) ? (link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id) : '---' %>
+        <% unless current_user.admin? %>
+          <%= link_to 'Edit', :action => 'edit', :user_id => @user.id, :id => travel_plan.id  %>
+          <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => travel_plan.id %>
         <% end %>
-        <td><%= travel_plan.departure_date %></td>
-        <td><%= travel_plan.return_date %></td>
-        <td><%= travel_plan.status %></td>
-        <td>
-          <%= (can? :read, travel_plan) ? (link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id) : '---' %>
-          <% unless current_user.admin? %>
-            <%= link_to 'Edit', :action => 'edit', :user_id => @user.id, :id => travel_plan.id  %>
-            <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => travel_plan.id %></td>
-          <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
