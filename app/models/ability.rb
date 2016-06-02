@@ -11,7 +11,7 @@ class Ability
       can :manage, Faq
     else
       can :manage, [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance], :user_id => user.id
-      can :manage, [TravelPlan] # permit only team members
+      can :manage, [TravelPlan] {|travel_plan| travel_plan.users.pluck(:id).include?(user.id)}
       can [:show, :update], User, :id => user.id
       can :read, Faq
     end
