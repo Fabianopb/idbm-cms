@@ -2,12 +2,16 @@
 
 //basic styles
 body {
-    @extend .grey-text, .text-darken-1;
+    @extend .grey-text, .text-darken-3;
     margin: 0; padding: 0;
 }
 
 h1, h2 {
     font-weight: 200;
+}
+
+a {
+    @extend .cyan-text;
 }
 
 //header styles
@@ -30,7 +34,7 @@ main::after {
     .navigation {
         border-radius: 0;
         margin: 0; padding: 0;
-        width: 25%;
+        width: 20%;
         vertical-align: top;
         
         ul {
@@ -42,7 +46,7 @@ main::after {
            display: block;
            width: 100%;
            transition: background-color .5s;
-           @extend .white-text
+           @extend .grey-text, .text-darken-3;
         }
         
         li a:hover {
@@ -51,8 +55,8 @@ main::after {
     }
     
     .main_section {
-        margin: 0; padding: 0;
-        width: 75%;
+        margin: 0; padding: 20px 40px;
+        width: 80%;
         vertical-align: top;
     }
 }
