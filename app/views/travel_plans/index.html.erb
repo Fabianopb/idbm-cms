@@ -9,14 +9,14 @@
   <div class="col s12 m4">
     <div class="card grey lighten-5">
       <div class="card-content">
-        <span class="card-title grey-text text-darken-3"><%= travel_plan.destination %></span>
-        <p><strong>Departure: </strong><%= travel_plan.departure_date %></p>
-        <p><strong>Return: </strong><%= travel_plan.return_date %></p>
-        <p><strong>Travellers: </strong><%= travel_plan.travellers %></p>
-        <p><strong>Status: </strong><%= travel_plan.status %></p>
+        <span class="card-title grey-text text-darken-3 truncate"><%= travel_plan.destination %></span>
+        <p class="truncate"><strong>Departure: </strong><%= travel_plan.departure_date %></p>
+        <p class="truncate"><strong>Return: </strong><%= travel_plan.return_date %></p>
+        <p class="truncate"><strong>Travellers: </strong><%= travel_plan.travellers %></p>
+        <p class="truncate"><strong>Status: </strong><%= travel_plan.status %></p>
       </div>
       <div class="card-action">
-        <%= (can? :read, travel_plan) ? (link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id) : '---' %>
+        <%= (can? :read, travel_plan) ? (link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id) : '<em>draft</em>'.html_safe %>
         <% unless current_user.admin? %>
           <%= link_to 'Edit', :action => 'edit', :user_id => @user.id, :id => travel_plan.id  %>
           <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => travel_plan.id %>

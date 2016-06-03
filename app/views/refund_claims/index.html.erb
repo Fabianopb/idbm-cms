@@ -1,36 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<h4>Refund Claims</h4>
+
 <%= (link_to 'New Refund Claim', :action => 'new', :user_id => @user.id) if can? :new, RefundClaim %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Created at</th>
-      <th>Description</th>
-      <%= "<th>User</th>".html_safe if current_user.admin? %>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @refund_claims.each do |refund_claim| %>
-      <tr>
-        <td><%= refund_claim.created_at %></td>
-        <td><%= refund_claim.description %></td>
+<div class="row">
+  <% @refund_claims.each do |refund_claim| %>
+  <div class="col s12 m4">
+    <div class="card grey lighten-5">
+      <div class="card-content">
+        <p class="truncate"><em><%= refund_claim.description %></em></p><br />
+        <%= "<p class='truncate'><strong>Student: </strong>#{refund_claim.user.name}</p>".html_safe if current_user.admin? %>
+        <p class="truncate"><strong>Created at: </strong><%= refund_claim.created_at %></p>
+        <p class="truncate"><strong>Status: </strong><%= refund_claim.status %></p>
+        <p class="truncate"><strong>Receipts: </strong><%= refund_claim.receipts.size %></p>
+        <p class="truncate"><strong>Trips: </strong><%= refund_claim.daily_allowances.size %></p>
+        <p class="truncate"><strong>Own car uses: </strong><%= refund_claim.km_allowances.size %></p>
+      </div>
+      <div class="card-action">
         <% if current_user.admin? %>
-          <td><%= refund_claim.user.name %></td>
+          <%= (can? :read, refund_claim) ? (link_to 'Show', :action => 'show', :user_id => refund_claim.user.id, :id => refund_claim.id) : '<em>draft</em>'.html_safe %>
+        <% else %>
+          <%= link_to 'Show', :action => 'show', :user_id => @user.id, :id => refund_claim.id %>
+          <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => refund_claim.id %>
         <% end %>
-        <td><%= refund_claim.status %></td>
-        <td>
-          <% if current_user.admin? %>
-            <%= (can? :read, refund_claim) ? (link_to 'Show', :action => 'show', :user_id => refund_claim.user.id, :id => refund_claim.id) : '---' %>
-          <% else %>
-            <%= link_to 'Show', :action => 'show', :user_id => @user.id, :id => refund_claim.id %>
-            <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => refund_claim.id %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
