@@ -52,6 +52,6 @@ class RefundClaimsController < ApplicationController
     end
    
     def refund_claim_params
-      params.require(:refund_claim).permit(:user_id, :description, :status)
+      params.require(:refund_claim).permit(:user_id, :description, :status, :departure, :return_date)
     end
 end

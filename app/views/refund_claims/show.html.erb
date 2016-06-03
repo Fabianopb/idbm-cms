@@ -48,25 +48,24 @@
 <% if @daily_allowances.size > 0 %>
 <table>
     <tr>
-        <th>Departure date</th>
-        <th>Arrival in country</th>
-        <th>Return date</th>
-        <%= "<th>Actions</th>".html_safe unless current_user.admin? %>
+        <th>Departure from Finland: </th>
+        <td><%= @refund_claim.departure %></td>
     </tr>
     <% @daily_allowances.each do |daily_allowance| %>
     <tr>
-        <td><%= daily_allowance.departure %></td>
-        <td><%= "#{daily_allowance.arrival} in #{daily_allowance.destination}" %></td>
-        <td><%= daily_allowance.return_date %></td>
-        <td>
-            <% if current_user.admin? %>
-            <% else %>
-                <%= link_to 'Edit', :controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> | 
-                <%= link_to 'Delete', :controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %>
-            <% end %>
+        <th>Arrival in <%= daily_allowance.destination %>: </th>
+        <td><%= daily_allowance.arrival %> (
+        <% unless current_user.admin? %>
+            <%= link_to 'Edit', :controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> | 
+            <%= link_to 'Delete', :controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> )
+        <% end %>
         </td>
     </tr>
     <% end %>
+    <tr>
+        <th>Return to Finland: </th>
+        <td><%= @refund_claim.return_date %></td>
+    </tr>
 </table>
 <% end %>
 

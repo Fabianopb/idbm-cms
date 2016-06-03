@@ -40,7 +40,7 @@ class DailyAllowancesController < ApplicationController
     end
     
     def daily_allowance_params
-      params.require(:daily_allowance).permit(:refund_claim_id, :departure, :arrival, :return_date, :destination, :user_id)
+      params.require(:daily_allowance).permit(:refund_claim_id, :arrival, :destination, :user_id)
     end
   
 end

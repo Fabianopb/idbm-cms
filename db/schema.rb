@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530135426) do
+ActiveRecord::Schema.define(version: 20160603131716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,13 +46,11 @@ ActiveRecord::Schema.define(version: 20160530135426) do
 
   create_table "daily_allowances", force: :cascade do |t|
     t.integer  "refund_claim_id"
-    t.datetime "departure"
-    t.datetime "arrival"
-    t.datetime "return_date"
-    t.string   "destination"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "user_id"
+    t.string   "destination"
+    t.datetime "arrival"
   end
 
   add_index "daily_allowances", ["refund_claim_id"], name: "index_daily_allowances_on_refund_claim_id", using: :btree
@@ -100,6 +98,8 @@ ActiveRecord::Schema.define(version: 20160530135426) do
     t.string   "status",      default: "not submitted"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.datetime "departure"
+    t.datetime "return_date"
   end
 
   add_index "refund_claims", ["user_id"], name: "index_refund_claims_on_user_id", using: :btree
