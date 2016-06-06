@@ -12,6 +12,7 @@ class Ability
     else
       can :manage, [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance], :user_id => user.id
       can :manage, [TravelPlan] {|travel_plan| travel_plan.users.pluck(:id).include?(user.id)}
+      can :create, TravelPlan # create only for team members (creator is mandatory)
       can [:show, :update], User, :id => user.id
       can :read, Faq
     end
