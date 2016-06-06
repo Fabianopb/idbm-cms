@@ -1,14 +1,39 @@
-<table summary="Refund claim form fields">
-  <% unless current_user.admin? %>
-  <tr>
-    <th><%= f.label :description, "Description" %></th>
-    <td><%= f.text_field :description %></td>
-  </tr>
-  <% else %>
-  <tr>
-    <th><%= f.label :status, "Status" %></th>
-    <td><%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'] %></td>
-  </tr>
-  <% end %>
-</table>
+<% unless current_user.admin? %>
+
+<div class="row">
+  <div class="input-field col s6">
+    <%= f.text_field :description, :placeholder => 'Give a short description of this claim', :class => 'validate' %>
+    <%= f.label :description %>
+  </div>
+</div>
+
+<h5>Trip information</h5>
+<div class="switch">
+  <label>
+    Off
+    <input id="trip-info-switch" type="checkbox">
+    <span class="lever"></span>
+    On
+  </label>
+</div>
+
+<div id="trip-info-form" class="row">
+  <div class="input-field col s6">
+    <%= f.text_field :departure, :class => 'datepicker' %>
+    <%= f.label :departure %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.text_field :return_date, :class => 'datepicker' %>
+    <%= f.label :return_date %>
+  </div>
+</div>
+
 <%= f.hidden_field :user_id, value: @user.id %>
+<% else %>
+
+<div class="input-field col s6">
+  <%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'] %>
+  <%= f.label :status %>
+</div>
+
+<% end %>

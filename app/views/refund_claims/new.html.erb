@@ -1,13 +1,17 @@
-<h1>New Refund Claim</h1>
+<h4>New Refund Claim</h4>
 
 <%= link_to 'Back to claims', {:action => 'index', :user_id => @user.id} %>
 
-<%= form_for :refund_claim, :url => {:action => 'create', :user_id => @user.id} do |f| %>
+<div class="row form-body">
+  
+  <%= form_for :refund_claim, :url => {:action => 'create', :user_id => @user.id}, :html => {:class => 'col s12'} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 
-    <div class="form-buttons">
-      <%= submit_tag "Create Refund Claim" %>
+    <div class="form-button">
+      <%= f.button "Create", :class => 'btn waves-effect waves-light' %>
     </div>
 
-<% end %>
+  <% end %>
+  
+</div>
