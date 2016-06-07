@@ -1,17 +1,39 @@
-@import "materialize";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+
+//colors
+$white: #fff;
+$black: #000;
+$cyan: #00bcd4;
+
+$blue-grey-lighten-5: #eceff1;
+$blue-grey-lighten-4: #cfd8dc;
+$blue-grey-lighten-3: #b0bec5;
+$blue-grey-lighten-2: #90a4ae;
+$blue-grey-lighten-1: #78909c;
+$blue-grey: #607d8b;
+$blue-grey-darken-1: #546e7a;
+$blue-grey-darken-2: #455a64;
+$blue-grey-darken-3: #37474f;
+$blue-grey-darken-4: #263238;
+
+$grey-darken-3: #424242;
+
 
 //basic styles
 body {
-    @extend .grey-text, .text-darken-3;
-    margin: 0; padding: 0;
+    color: $grey-darken-3;
+    margin: 0 auto; padding: 0;
+    max-width: 1500px;
 }
 
 h1, h2, h3 {
     font-weight: 200;
 }
 
-a {
-    @extend .cyan-text;
+a, a:hover {
+    color: $cyan;
 }
 
 //header styles
@@ -19,6 +41,9 @@ header {
     margin: 0; padding: 20px;
     display: inline-block;
     width: 100%;
+    background-color: $blue-grey-darken-2;
+    color: $white;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 }
 
 
@@ -30,6 +55,7 @@ main::after {
 #main_area {
     
     height: 500px;
+    width: 100%;
     border-collapse: collapse;
     margin: 0; padding: 0;
     
@@ -40,9 +66,12 @@ main::after {
         margin: 0; padding: 0;
         width: 20%;
         vertical-align: top;
+        background-color: $blue-grey-lighten-4;
+        box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
         
         ul {
             margin: 0; padding: 0;
+            list-style: none;
         }
         
         li a {
@@ -50,7 +79,7 @@ main::after {
            display: block;
            width: 100%;
            transition: background-color .5s;
-           @extend .grey-text, .text-darken-3;
+           color: $grey-darken-3;
         }
         
         li a:hover {
@@ -62,11 +91,13 @@ main::after {
         margin: 0; padding: 20px 40px;
         width: 80%;
         vertical-align: top;
+        background-color: rgba(0, 0, 0, .2);
     }
 }
 
 footer {
     padding: 20px;
+    background-color: $blue-grey;
 }
 
 .form-button, .form-body {
