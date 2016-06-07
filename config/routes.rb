@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :user_sessions, only: [:create, :new, :destroy]
   
-  get '/sign_out', to: 'user_sessions#destroy', as: :sign_out
+  delete '/sign_out', to: 'user_sessions#destroy', as: :sign_out
   get '/sign_in', to: 'user_sessions#new', as: :sign_in
   
   match ':controller(/:action(/:id))', :via => [:get, :post]
