@@ -1,13 +1,13 @@
-<h1>New User</h1>
+<h3>Create new travel plan</h3>
 
-<%= link_to 'Back to travel plans', {:action => 'index', :user_id => @user.id} %>
+<%= link_to 'Back to travel plans', {:action => 'index', :user_id => @user.id}, :class => 'top-nav' %>
 
 <%= form_for :travel_plan, :url => {:action => 'create', :user_id => @user.id} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 
     <div class="form-buttons">
-      <%= submit_tag "Create Travel Plan" %>
+      <%= f.button 'Create Travel Plan', :class => 'btn btn-default' %>
     </div>
 
 <% end %>

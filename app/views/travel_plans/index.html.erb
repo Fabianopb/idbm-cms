@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h4>Travel Plans</h4>
+<h3>Travel Plans</h3>
 
-<%= (link_to 'New Travel Plan', :action => 'new', :user_id => @user.id) if can? :new, TravelPlan %>
+<%= (link_to 'New Travel Plan', {:action => 'new', :user_id => @user.id}, :class => 'top-nav') if can? :new, TravelPlan %>
 
 <div class="row">
   <% @travel_plans.each do |travel_plan| %>
-  <div class="col s12 m4">
-    <div class="card grey lighten-5">
-      <div class="card-content">
-        <span class="card-title grey-text text-darken-3 truncate"><%= travel_plan.destination %></span>
-        <p class="truncate"><strong>Departure: </strong><%= travel_plan.departure_date %></p>
-        <p class="truncate"><strong>Return: </strong><%= travel_plan.return_date %></p>
-        <p class="truncate"><strong>Travellers: </strong><%= travel_plan.travellers %></p>
-        <p class="truncate"><strong>Status: </strong><%= travel_plan.status %></p>
+  <div class="col-md-4 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-title"><%= travel_plan.destination %></p>
+        <p class="card-content"><strong>Departure: </strong><%= travel_plan.departure_date %></p>
+        <p class="card-content"><strong>Return: </strong><%= travel_plan.return_date %></p>
+        <p class="card-content"><strong>Travellers: </strong><%= travel_plan.travellers %></p>
+        <p class="card-content"><strong>Status: </strong><%= travel_plan.status %></p>
       </div>
       <div class="card-action">
         <%= (can? :read, travel_plan) ? (link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id) : '<em>draft</em>'.html_safe %>
