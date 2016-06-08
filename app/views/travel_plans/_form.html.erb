@@ -1,109 +1,141 @@
-<div class="form-group">
-  <%= f.label :destination %>
-  <%= f.text_field :destination, :class => 'form-control' %>
+<% unless current_user.admin? %>
+
+<div class="row">
+  <div class="col-md-8 form-group">
+    <%= f.label :destination %>
+    <%= f.text_field :destination, :class => 'form-control' %>
+  </div>
 </div>
 
 <div class="form-group">
   <%= f.label :departure_date %>
-  <div class='input-group date' id='datepicker1'>
-    <%= f.text_field :departure_date, :class => 'form-control' %>
-    <span class="input-group-addon">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </span>
+  <div class="form-inline">
+    <%= f.date_select :departure_date, {:order => [:day, :month, :year]}, :class => 'form-control' %>
   </div>
 </div>
 
+<div class="form-group">
+  <%= f.label :return_date %>
+  <div class="form-inline">
+    <%= f.date_select :return_date, {:order => [:day, :month, :year]}, :class => 'form-control' %>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-8 form-group">
+    <%= f.label :trip_description %>
+    <%= f.text_field :trip_description, :class => 'form-control' %>
+  </div>
+</div>
 
-<table summary="Travel plan form fields">
+<div class="form-group">
+  <%= f.label "Means of transport" %>
+  <%= f.collection_check_boxes :transport_ids, Transport.all, :id, :transport_type do |box| %>
+    <div>
+      <%= box.check_box %>
+      <%= box.label %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-sm-8 form-group">
+    <%= f.label :tickets_description %>
+    <%= f.text_field :tickets_description, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <%= f.label :tickets_cost %>
+    <div class="input-group">
+      <div class="input-group-addon">€</div>
+      <%= f.number_field :tickets_cost, :class => 'form-control' %>
+    </div>
+  </div>
+</div>
   
-  <% unless current_user.admin? %>
-  
-  <div class="form-group">
-    <%= f.label :return_date, "Return" %>
-    <%= f.date_select :return_date, {:order => [:day, :month, :year]} %>
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <%= f.label :paid_days, "Allowance days" %>
+    <%= f.number_field :paid_days, :class => 'form-control' %>
   </div>
   
-    <tr>
-      <th><%= f.label :trip_description, "Description" %></th>
-      <td><%= f.text_field :trip_description %></td>
-    </tr>
-    <tr>
-      <th><%= f.label "Transport types" %></th>
-      <td>
-        <%= f.collection_check_boxes :transport_ids, Transport.all, :id, :transport_type do |b| %>
-          <div class="collection-check-box">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th><%= f.label :tickets_description, "Tickets description" %></th>
-      <td><%= f.text_field :tickets_description %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :tickets_cost, "Tickets cost" %></th>
-      <td><%= f.number_field :tickets_cost %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :paid_days, "Days for daily allowance" %></th>
-      <td><%= f.number_field :paid_days %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :daily_allowance, "Daily allowance value" %></th>
-      <td><%= f.number_field :daily_allowance %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :accommodation_costs, "Accommodation costs" %></th>
-      <td><%= f.number_field :accommodation_costs %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :accommodation_aalto_paid, "Accomodation paid..." %></th>
-      <td>
-        <%= f.radio_button(:accommodation_aalto_paid, true) %> ...directly by Aalto
-        <%= f.radio_button(:accommodation_aalto_paid, false) %> ...by the student and reimbursed later
-      </td>
-    </tr>
-    <tr>
-      <th><%= f.label :events_costs, "Events costs" %></th>
-      <td><%= f.number_field :events_costs %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :events_aalto_paid, "Event paid..." %></th>
-      <td>
-        <%= f.radio_button(:events_aalto_paid, true) %> ...directly by Aalto
-        <%= f.radio_button(:events_aalto_paid, false) %> ...by the student and reimbursed later
-      </td>
-    </tr>
-    <tr>
-      <th><%= f.label :other_description, "Other costs description" %></th>
-      <td><%= f.text_field :other_description %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :other_costs, "Other costs value" %></th>
-      <td><%= f.number_field :other_costs %></td>
-    </tr>
-    <tr>
-      <th><%= f.label "Members travelling" %></th>
-      <td>
-        <%= f.collection_check_boxes :user_ids, User.where("role = ?", "Student"), :id, :first_name do |b| %>
-          <div class="collection-check-box">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-      </td>
-    </tr>
+  <div class="col-sm-3 form-group">
+    <%= f.label :daily_allowance, "Daily allowance value" %>
+    <div class="input-group">
+      <div class="input-group-addon">€</div>
+      <%= f.number_field :daily_allowance, :class => 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <%= f.label :accommodation_costs %>
+    <div class="input-group">
+      <div class="input-group-addon">€</div>
+      <%= f.number_field :accommodation_costs, :class => 'form-control' %>
+    </div>
+  </div>
   
-  <% else %>
-    
-    <tr>
-      <th><%= f.label :status, "Status" %></th>
-      <td><%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'] %></td>
-    </tr>
+  <div class="col-sm-9 form-group">
+    <%= f.label :accommodation_aalto_paid, "Accomodation paid..." %>
+    <div><%= f.radio_button(:accommodation_aalto_paid, true) %> ...directly by IDBM</div>
+    <div><%= f.radio_button(:accommodation_aalto_paid, false) %> ...by the student and refunded later</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <%= f.label :events_costs %>
+    <div class="input-group">
+      <div class="input-group-addon">€</div>
+      <%= f.number_field :events_costs, :class => 'form-control' %>
+    </div>
+  </div>
   
+  <div class="col-sm-9 form-group">
+    <%= f.label :events_aalto_paid, "Events paid..." %>
+    <div><%= f.radio_button(:events_aalto_paid, true) %> ...directly by IDBM</div>
+    <div><%= f.radio_button(:events_aalto_paid, false) %> ...by the student and refunded later</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8 form-group">
+    <%= f.label :other_description, "Specify any other planned costs" %>
+    <%= f.text_field :other_description, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <%= f.label :other_costs %>
+    <div class="input-group">
+      <div class="input-group-addon">€</div>
+      <%= f.number_field :other_costs, :class => 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label "Team members travelling" %>
+  <%= f.collection_check_boxes :user_ids, User.where("role = ?", "Student"), :id, :first_name do |box| %>
+    <div>
+      <%= box.check_box %>
+      <%= box.label %>
+    </div>
   <% end %>
-  
-</table>
+</div>
+
+<% else %>
+
+<div class="row">
+  <div class="col-sm-4 form-group">
+    <%= f.label :status %>
+    <%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'], {}, {:class => 'form-control'} %>
+  </div>
+</div>
+
+<% end %>

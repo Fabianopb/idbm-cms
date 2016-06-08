@@ -1,12 +1,172 @@
+<h3>Travel plan: <%= @travel_plan.destination %></h3>
+<p><strong>Created at: </strong><%= @travel_plan.created_at %></p>
+<p><strong>Status: </strong><%= @travel_plan.status %></p>
+<p><strong>Travellers: </strong><%= @travel_plan.users.pluck(:first_name).join('; ') %></p>
+
+<span class="top-nav">
 <%= link_to 'Back to Travel Plans', :action => 'index', :user_id => @user.id %> | 
 <%= current_user.admin? && @travel_plan.status == "not submitted" ? (link_to 'Modify status', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id) : (link_to 'Edit this plan', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id) %>
+</span>
 
-<h2>Travel plan</h2>
-<table>
+<p>BASIC INFORMATION</p>
+<table class="table table-bordered">
+    
     <tr>
-        <th>Status</th>
-        <td><%= @travel_plan.status %></td>
+        <td colspan="2">
+            <p class="field-name">Name</p>
+            <p><%= @user.name %></p>
+        </td>
+        <td>
+            <p class="field name">Date of birth</p>
+            <p><%= @user.birth_date %></p>
+        </td>
     </tr>
+    
+    <tr>
+        <td>
+            <p class="field-name">Email</p>
+            <p><%= @user.e_mail %></p>
+        </td>
+        <td>
+            <p class="field-name">Phone number</p>
+            <p><%= @user.account.phone_number %></p>
+        </td>
+        <td>
+            <p class="field-name">Social security number</p>
+            <p><%= @user.account.social_security %></p>
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="3">
+            <p class="field-name">Destination, time of departure & arrival</p>
+            <p><%= "#{@travel_plan.destination}, departure on #{@travel_plan.departure_date}, return on #{@travel_plan.return_date}" %></p>
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="3">
+            <p class="field-name">Purpose of the trip (meeting, conference, course etc)</p>
+            <p><%= @travel_plan.trip_description %></p>
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="3">
+            <p class="field-name">Form of transport</p>
+            <div class="row">
+                <% Transport.all.each do |transport| %>
+                <div class="col-sm-2">
+                    <p class="transport">
+                        <%= ' X ' if @travel_plan.transports.pluck(:transport_type).include?(transport.transport_type) %>
+                        <%= transport.transport_type %>
+                    </p>
+                </div>
+                <% end %>
+            </div>
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="3">
+            <p class="field-name">Source of funding, project number</p>
+            <p></p>
+        </td>
+    </tr>
+    
+</table>
+
+<p>ESTIMATED TRAVEL COSTS</p>
+<table class="table table-bordered travel-costs">
+    
+    <tr>
+        <td>
+            <p class="field-name">Tickets</p>
+            <p></p>
+        </td>
+        <td>
+            <p class="field-name">EUR</p>
+            <p></p>
+        </td>
+        
+    </tr>
+    
+    <tr>
+        <td>
+            <p class="field-name">Daily allowance</p>
+            <p></p>
+        </td>
+        <td>
+            <p class="field-name">EUR</p>
+            <p></p>
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            <p class="field-name">Accomodation costs</p>
+            <p></p>
+        </td>
+        <td>
+            <p class="field-name">EUR</p>
+            <p></p>
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            <p class="field-name">Participation fee</p>
+            <p></p>
+        </td>
+        <td>
+            <p class="field-name">EUR</p>
+            <p></p>
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            <p class="field-name">Other costs, please specify</p>
+            <p></p>
+        </td>
+        <td>
+            <p class="field-name">EUR</p>
+            <p></p>
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            <p class="field-name">TOTAL COSTS</p>
+            <p></p>
+        </td>
+        <td>
+            <p class="field-name">EUR</p>
+            <p></p>
+        </td>
+    </tr>
+    
+</table>
+
+<table class="table table-bordered signature">
+    
+    <tr>
+        <td>
+            <p class="field-name">Date</p>
+            <p></p>
+        </td>
+        <td>
+            <p class="field-name">Signature</p>
+            <p></p>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+
+<table>
     <tr>
         <th>Destination</th>
         <td><%= @travel_plan.destination %></td>
@@ -66,10 +226,6 @@
     <tr>
         <th>Other costs value</th>
         <td><%= @travel_plan.other_costs %></td>
-    </tr>
-    <tr>
-        <th>Members</th>
-        <td><%= @travel_plan.users.pluck(:first_name).join('; ') %></td>
     </tr>
 </table>
 
