@@ -16,6 +16,10 @@
     <td><%= f.text_field :e_mail %></td>
   </tr>
   <tr>
+    <th><%= f.label :birth_date %></th>
+    <td><%= f.date_select :birth_date, {:start_year => 1960, :end_year => 2000, :order => [:day, :month, :year]} %></td>
+  </tr>
+  <tr>
     <th><%= f.label :password, "Password" %></th>
     <td><%= f.password_field :password %></td>
   </tr>
