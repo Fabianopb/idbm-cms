@@ -82,11 +82,11 @@
     <tr>
         <td>
             <p class="field-name">Tickets</p>
-            <p></p>
+            <p><%= @travel_plan.tickets_description %></p>
         </td>
         <td>
             <p class="field-name">EUR</p>
-            <p></p>
+            <p><%= @travel_plan.tickets_cost %></p>
         </td>
         
     </tr>
@@ -94,11 +94,11 @@
     <tr>
         <td>
             <p class="field-name">Daily allowance</p>
-            <p></p>
+            <p><%= "#{@travel_plan.paid_days} days, #{@travel_plan.daily_allowance} EUR per day." %></p>
         </td>
         <td>
             <p class="field-name">EUR</p>
-            <p></p>
+            <p><%= @travel_plan.total_allowance %></p>
         </td>
     </tr>
     
@@ -107,9 +107,11 @@
             <p class="field-name">Accomodation costs</p>
             <p></p>
         </td>
+        <td></td>
+        <td></td>
         <td>
             <p class="field-name">EUR</p>
-            <p></p>
+            <p><%= @travel_plan.accommodation_costs %></p>
         </td>
     </tr>
     
@@ -120,18 +122,18 @@
         </td>
         <td>
             <p class="field-name">EUR</p>
-            <p></p>
+            <p><%= @travel_plan.events_costs %></p>
         </td>
     </tr>
     
     <tr>
         <td>
             <p class="field-name">Other costs, please specify</p>
-            <p></p>
+            <p><%= @travel_plan.other_description %></p>
         </td>
         <td>
             <p class="field-name">EUR</p>
-            <p></p>
+            <p><%= @travel_plan.other_costs %></p>
         </td>
     </tr>
     
@@ -142,90 +144,8 @@
         </td>
         <td>
             <p class="field-name">EUR</p>
-            <p></p>
+            <p><%= @travel_plan.total_costs %></p>
         </td>
     </tr>
     
 </table>
-
-<table class="table table-bordered signature">
-    
-    <tr>
-        <td>
-            <p class="field-name">Date</p>
-            <p></p>
-        </td>
-        <td>
-            <p class="field-name">Signature</p>
-            <p></p>
-        </td>
-    </tr>
-    
-</table>
-
-
-
-
-<table>
-    <tr>
-        <th>Destination</th>
-        <td><%= @travel_plan.destination %></td>
-    </tr>
-    <tr>
-        <th>Departure</th>
-        <td><%= @travel_plan.departure_date %></td>
-    </tr>
-    <tr>
-        <th>Return</th>
-        <td><%= @travel_plan.return_date %></td>
-    </tr>
-    <tr>
-        <th>Description</th>
-        <td><%= @travel_plan.trip_description %></td>
-    </tr>
-    <tr>
-        <th>Transport</th>
-        <td><%= @travel_plan.transports.pluck(:transport_type).join('; ') %></td>
-    </tr>
-    <tr>
-        <th>Tickets description</th>
-        <td><%= @travel_plan.tickets_description %></td>
-    </tr>
-    <tr>
-        <th>Tickets cost</th>
-        <td><%= @travel_plan.tickets_cost %></td>
-    </tr>
-    <tr>
-        <th>Days for daily allowance</th>
-        <td><%= @travel_plan.paid_days %></td>
-    </tr>
-    <tr>
-        <th>Daily allowance value</th>
-        <td><%= @travel_plan.daily_allowance %></td>
-    </tr>
-    <tr>
-        <th>Accommodation costs</th>
-        <td><%= @travel_plan.accommodation_costs %></td>
-    </tr>
-    <tr>
-        <th>Accommodation paid by</th>
-        <td><%= @travel_plan.accommodation_aalto_paid %></td>
-    </tr>
-    <tr>
-        <th>Events costs</th>
-        <td><%= @travel_plan.events_costs %></td>
-    </tr>
-    <tr>
-        <th>Events paid by</th>
-        <td><%= @travel_plan.events_aalto_paid %></td>
-    </tr>
-    <tr>
-        <th>Other costs description</th>
-        <td><%= @travel_plan.other_description %></td>
-    </tr>
-    <tr>
-        <th>Other costs value</th>
-        <td><%= @travel_plan.other_costs %></td>
-    </tr>
-</table>
-
