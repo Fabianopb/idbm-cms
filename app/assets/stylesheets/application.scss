@@ -38,6 +38,10 @@ h1, h2, h3 {
     font-weight: 200;
 }
 
+h4 {
+    padding-bottom: 20px;
+}
+
 a, a:hover {
     color: $cyan;
 }
@@ -107,8 +111,14 @@ footer {
 }
 
 /*** FORM STYLES ***/
-.form-button, .form-body {
-    padding-top: 40px;
+.general-input {
+    margin: 10px 20px;
+}
+
+.general-button {
+    margin: 10px 20px;
+    padding: 0 20px;
+    width: auto;
 }
 
 /*** CARDS STYLES ***/
