@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 20160608124919) do
 
   create_table "daily_allowances", force: :cascade do |t|
     t.integer  "refund_claim_id"
+    t.datetime "arrival"
+    t.string   "destination"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "user_id"
-    t.string   "destination"
-    t.datetime "arrival"
   end
 
   add_index "daily_allowances", ["refund_claim_id"], name: "index_daily_allowances_on_refund_claim_id", using: :btree
