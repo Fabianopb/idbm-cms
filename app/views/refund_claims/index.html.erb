@@ -4,6 +4,8 @@
 
 <%= (link_to 'New Refund Claim', :action => 'new', :user_id => @user.id) if can? :new, RefundClaim %>
 
+<%= pluralize(@refund_claims.size, 'refund claim') %> found<br />
+
 <div class="row">
   <% @refund_claims.each do |refund_claim| %>
   <div class="col s12 m4">

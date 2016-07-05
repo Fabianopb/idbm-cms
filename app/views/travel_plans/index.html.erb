@@ -4,6 +4,8 @@
 
 <%= (link_to 'New Travel Plan', {:action => 'new', :user_id => @user.id}, :class => 'top-nav') if can? :new, TravelPlan %>
 
+<%= pluralize(@travel_plans.size, 'travel plan') %> found<br />
+
 <div class="row">
   <% @travel_plans.each do |travel_plan| %>
   <div class="col-md-4 col-sm-6">
