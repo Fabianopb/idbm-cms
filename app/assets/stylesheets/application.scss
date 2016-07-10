@@ -46,13 +46,27 @@ a, a:hover {
     color: $cyan;
 }
 
+table {
+    margin-top: 10px;
+}
+
 .top-nav::after {
     content:''; display: block; clear: both;
     margin-bottom: 20px;
 }
 
-table {
-    margin-top: 10px;
+.top-buttons {
+    margin-bottom: 20px;
+}
+
+/*** Table sizes ***/
+
+.th-userinfo {
+    width: 40%;
+}
+
+.td-userinfo {
+    width: 60%;
 }
 
 /*** HEADER, MAIN and FOOTER ***/
@@ -154,4 +168,24 @@ footer {
 }
 .signature {
     margin-top: 0;
+}
+
+/*** USER INFORMATION ***/
+
+.edit-userinfo {
+    margin-top: 20px;
+    height: 40px;
+
+    h2 {
+        margin-top: 0;
+        position: absolute;
+        top: 0;
+        left: 15px;
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 }
