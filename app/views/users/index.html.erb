@@ -1,35 +1,41 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p> 
 
-<h1>Listing Users</h1>
-<%= %>
-<%= link_to 'New User', :action => 'new' %>
+<div class="top-buttons">
+    <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), :action => 'new' %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Name</th>
-      <th>Username</th>
-      <th>e-mail</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<h2>Registered Users</h2>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.role %></td>
-        <td><%= user.name %></td>
-        <td><%= user.username %></td>
-        <td><%= user.e_mail %></td>
-        <td>
-          <%= link_to 'Show', :action => 'show', :id => user.id %>
-          <%= link_to 'Edit', :action => 'edit', :id => user.id %>
-          <%= link_to 'Delete', :action => 'delete', :id => user.id %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+    <div class="col-md-10">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>e-mail</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.role %></td>
+                <td><%= user.name %></td>
+                <td><%= user.username %></td>
+                <td><%= user.e_mail %></td>
+                <td>
+                    <%= link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => user.id} %>
+                    <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => user.id} %>
+                    <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => user.id} %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
 
 <br>
