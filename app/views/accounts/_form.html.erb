@@ -1,31 +1,50 @@
-<table summary="Account form fields">
-  <tr>
-    <th><%= f.label :social_security, "Social Security Number" %></th>
-    <td><%= f.text_field :social_security %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :phone_number, "Phone Number" %></th>
-    <td><%= f.text_field :phone_number %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :iban, "IBAN" %></th>
-    <td><%= f.text_field :iban %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :swift, "SWIFT" %></th>
-    <td><%= f.text_field :swift %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :address, "Address" %></th>
-    <td><%= f.text_field :address %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :postal_code, "Postal Code" %></th>
-    <td><%= f.text_field :postal_code %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :city, "City" %></th>
-    <td><%= f.text_field :city %></td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :social_security %>
+    <%= f.text_field :social_security, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :iban %>
+    <%= f.text_field :iban, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :swift %>
+    <%= f.text_field :swift, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :postal_code %>
+    <%= f.text_field :postal_code, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, :class => 'form-control' %>
+  </div>
+</div>
+
 <%= f.hidden_field :user_id, value: @user.id %>
