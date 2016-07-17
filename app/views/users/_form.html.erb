@@ -1,40 +1,60 @@
-<table summary="User form fields">
-  <tr>
-    <th><%= f.label :first_name, "First Name" %></th>
-    <td><%= f.text_field :first_name %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :last_name, "Last Name" %></th>
-    <td><%= f.text_field :last_name %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :username, "Username" %></th>
-    <td><%= f.text_field :username %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :e_mail, "e-mail" %></th>
-    <td><%= f.text_field :e_mail %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :birth_date %></th>
-    <td><%= f.date_select :birth_date, {:start_year => 1960, :end_year => 2000, :order => [:day, :month, :year]} %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :password, "Password" %></th>
-    <td><%= f.password_field :password %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :password_confirmation, "Password confirmation" %></th>
-    <td><%= f.password_field :password_confirmation %></td>
-  </tr>
-  <% if (@user.id != current_user.id) && (can? :manage, User) %>
-  <tr>
-    <th><%= f.label :role, "Role" %></th>
-    <td>
-      <%= f.radio_button(:role, "Admin") %> Admin
-      <%= f.radio_button(:role, "Student") %> Student
-    </td>
-  </tr>
-  <% end %>
-</table>
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, :class => 'form-control' %>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :username %>
+    <%= f.text_field :username, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :e_mail %>
+    <%= f.text_field :e_mail, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :birth_date %>
+  <div class="form-inline">
+    <%= f.date_select :birth_date, {:start_year => 1960, :end_year => 2000, :order => [:day, :month, :year]}, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class => 'form-control' %>
+  </div>
+</div>
+
+<% if (@user.id != current_user.id) && (can? :manage, User) %>
+
+<div class="row">
+  <div class="col-md-12 form-group">
+    <%= f.label :role %>
+    <div><%= f.radio_button(:role, "Admin") %> Admin</div>
+    <div><%= f.radio_button(:role, "Student") %> Student</div>
+  </div>
+</div>
+
+<% end %>

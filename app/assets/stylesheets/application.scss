@@ -38,7 +38,7 @@ h1, h2, h3 {
     font-weight: 200;
 }
 
-h4 {
+h3, h4 {
     padding-bottom: 20px;
 }
 
@@ -65,6 +65,13 @@ table {
 
 .standard-actions {
     margin: 0 5px;
+}
+
+.reference-name {
+    font-style: bold;
+    font-size: 1.3em;
+    color: red;
+
 }
 
 /*** Table sizes ***/
@@ -184,7 +191,7 @@ footer {
     margin-top: 20px;
     height: 40px;
 
-    h2 {
+    h3 {
         margin-top: 0;
         position: absolute;
         top: 0;

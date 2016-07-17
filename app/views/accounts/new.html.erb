@@ -2,7 +2,7 @@
     <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => 'users', :action => 'show', :id => @user.id} %>
 </div>
 
-<h2>Fill billing info</h2>
+<h3>Fill billing info</h3>
 
 <%= form_for :account, :url => {:action => 'create', :user_id => @user.id} do |f| %>
 
