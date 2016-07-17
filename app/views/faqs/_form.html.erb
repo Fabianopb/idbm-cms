@@ -1,14 +1,20 @@
-<table summary="Travel plan form fields">
-  <tr>
-    <th><%= f.label :question, "Question" %></th>
-    <td><%= f.text_area :question, :size => '60x1' %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :answer, "Answer" %></th>
-    <td><%= f.text_area :answer, :size => '60x6' %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :position, "Position" %></th>
-    <td><%= f.select :position, 1..@faq_count %></td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-md-8 form-group">
+    <%= f.label :question %>
+    <%= f.text_area :question, :rows => '2', :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 form-group">
+    <%= f.label :answer %>
+    <%= f.text_area :answer, :rows => '6', :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2 form-group">
+    <%= f.label :position %>
+    <%= f.select :position, 1..@faq_count, {}, :class => 'form-control' %>
+  </div>
+</div>

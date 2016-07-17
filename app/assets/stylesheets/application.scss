@@ -84,6 +84,12 @@ table {
     width: 60%;
 }
 
+/*** TWEAKING BOOTSTRAP CLASSES ***/
+
+.panel-footer {
+    background-color: transparent;
+}
+
 /*** HEADER, MAIN and FOOTER ***/
 header {
     margin: 0; padding: 20px;

@@ -1,26 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>FAQs</h1>
-
 <% if can? :manage, Faq %>
-  <%= link_to 'Create Q&A', :action => 'new' %>
+  <div class="top-buttons">
+      <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), :action => 'new' %>
+  </div>
 <% end %>
 
-<table>
-  <% @faqs.each do |faq| %>
-    <tr>
-      <th><%= faq.question %></th>
-    </tr>
-    <tr>
-      <td><%= faq.answer %></td>
-    </tr>
+<h3>FAQs</h3>
+
+<%= 'No Q&A items found! Add the first one using the "New" button.' if @faqs.size == 0 %>
+
+<% @faqs.each do |faq| %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title"><%= faq.question %></h2>
+    </div>
+    <div class="panel-body"><%= faq.answer %></div>
     <% if can? :manage, Faq %>
-      <tr>
-        <td>
-          <%= link_to 'Edit', :action => 'edit', :id => faq.id %>
-          <%= link_to 'Delete', :action => 'delete', :id => faq.id %>
-        </td>
-      </tr>
+      <div class="panel-footer">
+        <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => faq.id} %>
+        <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => faq.id} %>
+      </div>
     <% end %>
-  <% end %>
-</table>
+  </div>
+<% end %>

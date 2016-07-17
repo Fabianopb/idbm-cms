@@ -1,13 +1,15 @@
-<h1>New Q&A</h1>
+<div class="top-buttons">
+    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'index'} %>
+</div>
 
-<%= link_to 'Back to FAQs', :action => 'index' %>
+<h3>Create new Q&A item</h3>
 
 <%= form_for :faq, :url => {:action => 'create'} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 
-    <div class="form-buttons">
-      <%= submit_tag "Create Q&A" %>
+    <div class="form-buttons confirm-buttons">
+      <%= f.button "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Save".html_safe, :class => 'btn btn-success' %>
     </div>
 
 <% end %>
