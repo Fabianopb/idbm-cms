@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Travel Plans</h3>
+<% if can? :new, TravelPlan %>
+  <div class="top-buttons">
+    <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:action => 'new', :user_id => @user.id} %>
+  </div>
+<% end %>
 
-<%= (link_to 'New Travel Plan', {:action => 'new', :user_id => @user.id}, :class => 'top-nav') if can? :new, TravelPlan %>
+<h3>Travel Plans</h3>
 
 <%= pluralize(@travel_plans.size, 'travel plan') %> found<br />
 
@@ -18,10 +22,10 @@
         <p class="card-content"><strong>Status: </strong><%= travel_plan.status %></p>
       </div>
       <div class="card-action">
-        <%= (can? :read, travel_plan) ? (link_to 'Show', :action => 'show', :user_id => @user.id, :id => travel_plan.id) : '<em>draft</em>'.html_safe %>
+        <%= (can? :read, travel_plan) ? (link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :user_id => @user.id, :id => travel_plan.id}) : '<em>draft</em>'.html_safe %>
         <% unless current_user.admin? %>
-          <%= link_to 'Edit', :action => 'edit', :user_id => @user.id, :id => travel_plan.id  %>
-          <%= link_to 'Destroy', :action => 'delete', :user_id => @user.id, :id => travel_plan.id %>
+          <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :user_id => @user.id, :id => travel_plan.id} %>
+          <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :user_id => @user.id, :id => travel_plan.id} %>
         <% end %>
       </div>
     </div>

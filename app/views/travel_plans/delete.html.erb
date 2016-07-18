@@ -1,4 +1,8 @@
-<h1>Delete User</h1>
+<div class="top-buttons">
+	<%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'index', :user_id => @user.id} %>
+</div>
+
+<h3>Delete User</h3>
 
 <%= form_for :travel_plan, :url => {:action => 'destroy', :user_id => @user.id, :id => @travel_plan.id} do |f| %>
 
@@ -6,8 +10,8 @@
 
     <p class="reference-name">Travel plan created at: <%= @travel_plan.created_at %>; Destination: <%= @travel_plan.destination %></p>
 
-    <div class="form-buttons">
-      <%= submit_tag("Detele Travel Plan") %>
+    <div class="form-buttons confirm-buttons">
+      <%= f.button "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete".html_safe, :class => 'btn btn-danger' %>
     </div>
 
   <% end %>

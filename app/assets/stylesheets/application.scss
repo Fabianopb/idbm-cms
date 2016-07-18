@@ -186,10 +186,58 @@ footer {
 
 .travel-costs {
     margin-bottom: 0;
+    td {
+        padding: 5px 8px !important;
+    }
+    p {
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+    .travelplan-field-name {
+        font-weight: bold;
+        font-size: 0.8em;
+        margin-bottom: 5px;
+    }
+    .transport-row {
+        margin: 0;
+    }
+    aside {
+        display: inline-block;
+        .transport-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            span {
+                color: transparent;
+            }
+        }
+        .transport-type {
+            display: inline-block;
+            margin-right: 30px;
+            font-size: 0.9em;
+        }
+    }
+    .td-costs {
+        width: 15%;
+        text-align: right;
+        p {
+            padding: 0 20px;
+        }
+    }
 }
 .signature {
     margin-top: 0;
 }
+.travelplan-header {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 20px;
+}
+
 
 /*** USER INFORMATION ***/
 

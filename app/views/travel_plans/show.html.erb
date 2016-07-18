@@ -1,67 +1,70 @@
+<div class="top-buttons">
+    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'index', :user_id => @user.id} %>
+</div>
+
 <h3>Travel plan: <%= @travel_plan.destination %></h3>
 <p><strong>Created at: </strong><%= @travel_plan.created_at %></p>
 <p><strong>Status: </strong><%= @travel_plan.status %></p>
 <p><strong>Travellers: </strong><%= @travel_plan.users.pluck(:first_name).join('; ') %></p>
 
 <span class="top-nav">
-<%= link_to 'Back to Travel Plans', :action => 'index', :user_id => @user.id %> | 
-<%= current_user.admin? && @travel_plan.status == "not submitted" ? (link_to 'Modify status', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id) : (link_to 'Edit this plan', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id) %>
+<%= current_user.admin? && @travel_plan.status == "not submitted" ? (link_to 'Modify status', :action => 'edit', :user_id => @user.id, :id => @travel_plan.id) : (link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Edit</button>"), {:action => 'edit', :user_id => @user.id, :id => @travel_plan.id}) %>
 </span>
 
-<p>BASIC INFORMATION</p>
-<table class="table table-bordered">
+<p class="travelplan-header">BASIC INFORMATION</p>
+<table class="table table-bordered travel-costs">
     
     <tr>
         <td colspan="2">
-            <p class="field-name">Name</p>
+            <p class="travelplan-field-name">Name</p>
             <p><%= @user.name %></p>
         </td>
         <td>
-            <p class="field name">Date of birth</p>
+            <p class="travelplan-field-name">Date of birth</p>
             <p><%= @user.birth_date %></p>
         </td>
     </tr>
     
     <tr>
         <td>
-            <p class="field-name">Email</p>
+            <p class="travelplan-field-name">Email</p>
             <p><%= @user.e_mail %></p>
         </td>
         <td>
-            <p class="field-name">Phone number</p>
+            <p class="travelplan-field-name">Phone number</p>
             <p><%= @user.account.phone_number %></p>
         </td>
         <td>
-            <p class="field-name">Social security number</p>
+            <p class="travelplan-field-name">Social security number</p>
             <p><%= @user.account.social_security %></p>
         </td>
     </tr>
     
     <tr>
         <td colspan="3">
-            <p class="field-name">Destination, time of departure & arrival</p>
+            <p class="travelplan-field-name">Destination, time of departure & arrival</p>
             <p><%= "#{@travel_plan.destination}, departure on #{@travel_plan.departure_date}, return on #{@travel_plan.return_date}" %></p>
         </td>
     </tr>
     
     <tr>
         <td colspan="3">
-            <p class="field-name">Purpose of the trip (meeting, conference, course etc)</p>
+            <p class="travelplan-field-name">Purpose of the trip (meeting, conference, course etc)</p>
             <p><%= @travel_plan.trip_description %></p>
         </td>
     </tr>
     
     <tr>
         <td colspan="3">
-            <p class="field-name">Form of transport</p>
-            <div class="row">
+            <p class="travelplan-field-name">Form of transport</p>
+            <div class="transport-row">
                 <% Transport.all.each do |transport| %>
-                <div class="col-sm-2">
-                    <p class="transport">
-                        <%= ' X ' if @travel_plan.transports.pluck(:transport_type).include?(transport.transport_type) %>
-                        <%= transport.transport_type %>
-                    </p>
-                </div>
+                <aside>
+                    <span class="transport-box">
+                        <%= @travel_plan.transports.pluck(:transport_type).include?(transport.transport_type) ? 'x' : '<span>X</span>'.html_safe %>
+                    </span>
+                    <span class="transport-type"><%= transport.transport_type %></span>
+                </aside>
                 <% end %>
             </div>
         </td>
@@ -69,81 +72,91 @@
     
     <tr>
         <td colspan="3">
-            <p class="field-name">Source of funding, project number</p>
+            <p class="travelplan-field-name">Source of funding, project number</p>
             <p></p>
         </td>
     </tr>
     
 </table>
 
-<p>ESTIMATED TRAVEL COSTS</p>
+<p class="travelplan-header">ESTIMATED TRAVEL COSTS</p>
 <table class="table table-bordered travel-costs">
     
     <tr>
-        <td>
-            <p class="field-name">Tickets</p>
+        <td colspan="3">
+            <p class="travelplan-field-name">Tickets</p>
             <p><%= @travel_plan.tickets_description %></p>
         </td>
-        <td>
-            <p class="field-name">EUR</p>
+        <td class="td-costs">
+            <p class="travelplan-field-name">EUR</p>
             <p><%= @travel_plan.tickets_cost %></p>
         </td>
         
     </tr>
     
     <tr>
-        <td>
-            <p class="field-name">Daily allowance</p>
+        <td colspan="3">
+            <p class="travelplan-field-name">Daily allowance</p>
             <p><%= "#{@travel_plan.paid_days} days, #{@travel_plan.daily_allowance} EUR per day." %></p>
         </td>
-        <td>
-            <p class="field-name">EUR</p>
+        <td class="td-costs">
+            <p class="travelplan-field-name">EUR</p>
             <p><%= @travel_plan.total_allowance %></p>
         </td>
     </tr>
     
     <tr>
-        <td>
-            <p class="field-name">Accomodation costs</p>
+        <td rowspan="2">
+            <p class="travelplan-field-name">Accomodation costs</p>
             <p></p>
         </td>
-        <td></td>
-        <td></td>
-        <td>
-            <p class="field-name">EUR</p>
+        <td><%= 'x' if @travel_plan.accommodation_aalto_paid %></td>
+        <td><p>to be paid by Aalto University</p></td>
+        <td rowspan="2" class="td-costs">
+            <p class="travelplan-field-name">EUR</p>
             <p><%= @travel_plan.accommodation_costs %></p>
         </td>
     </tr>
-    
     <tr>
-        <td>
-            <p class="field-name">Participation fee</p>
-            <p></p>
-        </td>
-        <td>
-            <p class="field-name">EUR</p>
-            <p><%= @travel_plan.events_costs %></p>
-        </td>
+        <td><%= 'x' if !@travel_plan.accommodation_aalto_paid %></td>
+        <td><p>to be paid by traveller who will charge Aalto University later</p></td>
     </tr>
     
     <tr>
-        <td>
-            <p class="field-name">Other costs, please specify</p>
+        <td rowspan="2">
+            <p class="travelplan-field-name">Participation fee</p>
+            <p></p>
+        </td>
+        <td><%= 'x' if @travel_plan.events_aalto_paid %></td>
+        <td><p>to be paid by Aalto University</p></td>
+        <td rowspan="2" class="td-costs">
+            <p class="travelplan-field-name">EUR</p>
+            <p><%= @travel_plan.events_costs %></p>
+        </td>
+    </tr>
+    <tr>
+        <td><%= 'x' if !@travel_plan.events_aalto_paid %></td>
+        <td><p>to be paid by traveller who will charge Aalto University later</p></td>
+    </tr>
+    
+    <tr>
+        <td colspan="3">
+            <p class="travelplan-field-name">Other costs, please specify</p>
             <p><%= @travel_plan.other_description %></p>
         </td>
-        <td>
-            <p class="field-name">EUR</p>
+        <td class="td-costs">
+            <p class="travelplan-field-name">EUR</p>
             <p><%= @travel_plan.other_costs %></p>
         </td>
     </tr>
     
     <tr>
-        <td>
-            <p class="field-name">TOTAL COSTS</p>
+        <td colspan="3">
+            <p class="travelplan-field-name">TOTAL COSTS</p>
             <p></p>
         </td>
-        <td>
-            <p class="field-name">EUR</p>
+        <td class="td-costs">
+            <p class="travelplan-field-name">EUR</p>
             <p><%= @travel_plan.total_costs %></p>
         </td>
     </tr>

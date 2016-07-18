@@ -1,13 +1,15 @@
-<h3>Create new travel plan</h3>
+<div class="top-buttons">
+	<%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'index', :user_id => @user.id} %>
+</div>
 
-<%= link_to 'Back to travel plans', {:action => 'index', :user_id => @user.id}, :class => 'top-nav' %>
+<h3>Create new travel plan</h3>
 
 <%= form_for :travel_plan, :url => {:action => 'create', :user_id => @user.id} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 
-    <div class="form-buttons">
-      <%= f.button 'Create Travel Plan', :class => 'btn btn-default' %>
+    <div class="form-buttons confirm-buttons">
+      <%= f.button "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Save".html_safe, :class => 'btn btn-success' %>
     </div>
 
 <% end %>
