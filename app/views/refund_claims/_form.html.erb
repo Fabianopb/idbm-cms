@@ -1,59 +1,40 @@
 <% unless current_user.admin? %>
 
 <div class="row">
-  <div class="input-field col s6">
-    <%= f.text_field :description, :placeholder => 'Give a short description of this claim', :class => 'validate' %>
+  <div class="col-md-8 form-group">
     <%= f.label :description %>
+    <%= f.text_field :description, :placeholder => 'Give a short description of this claim', :class => 'form-control' %>
   </div>
 </div>
 
-<h5>Trip information</h5>
-<div class="switch">
-  <label>
-    Off
-    <input id="trip-info-switch" type="checkbox">
-    <span class="lever"></span>
-    On
-  </label>
+<div class="claims-header">Trip information 
+  <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Fill only if you have travelled">
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+  </span>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class='col-sm-6'>
-      <div class="form-group">
-        <div class='input-group date' id='datetimepicker1'>
-          <input type='text' class="form-control" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript">
-      $(function () {
-        $('#datetimepicker1').datetimepicker();
-      });
-    </script>
+<div class="form-group">
+  <%= f.label :departure %>
+  <div class="form-inline">
+    <%= f.datetime_select :departure, {:order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control' %>
   </div>
 </div>
 
-<div id="trip-info-form" class="row">
-  <div class="input-field col s6">
-    <%= f.text_field :departure, :class => 'datepicker' %>
-    <%= f.label :departure %>
-  </div>
-  <div class="input-field col s6">
-    <%= f.text_field :return_date, :class => 'datepicker' %>
-    <%= f.label :return_date %>
+<div class="form-group">
+  <%= f.label :return_date %>
+  <div class="form-inline">
+    <%= f.datetime_select :return_date, {:order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control' %>
   </div>
 </div>
 
 <%= f.hidden_field :user_id, value: @user.id %>
 <% else %>
 
-<div class="input-field col s6">
-  <%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'] %>
-  <%= f.label :status %>
+<div class="row">
+  <div class="col-md-4 form-group">
+    <%= f.label :status %>
+    <%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'], :class => 'form-control' %>
+  </div>
 </div>
 
 <% end %>

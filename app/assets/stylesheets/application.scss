@@ -71,7 +71,10 @@ table {
     font-style: bold;
     font-size: 1.3em;
     color: red;
+}
 
+.tooltip-wrapper {
+    cursor: help;
 }
 
 /*** Table sizes ***/
@@ -165,14 +168,21 @@ footer {
     padding: 20px; margin: 20px 0;
     border-radius: 2px;
     background-color: $grey-lighten-5;
+    
     @extend .shadow;
     
     .card-title {
         font-size: 1.4em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .card-content {
         margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .card-action {
@@ -256,5 +266,33 @@ footer {
         position: absolute;
         top: 0;
         right: 0;
+    }
+}
+
+/*** REFUND CLAIMS ***/
+.claims-header {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.claims-aside {
+    display: block;
+    width: 250px;
+    padding: 10px 0;
+
+    h3 {
+        margin: 0;
+    }
+    
+    .float-left {
+        float: left;
+        line-height: 40px;
+    }
+    .float-right {
+        float: right;
+        line-height: 40px;   
+    }
+    .clearfix{
+        clear:both
     }
 }
