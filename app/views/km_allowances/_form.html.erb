@@ -1,20 +1,30 @@
-<table summary="Km allowances form fields">
-  <tr>
-      <th><%= f.label :date, "Date" %></th>
-      <td><%= f.date_select :date, {:order => [:day, :month, :year]} %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :description, "Description" %></th>
-    <td><%= f.text_field :description %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :route, "Route" %></th>
-    <td><%= f.text_field :route %></td>
-  </tr>
-  <tr>
-      <th><%= f.label :kms, "km" %></th>
-      <td><%= f.number_field :kms %></td>
-  </tr>
-</table>
+<div class="form-group">
+  <%= f.label :date %>
+  <div class="form-inline">
+    <%= f.date_select :date, {:order => [:day, :month, :year]}, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 form-group">
+    <%= f.label :route %>
+    <%= f.text_field :route, :class => 'form-control' %>
+  </div>
+  <div class="col-sm-3 form-group">
+    <%= f.label :kms, "Distance" %>
+    <div class="input-group">
+      <%= f.number_field :kms, :class => 'form-control' %>
+      <div class="input-group-addon">km</div>
+    </div>
+  </div>
+</div>
+
 <%= f.hidden_field :refund_claim_id, value: @refund_claim.id %>
 <%= f.hidden_field :user_id, value: @user.id %>

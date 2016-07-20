@@ -1,15 +1,17 @@
-<h1>Delete Receipt</h1>
+<div class="top-buttons">
+	<%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id} %>
+</div>
 
-<%= link_to 'Back to claims', {:controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id} %>
+<h3>Delete Receipt</h3>
 
 <%= form_for :receipt, :url => {:action => 'destroy', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => @receipt.id} do |f| %>
 
-    <p>Are you sure you want to permanently delete this receipt?</p>
+    <p>Are you sure you want to permanently delete this receipt? This cannot be undone!</p>
 
     <p class="reference-name"><%= @receipt.description %> (<%= @receipt.value %> <%= @receipt.currency %>)</p>
 
-    <div class="form-buttons">
-      <%= submit_tag("Detele receipt") %>
+    <div class="form-buttons confirm-buttons">
+      <%= f.button "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete".html_safe, :class => 'btn btn-danger' %>
     </div>
 
 <% end %>

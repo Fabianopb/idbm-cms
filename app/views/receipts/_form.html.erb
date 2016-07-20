@@ -1,20 +1,27 @@
-<table summary="Receipts form fields">
-  <tr>
-      <th><%= f.label :expense_date, "Expense date" %></th>
-      <td><%= f.date_select :expense_date, {:order => [:day, :month, :year]} %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :description, "Description" %></th>
-    <td><%= f.text_field :description %></td>
-  </tr>
-  <tr>
-      <th><%= f.label :value, "Value" %></th>
-      <td><%= f.number_field :value %></td>
-  </tr>
-  <tr>
-      <th><%= f.label :currency, "Currency" %></th>
-      <td><%= f.select :currency, ['BRL','EUR','USD'] %></td>
-  </tr>
-</table>
+<div class="form-group">
+  <%= f.label :expense_date %>
+  <div class="form-inline">
+    <%= f.date_select :expense_date, {:order => [:day, :month, :year]}, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <%= f.label :value %>
+    <%= f.number_field :value, :class => 'form-control' %>
+  </div>
+  <div class="col-sm-2 form-group">
+    <%= f.label :currency %>
+    <%= f.select :currency, ['BRL','EUR','USD'], {}, {:class => 'form-control'} %>
+  </div>
+</div>
+
 <%= f.hidden_field :refund_claim_id, value: @refund_claim.id %>
 <%= f.hidden_field :user_id, value: @user.id %>

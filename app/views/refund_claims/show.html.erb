@@ -13,8 +13,14 @@
 <p><strong>Description: </strong><%= @refund_claim.description %></p>
 <p><strong>Status: </strong><%= @refund_claim.status %></p>
 
+<hr />
 <div class="claims-aside">
-    <div class="claims-header float-left">Receipts</div>
+    <div class="claims-header float-left">
+        Receipts
+        <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Add the receipts you want to claim here">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+      </span>
+    </div>
     <% if can? :new, Receipt %>
         <div class="float-right">
             <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'receipts', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id} %>
@@ -27,28 +33,33 @@
 
 <div class="row">
     <% @receipts.each do |receipt| %>
-    <div class="col s12 m4">
-        <div class="card grey lighten-5">
-            <div class="card-content">
-                <span class="card-title grey-text text-darken-3 truncate"><%= receipt.expense_date %></span>
-                <p class="truncate"><strong>Value: </strong><%= "#{receipt.value} #{receipt.currency}" %></p>
-                <p class="truncate"><strong>Description: </strong><%= receipt.description %></p>
+    <div class="col-md-4 col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-title"><%= receipt.expense_date %></p>
+                <p class="card-content"><strong>Value: </strong><%= "#{receipt.value} #{receipt.currency}" %></p>
+                <p class="card-content"><strong>Description: </strong><%= receipt.description %></p>
             </div>
             <% unless current_user.admin? %>
-                
+                <div class="card-action">
+                <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'receipts', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id} %>
+                <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'receipts', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id} %>
+                </div>
             <% end %>
-            <div class="card-action">
-                <%= link_to 'Edit', :controller => 'receipts', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %> | 
-                <%= link_to 'Delete', :controller => 'receipts', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => receipt.id %>
-            </div>
         </div>
     </div>
     <% end %>
 </div>
 
 
+<hr />
 <div class="claims-aside">
-    <div class="claims-header float-left">Daily allowances</div>
+    <div class="claims-header float-left">
+        Daily allowances
+        <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Fill in your travel details, if any, to receive the agreed daily allowance.">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+      </span>
+    </div>
     <% if can? :new, DailyAllowance %>
         <div class="float-right">
             <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'daily_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id} %>
@@ -68,10 +79,10 @@
     <% @daily_allowances.each do |daily_allowance| %>
     <tr>
         <th>Arrival in <%= daily_allowance.destination %>: </th>
-        <td><%= daily_allowance.arrival %> (
+        <td><%= daily_allowance.arrival %> 
         <% unless current_user.admin? %>
-            <%= link_to 'Edit', :controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> | 
-            <%= link_to 'Delete', :controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id %> )
+            <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
+            <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
         <% end %>
         </td>
     </tr>
@@ -84,8 +95,14 @@
 <% end %>
 
 
+<hr />
 <div class="claims-aside">
-    <div class="claims-header float-left">km allowances</div>
+    <div class="claims-header float-left">
+        km allowances
+        <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Only if you have used your own vehicle">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+      </span>
+    </div>
     <% if can? :new, KmAllowance %>
         <div class="float-right">
             <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'km_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id} %>
@@ -112,10 +129,9 @@
         <td><%= km_allowance.description %></td>
         <td><%= km_allowance.kms %></td>
         <td>
-            <% if current_user.admin? %>
-            <% else %>
-                <%= link_to 'Edit', :controller => 'km_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %> | 
-                <%= link_to 'Delete', :controller => 'km_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id %>
+            <% unless current_user.admin? %>
+                <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
+                <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
             <% end %>
         </td>
     </tr>
