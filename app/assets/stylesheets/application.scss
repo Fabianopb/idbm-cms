@@ -5,7 +5,6 @@
 //colors
 $white: #fff;
 $black: #000;
-$cyan: #00bcd4;
 
 $blue-grey-lighten-5: #eceff1;
 $blue-grey-lighten-4: #cfd8dc;
@@ -21,6 +20,14 @@ $blue-grey-darken-4: #263238;
 $grey-darken-3: #424242;
 $grey-lighten-5: #fafafa;
 $grey-lighten-3: #eeeeee;
+$grey-lighten-1: #bdbdbd;
+
+$light-blue-lighten-5: #e1f5fe;
+$light-blue-lighten-4: #b3e5fc;
+$light-blue-darken-1: #039be5;
+$light-blue-darken-2: #0288d1;
+$light-blue-darken-3: #0277bd;
+$light-blue-darken-4: #01579b;
 
 //classes to extend
 .shadow {
@@ -48,7 +55,7 @@ hr {
 }
 
 a, a:hover {
-    color: $cyan;
+    color: $light-blue-lighten-4;
 }
 
 table {
@@ -100,19 +107,35 @@ table {
 
 /*** HEADER, MAIN and FOOTER ***/
 header {
-    margin: 0; padding: 20px;
-    display: inline-block;
+    position: relative;
+    height: 60px;
+    padding: 20px;
     width: 100%;
-    background-color: $blue-grey-darken-2;
+    background-color: $light-blue-darken-1;
     color: $white;
     @extend .shadow;
+
+    .hero {
+        display: inline-block;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .access {
+        display: inline-block;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
-main::after {
-    content:''; display: block; clear: both;
-}
 
-#main_area {
+.main-area {
     
     height: 500px;
     width: 100%;
@@ -121,22 +144,24 @@ main::after {
     
     .navigation {
         margin: 0; padding: 0;
-        width: 20%;
+        width: 60px;
         vertical-align: top;
-        background-color: $blue-grey-lighten-4;
+        background-color: $light-blue-darken-4;
         @extend .shadow;
         
         ul {
             margin: 0; padding: 0;
             list-style: none;
+            text-align: center;
         }
-        
+
         li a {
-           padding: 20px;
-           display: block;
-           width: 100%;
-           transition: background-color .5s;
-           color: $grey-darken-3;
+            padding: 20px 0;
+            display: block;
+            width: 100%;
+            transition: background-color .5s;
+            color: $white;
+            font-size: 1.3em;
         }
         
         li a:hover {
@@ -147,7 +172,6 @@ main::after {
     
     .main_section {
         margin: 0; padding: 20px 40px;
-        width: 80%;
         vertical-align: top;
     }
 }
@@ -194,6 +218,10 @@ footer {
         border-top: 1px solid $grey-lighten-3;
         margin-top: 10px;
         padding-top: 10px;
+
+        a {
+            color: $light-blue-darken-2;   
+        }
     }
 }
 
@@ -300,4 +328,31 @@ footer {
     .clearfix{
         clear:both
     }
+}
+
+.trip-departure {
+    padding: 20px 0 10px 0;
+    color: $grey-lighten-1;
+}
+
+.trip-arrival {
+    padding: 10px 0;
+    a { color:$light-blue-darken-2; }
+}
+
+.trip-return {
+    padding: 10px 0;
+    color: $grey-lighten-1;
+}
+
+.arrival-icon {
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    border-left: 2px dotted $grey-darken-3;
+    border-bottom: 2px dotted $grey-darken-3;
+}
+
+.km-actions {
+    a { color:$light-blue-darken-2; }
 }

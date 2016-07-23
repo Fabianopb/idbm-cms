@@ -10,7 +10,7 @@
 <body>
   
   <header>
-    <h3>IDBM Industry Project</h3>
+    <div class="hero">IDBM Industry Project</div>
     
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>">
@@ -19,51 +19,45 @@
     <% end %>
     
     <div class="access">
-      <p>
-        Welcome<%= current_user ? " #{current_user.username} | " : ", please log in." %>
-        <%= link_to 'log out', sign_out_path, method: :delete if current_user  %>
-      </p>
+      Welcome<%= current_user ? " #{current_user.username} | " : ", please log in." %>
+      <%= link_to 'log out', sign_out_path, method: :delete if current_user  %>
     </div>
     
   </header>
 
-
-  <main>
-    
-    <table id="main_area">
-      <tr>
-        
-        <td class="navigation">
-          <% if current_user %>
-            <ul>
-        
-              <li><%= link_to 'main', :controller => 'main' %></li>
-              
-              <li><%= link_to 'travel plans', :controller => "travel_plans", :user_id => current_user.id %></li>
-              
-              <li><%= link_to 'refund claims', :controller => "refund_claims", :user_id => current_user.id %></li>
-              
-              <li><%= link_to 'personal info', :controller => "users", :action => "show", :id => current_user.id %></li>
-              
-              <li><%= link_to 'FAQ', :controller => "faqs" %></li>
-              
-              <% if can? :manage, User %>
-                <li><%= link_to 'users', :controller => "users" %></li>
-              <% end %>
-              
-            </ul>
-          <% end %>
-        </td>
-        
-        <td class="main_section">
-          <%= yield %>
-        </td>
-        
-      </tr>
-    </table>
-    
-  </main>
-    
+  
+  <table class="main-area">
+    <tr>
+      
+      <td class="navigation">
+        <% if current_user %>
+          <ul>
+      
+            <li><%= link_to "<span class='glyphicon glyphicon-home' aria-hidden='true'></span>".html_safe, {:controller => 'main'} %></li>
+            
+            <li><%= link_to "<span class='glyphicon glyphicon-plane' aria-hidden='true'></span>".html_safe, {:controller => "travel_plans", :user_id => current_user.id} %></li>
+            
+            <li><%= link_to "<span class='glyphicon glyphicon-euro' aria-hidden='true'></span>".html_safe, {:controller => "refund_claims", :user_id => current_user.id} %></li>
+            
+            <li><%= link_to "<span class='glyphicon glyphicon-user' aria-hidden='true'></span>".html_safe, {:controller => "users", :action => "show", :id => current_user.id} %></li>
+            
+            <li><%= link_to "<span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span>".html_safe, {:controller => "faqs"} %></li>
+            
+            <% if can? :manage, User %>
+              <li><%= link_to "<span class='glyphicon glyphicon-education' aria-hidden='true'></span>".html_safe, {:controller => "users"} %></li>
+            <% end %>
+            
+          </ul>
+        <% end %>
+      </td>
+      
+      <td class="main_section">
+        <%= yield %>
+      </td>
+      
+    </tr>
+  </table>
+      
     
   <footer>
       <p>&copy; IDBM 2016</p>
