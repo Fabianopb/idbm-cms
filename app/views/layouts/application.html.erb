@@ -13,7 +13,7 @@
     <div class="hero">IDBM Industry Project</div>
     
     <div class="access">
-      Welcome<%= current_user ? " #{current_user.username} | " : ", please log in." %>
+      Welcome<%= current_user ? " #{current_user.name} | " : ", please log in." %>
       <%= link_to 'log out', sign_out_path, method: :delete if current_user  %>
     </div>
     
