@@ -22,28 +22,28 @@ class ApplicationController < ActionController::Base
     
     helper_method :current_user_session, :current_user
 
-   def confirm_logged_in
-     unless current_user
-      redirect_to sign_in_path
-     end
-   end
-  
-  def find_user
-    if params[:user_id]
-      @user = User.find(params[:user_id])
+    def confirm_logged_in
+      unless current_user
+        redirect_to sign_in_path
+      end
     end
-  end
   
-  def find_refund_claim
-    if params[:refund_claim_id]
-      @refund_claim = RefundClaim.find(params[:refund_claim_id])
+    def find_user
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      end
     end
-  end
+    
+    def find_refund_claim
+      if params[:refund_claim_id]
+        @refund_claim = RefundClaim.find(params[:refund_claim_id])
+      end
+    end
 
-  def account_missing?
-    if @user.account.nil? && !@user.admin? && (can? :create, Account)
-      flash.now[:warning] =  "Payment information missing!"
+    def account_missing?
+      if @user.account.nil? && !@user.admin? && (can? :create, Account)
+        flash.now[:warning] =  "Payment information missing!"
+      end
     end
-  end
   
 end
