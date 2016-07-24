@@ -1,7 +1,8 @@
-<div class="top-buttons">
-    <% controller = (current_user.admin? && current_user.id != @user.id) ? 'users' : 'main' %>
-    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => controller, :action => 'index'} %>
-</div>
+<% if current_user.admin? && current_user.id != @user.id %>
+    <div class="top-buttons">
+        <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), :action => 'index' %>
+    </div>
+<% end %>
 
 <div class="row">
     <div class="col-md-8 edit-userinfo">

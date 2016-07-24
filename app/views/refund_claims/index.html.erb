@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<% if can? :new, RefundClaim %>
+<% if (can? :new, RefundClaim) && !@user.account.nil? %>
   <div class="top-buttons">
     <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:action => 'new', :user_id => @user.id} %>
   </div>

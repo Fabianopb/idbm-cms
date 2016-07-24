@@ -1,7 +1,13 @@
 <% flash.each do |key, value| %>
 
 	<div class="alert alert-<%= key %>" role="alert">
-	    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+
+		<% if key == "success" %>
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		<% else %>
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<% end %>
+
 	    <%= value %>
 	    
 	    <!-- Button for user to create payment information -->

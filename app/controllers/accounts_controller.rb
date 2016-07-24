@@ -12,7 +12,7 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
-      flash[:notice] = "Account successfuly created"
+      flash[:success] = "Payment information created!"
       redirect_to :controller => 'users', :action => 'show', :id => @user.id
     else
       render 'new'
@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     if @account.update_attributes(account_params)
-      flash[:notice] = "Account was successfully updated"
+      flash[:success] = "Payment information updated"
       redirect_to :controller => 'users', :action => 'show', :id => @account.user_id
     else
       render 'edit'

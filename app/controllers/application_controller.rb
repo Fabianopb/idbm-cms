@@ -39,5 +39,11 @@ class ApplicationController < ActionController::Base
       @refund_claim = RefundClaim.find(params[:refund_claim_id])
     end
   end
+
+  def account_missing?
+    if @user.account.nil? && !@user.admin? && (can? :create, Account)
+      flash.now[:warning] =  "Payment information missing!"
+    end
+  end
   
 end

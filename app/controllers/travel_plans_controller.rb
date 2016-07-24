@@ -11,6 +11,7 @@ class TravelPlansController < ApplicationController
       @travel_plans = TravelPlan.newest_first
     else
       @travel_plans = @user.travel_plans.newest_first
+      account_missing?
     end
   end
 

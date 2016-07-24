@@ -11,6 +11,7 @@ class RefundClaimsController < ApplicationController
       @refund_claims = RefundClaim.newest_first
     else
       @refund_claims = @user.refund_claims.newest_first
+      account_missing?
     end
   end
   
