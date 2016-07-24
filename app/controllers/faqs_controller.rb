@@ -17,6 +17,7 @@ class FaqsController < ApplicationController
   def create
     @faq = Faq.new(faq_params)
     if @faq.save
+      flash[:success] = "Q&A item created!"
       redirect_to :action => 'index'
     else
       @faq_count = Faq.count + 1
@@ -30,6 +31,7 @@ class FaqsController < ApplicationController
   
   def update
     if @faq.update_attributes(faq_params)
+      flash[:success] = "Q&A item updated!"
       redirect_to :action => 'index'
     else
       @faq_count = Faq.count
@@ -39,6 +41,7 @@ class FaqsController < ApplicationController
 
   def destroy
     Faq.find(params[:id]).destroy
+    flash[:success] = "Q&A item destroyed!"
     redirect_to :action => 'index'
   end
   

@@ -14,6 +14,7 @@ class DailyAllowancesController < ApplicationController
   def create
     @daily_allowance = DailyAllowance.new(daily_allowance_params)
     if @daily_allowance.save
+      flash[:success] = "Trip destination created!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
       render 'new'
@@ -22,6 +23,7 @@ class DailyAllowancesController < ApplicationController
   
   def update
     if @daily_allowance.update_attributes(daily_allowance_params)
+      flash[:success] = "Trip destination updated!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
       render 'edit'
@@ -30,6 +32,7 @@ class DailyAllowancesController < ApplicationController
 
   def destroy
     DailyAllowance.find(params[:id]).destroy
+    flash[:success] = "Trip destination destroyed!"
     redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
   end
   

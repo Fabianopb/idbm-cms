@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <% if can? :manage, Faq %>
   <div class="top-buttons">
       <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), :action => 'new' %>

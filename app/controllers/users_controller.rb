@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "User was successfully created."
+      flash[:success] = "User created!"
       redirect_to :action => 'show', :id => @user.id
     else
       render 'new'
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:notice] = "User was successfully updated."
+      flash[:success] = "User updated!"
       # redirect_to @user ??
       redirect_to :action => 'show', :id => @user.id
     else
@@ -52,8 +52,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id]).destroy
-    flash[:notice] = "User '#{user.first_name} #{user.last_name}' was successfully destroyed."
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed!"
     redirect_to :action => 'index' #, notice: 'User was successfully destroyed.'
   end
 

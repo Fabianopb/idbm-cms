@@ -28,6 +28,7 @@ class RefundClaimsController < ApplicationController
   def create
     @refund_claim = RefundClaim.new(refund_claim_params)
     if @refund_claim.save
+      flash[:success] = "Refund claim created!"
       redirect_to :action => 'index', :user_id => @user.id
     else
       render 'new'
@@ -36,6 +37,7 @@ class RefundClaimsController < ApplicationController
  
   def update
     if @refund_claim.update_attributes(refund_claim_params)
+      flash[:success] = "Refund claim updated!"
       redirect_to :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
       render 'edit'
@@ -44,6 +46,7 @@ class RefundClaimsController < ApplicationController
 
   def destroy
     RefundClaim.find(params[:id]).destroy
+    flash[:success] = "Refund claim destroyed!"
     redirect_to :action => 'index', :user_id => @user.id
   end
 

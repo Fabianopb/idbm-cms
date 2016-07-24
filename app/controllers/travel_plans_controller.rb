@@ -22,6 +22,7 @@ class TravelPlansController < ApplicationController
   def create
     @travel_plan = TravelPlan.new(travel_plan_params)
     if @travel_plan.save
+      flash[:success] = "Travel plan created!"
       redirect_to :action => 'index', :user_id => @user.id
     else
       render 'new'
@@ -30,6 +31,7 @@ class TravelPlansController < ApplicationController
  
   def update
     if @travel_plan.update_attributes(travel_plan_params)
+      flash[:success] = "Travel plan updated!"
       redirect_to :action => 'show', :user_id => @user.id, :id => @travel_plan.id
     else
       render 'edit'
@@ -38,6 +40,7 @@ class TravelPlansController < ApplicationController
  
   def destroy
     TravelPlan.find(params[:id]).destroy
+    flash[:success] = "Travel plan destroyed!"
     redirect_to :action => 'index', :user_id => @user.id
   end
 
