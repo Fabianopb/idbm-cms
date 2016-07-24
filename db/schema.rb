@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608124919) do
+ActiveRecord::Schema.define(version: 20160724151032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,12 @@ ActiveRecord::Schema.define(version: 20160608124919) do
 
   add_index "km_allowances", ["refund_claim_id"], name: "index_km_allowances_on_refund_claim_id", using: :btree
   add_index "km_allowances", ["user_id"], name: "index_km_allowances_on_user_id", using: :btree
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "project_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "receipts", force: :cascade do |t|
     t.integer  "refund_claim_id"
@@ -158,8 +164,10 @@ ActiveRecord::Schema.define(version: 20160608124919) do
     t.string   "password_salt"
     t.string   "persistence_token"
     t.date     "birth_date"
+    t.string   "project_id"
   end
 
+  add_index "users", ["project_id"], name: "index_users_on_project_id", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
