@@ -1,0 +1,14 @@
+<% flash.each do |key, value| %>
+
+	<div class="alert alert-<%= key %>" role="alert">
+	    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	    <%= value %>
+	    
+	    <!-- Button for user to create payment information -->
+	    <% if value == "Payment information missing!" %>
+	    	<%= link_to raw("<button type='button' class='btn btn-warning'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Create now!</button>"), :controller => 'accounts', :action => 'new', :user_id => @user.id %>
+	    <% end %>
+
+	</div>
+
+<% end %>

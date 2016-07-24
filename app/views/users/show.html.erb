@@ -1,16 +1,6 @@
-<% if @account.nil? && !@user.admin? && (can? :create, Account) %>
-
-<div class="alert alert-warning" role="alert">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-    <% if can? :create, Account %>Account info not found! <%= link_to raw("<button type='button' class='btn btn-warning'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Add account info</button>"), :controller => 'accounts', :action => 'new', :user_id => @user.id %>
-    <% end %>
-</div>
-
-<% end %>
-
 <div class="top-buttons">
-    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), :action => 'index' %>
+    <% controller = (current_user.admin? && current_user.id != @user.id) ? 'users' : 'main' %>
+    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => controller, :action => 'index'} %>
 </div>
 
 <div class="row">

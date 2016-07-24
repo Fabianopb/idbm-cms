@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @account = @user.account
+    account_missing
   end
 
   def new
@@ -63,6 +64,12 @@ class UsersController < ApplicationController
         params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :password_confirmation, :birth_date, :role)
       else
         params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :password_confirmation, :birth_date)
+      end
+    end
+
+    def account_missing
+      if @account.nil? && !@user.admin? && (can? :create, Account)
+        flash.now[:warning] =  "Payment information missing!"
       end
     end
     

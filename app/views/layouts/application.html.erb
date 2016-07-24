@@ -12,12 +12,6 @@
   <header>
     <div class="hero">IDBM Industry Project</div>
     
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>">
-        <%= value %>
-      </div>
-    <% end %>
-    
     <div class="access">
       Welcome<%= current_user ? " #{current_user.username} | " : ", please log in." %>
       <%= link_to 'log out', sign_out_path, method: :delete if current_user  %>
@@ -51,9 +45,17 @@
         <% end %>
       </td>
       
+      
+
       <td class="main_section">
+
+        <%= render "flash" %>
+
         <%= yield %>
+      
       </td>
+
+
       
     </tr>
   </table>

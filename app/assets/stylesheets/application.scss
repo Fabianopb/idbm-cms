@@ -302,6 +302,10 @@ footer {
     }
 }
 
+.user-index .actions {
+    a { color:$light-blue-darken-2; }
+}
+
 /*** REFUND CLAIMS ***/
 .claims-header {
     font-weight: bold;
