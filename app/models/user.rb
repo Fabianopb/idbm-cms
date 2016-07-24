@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
     has_many :km_allowances
     
     has_many :comments
+
+    belongs_to :project
     
     acts_as_authentic do |c|
         c.crypto_provider = Authlogic::CryptoProviders::BCrypt
