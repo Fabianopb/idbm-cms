@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20160724151032) do
     t.string   "password_salt"
     t.string   "persistence_token"
     t.date     "birth_date"
-    t.string   "project_id"
+    t.integer  "project_id"
   end
 
   add_index "users", ["project_id"], name: "index_users_on_project_id", using: :btree
