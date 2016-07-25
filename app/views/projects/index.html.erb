@@ -1,0 +1,38 @@
+<div class="top-buttons">
+  <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), :action => 'new' %>
+</div>
+
+<h3>Projects</h3>
+
+<%= pluralize(@projects.size, 'project') %> found<br />
+
+<% unless @projects.size == 0 %>
+
+<div class="row">
+    <div class="col-sm-8">
+        <table class="table user-index">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Team</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @projects.each do |project| %>
+              <tr>
+                <td><%= project.project_name %></td>
+                <td><%= project.members %></td>
+                <td class="actions">
+                    <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => project.id} %>
+                    <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => project.id} %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
+
+<% end %>

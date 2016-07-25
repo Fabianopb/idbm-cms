@@ -1,0 +1,15 @@
+<div class="top-buttons">
+    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'index'} %>
+</div>
+
+<h3>Create new project</h3>
+
+<%= form_for :project, :url => {:action => 'create'} do |f| %>
+
+    <%= render :partial => "form", :locals => {:f => f} %>
+
+    <div class="form-buttons confirm-buttons">
+      <%= f.button "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Save".html_safe, :class => 'btn btn-success' %>
+    </div>
+
+<% end %>

@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	before_action :confirm_logged_in
 	before_action :set_project, only: [:edit, :update, :delete]
 
-	# load_and_authorize_resource
+	load_and_authorize_resource
 
 	def index
 		@projects = Project.sorted
@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
 
 	def new
 		@project = Project.new
+		users_array
 	end
 
 	def create
@@ -23,13 +24,20 @@ class ProjectsController < ApplicationController
     end
 	end
 
+	def edit
+		users_array
+	end
+
 	def update
 		if @project.update_attributes(project_params)
       flash[:success] = "Project updated!"
       redirect_to :action => 'index'
-    else
-      render 'edit'
-    end
+	    else
+	      render 'edit'
+	    end
+	end
+
+	def delete
 	end
 
 	def destroy
@@ -45,7 +53,14 @@ class ProjectsController < ApplicationController
 		end
 
 		def project_params
-			params.require(:project).permit(:project_name)
+			params.require(:project).permit(:project_name, :user_ids => [])
+		end
+
+		def users_array
+			@users = []
+			User.where("role = ?", "Student").each do |user|
+				@users.push(user) if user.project_ids.empty?
+			end
 		end
 
 end
