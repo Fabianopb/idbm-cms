@@ -37,6 +37,10 @@
                 <th class="th-userinfo">Role</th>
                 <td class="td-userinfo"><%= @user.role %></td>
             </tr>
+            <tr>
+                <th class="th-userinfo">Project</th>
+                <td class="td-userinfo"><%= @user.project.empty? ? '<em>unallocated</em>'.html_safe : @user.project %></td>
+            </tr>
         </table>
     </div>
 </div>
@@ -84,10 +88,6 @@
             <tr>
                 <th class="th-userinfo">City</th>
                 <td class="td-userinfo"><%= @account.city %></td>
-            </tr>
-            <tr>
-                <th class="th-userinfo">Project: </th>
-                <td class="td-userinfo"><%= @account.project.nil? ? "<em>Unallocated</em>".html_safe : @account.project %></td>
             </tr>
         </table>
     </div>

@@ -27,5 +27,9 @@ class User < ActiveRecord::Base
     def admin?
         self.role == "Admin" ? true : false
     end
+
+    def project
+        self.projects.pluck(:project_name).join
+    end
     
 end
