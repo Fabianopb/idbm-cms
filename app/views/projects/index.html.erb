@@ -4,7 +4,12 @@
 
 <h3>Projects</h3>
 
-<%= pluralize(@projects.size, 'project') %> found<br />
+<%= pluralize(@projects.size, 'project') %> found
+<div class="row">
+  <div class="col-sm-8">
+    <em>Unallocated students: <%= @unallocated_users.join(', ') %></em>
+  </div>
+</div>
 
 <% unless @projects.size == 0 %>
 

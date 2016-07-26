@@ -6,13 +6,15 @@
 </div>
 
 <% unless @users.nil? %>
-  <div class="form-group">
-    <%= f.label "Team members" %>
-    <%= f.collection_check_boxes :user_ids, @users, :id, :first_name do |box| %>
-      <div>
-        <%= box.check_box %>
-        <%= box.label %>
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <%= f.label "Team members" %>
+      <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Press 'ctrl' to select and deselect multiple members.">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+      </span>
+      <%= f.select :user_ids, @users.map {|user| [user.first_name, user.id]}, {}, {:multiple => true, class: "form-control"} %>
+    </div>
   </div>
 <% end %>
+
+<%= "Project id = #{@project.id}" %>

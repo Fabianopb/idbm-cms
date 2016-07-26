@@ -7,6 +7,10 @@ class ProjectsController < ApplicationController
 
 	def index
 		@projects = Project.sorted
+		@unallocated_users = []
+		User.where("role = ?", "Student").each do |user|
+			@unallocated_users.push(user.first_name) if user.project_ids.empty?
+		end
 	end
 
 	def new
@@ -59,7 +63,7 @@ class ProjectsController < ApplicationController
 		def users_array
 			@users = []
 			User.where("role = ?", "Student").each do |user|
-				@users.push(user) if user.project_ids.empty?
+				@users.push(user) if (user.project_ids.include?(@project.id) || user.project_ids.empty?)
 			end
 		end
 
