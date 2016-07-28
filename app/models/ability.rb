@@ -7,6 +7,7 @@ class Ability
     if user.role == "Admin"
       can :show, Account
       can :manage, User
+      cannot [:delete, :destroy], User, :id => user.id
       can [:read, :update], [RefundClaim, TravelPlan] {|demand| demand.status != "not submitted"}
       can :manage, Faq
       can :manage, Project
