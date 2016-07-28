@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 		@projects = Project.sorted
 		@unallocated_users = []
 		User.where("role = ?", "Student").each do |user|
-			@unallocated_users.push(user.first_name) if user.project_ids.empty?
+			@unallocated_users.push([user.first_name, user.last_name]) if user.project_ids.empty?
 		end
 	end
 

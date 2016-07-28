@@ -6,7 +6,7 @@ class TravelPlan < ActiveRecord::Base
     scope :newest_first, lambda { order("travel_plans.created_at DESC") }
     
     def travellers
-        self.users.pluck(:first_name).join('; ')
+        (self.users.pluck(:first_name, :last_name).map {|user| user.join(' ')}).join(', ')
     end
     
     def total_allowance

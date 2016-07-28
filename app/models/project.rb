@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
 	scope :sorted, lambda { order("projects.id ASC") }
 
 	def members
-        self.users.pluck(:first_name).join('; ')
+        (self.users.pluck(:first_name, :last_name).map {|user| user.join(' ')}).join(', ')
     end
 
 end
