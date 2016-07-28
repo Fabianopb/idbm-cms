@@ -5,14 +5,13 @@
 <h3>Registered Users</h3>
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-sm-9">
         <table class="table user-index">
           <thead>
             <tr>
               <th>Role</th>
               <th>Name</th>
-              <th>Username</th>
-              <th>e-mail</th>
+              <th>Project</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -22,8 +21,7 @@
               <tr>
                 <td><%= user.role %></td>
                 <td><%= user.name %></td>
-                <td><%= user.username %></td>
-                <td><%= user.e_mail %></td>
+                <td><%= user.project.empty? ? '<em>Unallocated</em>'.html_safe : user.project %></td>
                 <td class="actions">
                     <%= link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => user.id} %>
                     <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => user.id} %>
