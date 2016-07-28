@@ -280,6 +280,13 @@ footer {
     font-size: 1.2em;
     padding-left: 20px;
 }
+.disabled-checkbox {
+    label {
+        color: $grey-lighten-1;
+        font-weight: normal;
+        font-style: italic;
+    }
+}
 
 
 /*** USER INFORMATION ***/

@@ -12,9 +12,7 @@
       <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Press 'ctrl' to select and deselect multiple members.">
             <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
       </span>
-      <%= f.select :user_ids, @users.map {|user| [user.first_name, user.id]}, {}, {:multiple => true, class: "form-control"} %>
+      <%= f.select :user_ids, @users.map {|user| [[user.first_name, user.last_name].join(' '), user.id]}, {}, {:multiple => true, class: "form-control"} %>
     </div>
   </div>
 <% end %>
-
-<%= "Project id = #{@project.id}" %>

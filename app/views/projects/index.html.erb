@@ -7,7 +7,9 @@
 <%= pluralize(@projects.size, 'project') %> found
 <div class="row">
   <div class="col-sm-8">
-    <em>Unallocated students: <%= (@unallocated_users.map { |user| user.join(' ') }).join(', ') %></em>
+    <% unless @unallocated_users.empty? %>
+      <em>Unallocated students: <%= (@unallocated_users.map { |user| user.join(' ') }).join(', ') %></em>
+    <% end %>
   </div>
 </div>
 

@@ -17,6 +17,7 @@ class TravelPlansController < ApplicationController
 
   def new
     @travel_plan = TravelPlan.new
+    team_array
   end
 
   def create
@@ -27,6 +28,10 @@ class TravelPlansController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    team_array
   end
  
   def update
@@ -51,5 +56,16 @@ class TravelPlansController < ApplicationController
    
     def travel_plan_params
       params.require(:travel_plan).permit(:destination, :departure_date, :return_date, :trip_description, :tickets_description, :tickets_cost, :paid_days, :daily_allowance, :accommodation_costs, :accommodation_aalto_paid, :events_costs, :events_aalto_paid, :other_description, :other_costs, :status, :transport_ids => [], :user_ids => [])
+    end
+
+    def team_array
+      @team = [@user]
+      @disabled = []
+      User.where("role = ?", "Student").each do |user|
+        if user.project == @user.project && @user.id != user.id
+          @team.push(user)
+          @disabled.push(user.id) if user.account.nil?
+        end
+      end
     end
 end
