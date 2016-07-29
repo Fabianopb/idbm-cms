@@ -26,6 +26,8 @@ class TravelPlansController < ApplicationController
       flash[:success] = "Travel plan created!"
       redirect_to :action => 'index', :user_id => @user.id
     else
+      team_array
+      show_flash_error(@travel_plan)
       render 'new'
     end
   end
@@ -39,6 +41,8 @@ class TravelPlansController < ApplicationController
       flash[:success] = "Travel plan updated!"
       redirect_to :action => 'show', :user_id => @user.id, :id => @travel_plan.id
     else
+      team_array
+      show_flash_error(@travel_plan)
       render 'edit'
     end
   end

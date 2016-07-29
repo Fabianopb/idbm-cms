@@ -17,6 +17,7 @@ class ReceiptsController < ApplicationController
       flash[:success] = "Receipt created!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
+      show_flash_error(@receipt)
       render 'new'
     end
   end
@@ -26,6 +27,7 @@ class ReceiptsController < ApplicationController
       flash[:success] = "Receipt updated!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
+      show_flash_error(@receipt)
       render 'edit'
     end
   end

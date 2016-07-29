@@ -17,6 +17,7 @@ class DailyAllowancesController < ApplicationController
       flash[:success] = "Trip destination created!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
+      show_flash_error(@daily_allowance)
       render 'new'
     end
   end
@@ -26,6 +27,7 @@ class DailyAllowancesController < ApplicationController
       flash[:success] = "Trip destination updated!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
+      show_flash_error(@daily_allowance)
       render 'edit'
     end
   end

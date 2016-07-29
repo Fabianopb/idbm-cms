@@ -31,6 +31,7 @@ class RefundClaimsController < ApplicationController
       flash[:success] = "Refund claim created!"
       redirect_to :action => 'index', :user_id => @user.id
     else
+      show_flash_error(@refund_claim)
       render 'new'
     end
   end
@@ -40,6 +41,7 @@ class RefundClaimsController < ApplicationController
       flash[:success] = "Refund claim updated!"
       redirect_to :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
+      show_flash_error(@refund_claim)
       render 'edit'
     end
   end

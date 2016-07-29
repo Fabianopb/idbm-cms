@@ -15,6 +15,7 @@ class AccountsController < ApplicationController
       flash[:success] = "Payment information created!"
       redirect_to :controller => 'users', :action => 'show', :id => @user.id
     else
+      show_flash_error(@account)
       render 'new'
     end
   end
@@ -29,6 +30,7 @@ class AccountsController < ApplicationController
       flash[:success] = "Payment information updated"
       redirect_to :controller => 'users', :action => 'show', :id => @account.user_id
     else
+      show_flash_error(@account)
       render 'edit'
     end
   end

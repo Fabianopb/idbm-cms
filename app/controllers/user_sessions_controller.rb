@@ -9,6 +9,7 @@ class UserSessionsController < ApplicationController
       flash[:success] = "Welcome #{current_user.name}!"
       redirect_to root_path
     else
+      show_flash_error(@user_session)
       render :new
     end
   end

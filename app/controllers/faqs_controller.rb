@@ -21,6 +21,7 @@ class FaqsController < ApplicationController
       redirect_to :action => 'index'
     else
       @faq_count = Faq.count + 1
+      show_flash_error(@faq)
       render 'new'
     end
   end
@@ -35,6 +36,7 @@ class FaqsController < ApplicationController
       redirect_to :action => 'index'
     else
       @faq_count = Faq.count
+      show_flash_error(@faq)
       render 'edit'
     end
   end

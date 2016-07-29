@@ -28,6 +28,7 @@ class UsersController < ApplicationController
       flash[:success] = "User created!"
       redirect_to :action => 'show', :id => @user.id
     else
+      show_flash_error(@user)
       render 'new'
     end
   end
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
       redirect_to :action => 'show', :id => @user.id
     else
       # render :edit ??
+      show_flash_error(@user)
       render 'edit'
     end
   end

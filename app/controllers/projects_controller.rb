@@ -21,11 +21,12 @@ class ProjectsController < ApplicationController
 	def create
 		@project = Project.new(project_params)
 		if @project.save
-      flash[:success] = "Project created!"
-      redirect_to :action => 'index'
-    else
-      render 'new'
-    end
+	      flash[:success] = "Project created!"
+	      redirect_to :action => 'index'
+	    else
+	    	show_flash_error(@project)
+	      render 'new'
+	    end
 	end
 
 	def edit
@@ -37,6 +38,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project updated!"
       redirect_to :action => 'index'
 	    else
+	    	show_flash_error(@project)
 	      render 'edit'
 	    end
 	end

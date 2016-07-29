@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     flash[:warning] = exception.message
     redirect_to root_path
   end
+
+  def show_flash_error(object)
+    flash.now[:danger] = object.errors.full_messages.to_sentence
+  end
   
   private
 

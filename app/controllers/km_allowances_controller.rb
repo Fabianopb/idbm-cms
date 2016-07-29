@@ -17,6 +17,7 @@ class KmAllowancesController < ApplicationController
       flash[:success] = "km allowance created!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
+      show_flash_error(@km_allowance)
       render 'new'
     end
   end
@@ -26,6 +27,7 @@ class KmAllowancesController < ApplicationController
       flash[:success] = "km allowance updated!"
       redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
     else
+      show_flash_error(@km_allowance)
       render 'edit'
     end
   end
