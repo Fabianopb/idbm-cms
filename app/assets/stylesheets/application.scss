@@ -5,6 +5,7 @@
 //colors
 $white: #fff;
 $black: #000;
+$color-error: #c62828;
 
 $blue-grey-lighten-5: #eceff1;
 $blue-grey-lighten-4: #cfd8dc;
@@ -89,10 +90,16 @@ table {
     cursor: help;
 }
 
+/*** handling forms with errors ***/
 .boxes {
     .field_with_errors {
         display: inline;
     }
+}
+
+.field_with_errors {
+    color: $color-error;
+    font-style: italic;
 }
 
 /*** Table sizes ***/

@@ -141,9 +141,9 @@ ActiveRecord::Schema.define(version: 20160731084002) do
     t.integer  "paid_days",                default: 0
     t.decimal  "daily_allowance",          default: 0.0
     t.decimal  "accommodation_costs",      default: 0.0
-    t.boolean  "accommodation_aalto_paid"
+    t.string   "accommodation_aalto_paid", default: "nil"
     t.decimal  "events_costs",             default: 0.0
-    t.boolean  "events_aalto_paid"
+    t.string   "events_aalto_paid",        default: "nil"
     t.string   "other_description"
     t.decimal  "other_costs",              default: 0.0
     t.string   "status",                   default: "not submitted"

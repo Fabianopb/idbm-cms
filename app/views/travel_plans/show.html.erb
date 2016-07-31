@@ -42,7 +42,7 @@
     
     <tr>
         <td colspan="3">
-            <p class="travelplan-field-name">Destination, time of departure & arrival</p>
+            <p class="travelplan-field-name">Destination, time of departure and arrival</p>
             <p><%= "#{@travel_plan.destination}, departure on #{@travel_plan.departure_date}, return on #{@travel_plan.return_date}" %></p>
         </td>
     </tr>
@@ -110,7 +110,7 @@
             <p class="travelplan-field-name">Accomodation costs</p>
             <p></p>
         </td>
-        <td><%= 'x' if @travel_plan.accommodation_aalto_paid == true%></td>
+        <td><%= 'x' if @travel_plan.accommodation_aalto_paid == 'yes' %></td>
         <td><p>to be paid by Aalto University</p></td>
         <td rowspan="2" class="td-costs">
             <p class="travelplan-field-name">EUR</p>
@@ -118,7 +118,7 @@
         </td>
     </tr>
     <tr>
-        <td><%= 'x' if @travel_plan.accommodation_aalto_paid == false %></td>
+        <td><%= 'x' if @travel_plan.accommodation_aalto_paid == 'no' %></td>
         <td><p>to be paid by traveller who will charge Aalto University later</p></td>
     </tr>
     
@@ -127,7 +127,7 @@
             <p class="travelplan-field-name">Participation fee</p>
             <p></p>
         </td>
-        <td><%= 'x' if @travel_plan.events_aalto_paid == true %></td>
+        <td><%= 'x' if @travel_plan.events_aalto_paid == 'yes' %></td>
         <td><p>to be paid by Aalto University</p></td>
         <td rowspan="2" class="td-costs">
             <p class="travelplan-field-name">EUR</p>
@@ -135,7 +135,7 @@
         </td>
     </tr>
     <tr>
-        <td><%= 'x' if @travel_plan.events_aalto_paid == false %></td>
+        <td><%= 'x' if @travel_plan.events_aalto_paid == 'no' %></td>
         <td><p>to be paid by traveller who will charge Aalto University later</p></td>
     </tr>
     

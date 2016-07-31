@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<div class="form-group">
+<div class="form-group checkboxes">
   <%= f.label "Means of transport" %>
   <%= f.collection_check_boxes :transport_ids, Transport.all, :id, :transport_type do |box| %>
     <div class="boxes">
@@ -80,9 +80,10 @@
   </div>
   
   <div class="col-sm-9 form-group boxes">
-    <%= f.label :accommodation_aalto_paid, "Accomodation paid...<span class='clear-radio'>&nbsp;&nbsp;&nbsp;(<strong>X</strong> <span class='clear-selection accommodation'>clear selection</span>)</span>".html_safe %>
-    <div class="boxes"><%= f.radio_button(:accommodation_aalto_paid, true, :class => 'accommodation-radio') %> ...directly by IDBM</div>
-    <div class="boxes"><%= f.radio_button(:accommodation_aalto_paid, false, :class => 'accommodation-radio') %> ...by the student and refunded later</div>
+    <%= f.label :accommodation_aalto_paid, "Accomodation paid..." %>
+    <div class="boxes"><%= f.radio_button(:accommodation_aalto_paid, 'yes', :class => 'accommodation-radio') %> ...directly by IDBM</div>
+    <div class="boxes"><%= f.radio_button(:accommodation_aalto_paid, 'no', :class => 'accommodation-radio') %> ...by the student and refunded later</div>
+    <div class="boxes"><%= f.radio_button(:accommodation_aalto_paid, 'nil', :class => 'accommodation-radio') %><em> (no accommodation costs)</em></div>
   </div>
 </div>
 
@@ -96,9 +97,10 @@
   </div>
   
   <div class="col-sm-9 form-group">
-    <%= f.label :events_aalto_paid, "Events paid...<span class='clear-radio'>&nbsp;&nbsp;&nbsp;(<strong>X</strong> <span class='clear-selection events'>clear selection</span>)</span>".html_safe %>
-    <div class="boxes"><%= f.radio_button(:events_aalto_paid, true, :class => 'events-radio') %> ...directly by IDBM</div>
-    <div class="boxes"><%= f.radio_button(:events_aalto_paid, false, :class => 'events-radio') %> ...by the student and refunded later</div>
+    <%= f.label :events_aalto_paid, "Events paid..." %>
+    <div class="boxes"><%= f.radio_button(:events_aalto_paid, 'yes', :class => 'events-radio') %> ...directly by IDBM</div>
+    <div class="boxes"><%= f.radio_button(:events_aalto_paid, 'no', :class => 'events-radio') %> ...by the student and refunded later</div>
+    <div class="boxes"><%= f.radio_button(:events_aalto_paid, 'nil', :class => 'accommodation-radio') %><em> (no events costs)</em></div>
   </div>
 </div>
 

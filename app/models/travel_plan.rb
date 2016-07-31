@@ -27,6 +27,7 @@ class TravelPlan < ActiveRecord::Base
   validate :allowances
   validate :payer
   validate :team_members
+  validate :other_planned_costs
 
   def trip_dates
     errors.add(:departure_date, "can't be in the past") if departure_date < Date.today
@@ -44,11 +45,22 @@ class TravelPlan < ActiveRecord::Base
   end
 
   def payer
-    errors.add(:accommodation_aalto_paid, "Please mark a payer for the accommodation") if accommodation_aalto_paid.nil? && accommodation_costs > 0
-    errors.add(:events_aalto_paid, "Please mark a payer for the event(s)") if events_aalto_paid.nil? && events_costs > 0
+    unless accommodation_costs.nil?
+      errors.add(:accommodation_aalto_paid, "Please mark a payer for the accommodation") if accommodation_aalto_paid == 'nil' && accommodation_costs > 0
+      errors.add(:accommodation_aalto_paid, "Please uncheck the accommodation payer if accommodation cost is zero") if accommodation_aalto_paid != 'nil' && accommodation_costs == 0
+    end
 
-    errors.add(:accommodation_aalto_paid, "Please uncheck the accommodation payer if accommodation cost is zero") if !accommodation_aalto_paid.nil? && accommodation_costs == 0
-    errors.add(:events_aalto_paid, "Please uncheck the events payer if events cost is zero") if !events_aalto_paid.nil? && events_costs == 0
+    unless events_costs.nil?
+      errors.add(:events_aalto_paid, "Please uncheck the events payer if events cost is zero") if events_aalto_paid != 'nil' && events_costs == 0
+      errors.add(:events_aalto_paid, "Please mark a payer for the event(s)") if events_aalto_paid == 'nil' && events_costs > 0
+    end
+  end
+
+  def other_planned_costs
+    unless other_costs.nil?
+      errors.add(:other_description, "You must specify if other costs if they are not zero") if other_description == '' && other_costs > 0
+      errors.add(:other_costs, "can't be zero if you have specified other planned costs") if other_costs == 0 && other_description != ''
+    end
   end
 
   def team_members

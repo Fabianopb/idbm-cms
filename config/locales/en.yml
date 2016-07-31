@@ -28,4 +28,5 @@ en:
         user_ids: ""
         accommodation_aalto_paid: ""
         events_aalto_paid: ""
+        other_description: ""
   hello: "Hello world"
