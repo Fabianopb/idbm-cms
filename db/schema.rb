@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726175747) do
+ActiveRecord::Schema.define(version: 20160731084002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,14 +138,14 @@ ActiveRecord::Schema.define(version: 20160726175747) do
     t.string   "trip_description"
     t.string   "tickets_description"
     t.decimal  "tickets_cost"
-    t.integer  "paid_days"
-    t.decimal  "daily_allowance"
-    t.decimal  "accommodation_costs"
+    t.integer  "paid_days",                default: 0
+    t.decimal  "daily_allowance",          default: 0.0
+    t.decimal  "accommodation_costs",      default: 0.0
     t.boolean  "accommodation_aalto_paid"
-    t.decimal  "events_costs"
+    t.decimal  "events_costs",             default: 0.0
     t.boolean  "events_aalto_paid"
     t.string   "other_description"
-    t.decimal  "other_costs"
+    t.decimal  "other_costs",              default: 0.0
     t.string   "status",                   default: "not submitted"
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false

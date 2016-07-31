@@ -89,6 +89,12 @@ table {
     cursor: help;
 }
 
+.boxes {
+    .field_with_errors {
+        display: inline;
+    }
+}
+
 /*** Table sizes ***/
 
 .th-userinfo {
@@ -285,6 +291,16 @@ footer {
         color: $grey-lighten-1;
         font-weight: normal;
         font-style: italic;
+    }
+}
+.clear-radio {
+    font-weight: normal;
+    font-size: 0.9em;
+    font-style: italic;
+    color: $light-blue-darken-3;
+    .clear-selection {
+        text-decoration: underline;
+        cursor: pointer;
     }
 }
 

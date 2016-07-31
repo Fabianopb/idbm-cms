@@ -3,6 +3,14 @@ $(function(){
 
         // Initialize Bootstrap's tooltip
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('.clear-selection.accommodation').click(function() {
+            $('.accommodation-radio').prop('checked', false);
+        });
+
+        $('.clear-selection.events').click(function() {
+            $('.events-radio').prop('checked', false);
+        });
         
         // $('.datetimepicker').datetimepicker();
         

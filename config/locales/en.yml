@@ -20,4 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    attributes:
+      travel_plan:
+        transport_ids: ""
+        paid_days: "Allowance days"
+        user_ids: ""
+        accommodation_aalto_paid: ""
+        events_aalto_paid: ""
   hello: "Hello world"

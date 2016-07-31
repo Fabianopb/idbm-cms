@@ -31,7 +31,7 @@
 <div class="form-group">
   <%= f.label "Means of transport" %>
   <%= f.collection_check_boxes :transport_ids, Transport.all, :id, :transport_type do |box| %>
-    <div>
+    <div class="boxes">
       <%= box.check_box %>
       <%= box.label %>
     </div>
@@ -50,7 +50,7 @@
     <%= f.label :tickets_cost %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
-      <%= f.number_field :tickets_cost, :class => 'form-control' %>
+      <%= f.number_field :tickets_cost, {:class => 'form-control', :step => 0.01, :min => 0} %>
     </div>
   </div>
 </div>
@@ -58,14 +58,14 @@
 <div class="row">
   <div class="col-sm-3 form-group">
     <%= f.label :paid_days, "Allowance days" %>
-    <%= f.number_field :paid_days, :class => 'form-control' %>
+    <%= f.number_field :paid_days, {:class => 'form-control', :step => 1, :min => 0} %>
   </div>
   
   <div class="col-sm-3 form-group">
     <%= f.label :daily_allowance, "Daily allowance value" %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
-      <%= f.number_field :daily_allowance, :class => 'form-control' %>
+      <%= f.number_field :daily_allowance, {:class => 'form-control', :step => 0.01, :min => 0} %>
     </div>
   </div>
 </div>
@@ -75,14 +75,14 @@
     <%= f.label :accommodation_costs %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
-      <%= f.number_field :accommodation_costs, :class => 'form-control' %>
+      <%= f.number_field :accommodation_costs, {:class => 'form-control', :step => 0.01, :min => 0} %>
     </div>
   </div>
   
-  <div class="col-sm-9 form-group">
-    <%= f.label :accommodation_aalto_paid, "Accomodation paid..." %>
-    <div><%= f.radio_button(:accommodation_aalto_paid, true) %> ...directly by IDBM</div>
-    <div><%= f.radio_button(:accommodation_aalto_paid, false) %> ...by the student and refunded later</div>
+  <div class="col-sm-9 form-group boxes">
+    <%= f.label :accommodation_aalto_paid, "Accomodation paid...<span class='clear-radio'>&nbsp;&nbsp;&nbsp;(<strong>X</strong> <span class='clear-selection accommodation'>clear selection</span>)</span>".html_safe %>
+    <div class="boxes"><%= f.radio_button(:accommodation_aalto_paid, true, :class => 'accommodation-radio') %> ...directly by IDBM</div>
+    <div class="boxes"><%= f.radio_button(:accommodation_aalto_paid, false, :class => 'accommodation-radio') %> ...by the student and refunded later</div>
   </div>
 </div>
 
@@ -91,14 +91,14 @@
     <%= f.label :events_costs %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
-      <%= f.number_field :events_costs, :class => 'form-control' %>
+      <%= f.number_field :events_costs, {:class => 'form-control', :step => 0.01, :min => 0} %>
     </div>
   </div>
   
   <div class="col-sm-9 form-group">
-    <%= f.label :events_aalto_paid, "Events paid..." %>
-    <div><%= f.radio_button(:events_aalto_paid, true) %> ...directly by IDBM</div>
-    <div><%= f.radio_button(:events_aalto_paid, false) %> ...by the student and refunded later</div>
+    <%= f.label :events_aalto_paid, "Events paid...<span class='clear-radio'>&nbsp;&nbsp;&nbsp;(<strong>X</strong> <span class='clear-selection events'>clear selection</span>)</span>".html_safe %>
+    <div class="boxes"><%= f.radio_button(:events_aalto_paid, true, :class => 'events-radio') %> ...directly by IDBM</div>
+    <div class="boxes"><%= f.radio_button(:events_aalto_paid, false, :class => 'events-radio') %> ...by the student and refunded later</div>
   </div>
 </div>
 
@@ -114,7 +114,7 @@
     <%= f.label :other_costs %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
-      <%= f.number_field :other_costs, :class => 'form-control' %>
+      <%= f.number_field :other_costs, {:class => 'form-control', :step => 0.01, :min => 0} %>
     </div>
   </div>
 </div>
@@ -122,7 +122,7 @@
 <div class="form-group">
   <%= f.label "Team members travelling" %><%= "  <span class='tooltip-wrapper' data-toggle='tooltip' data-placement='right' title='A disabled checkbox means that the user payment information is missing'><span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span></span>".html_safe unless @disabled.empty? %>
   <%= f.collection_check_boxes :user_ids, @team, :id, :first_name, {disabled: @disabled} do |box| %>
-    <div>
+    <div class="boxes">
       <%= box.check_box %>
       <span <%= "class=disabled-checkbox" if @disabled.include?(box.value) %>><%= box.label %></span>
     </div>
