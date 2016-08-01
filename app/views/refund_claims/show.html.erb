@@ -72,72 +72,77 @@
 
 <%= pluralize(@daily_allowances.size, 'trip destination') %> found<br />
 
+<% unless @refund_claim.departure.nil? %>
+  <div class="trip-departure">
+    <span class="glyphicon glyphicon-export" aria-hidden="true"></span> Departure from Finland on <%= @refund_claim.departure %>
+  </div>
+<% end %>
+
 <% if @daily_allowances.size > 0 %>
 
-<div class="trip-departure">
-    <span class="glyphicon glyphicon-export" aria-hidden="true"></span> Departure from Finland on <%= @refund_claim.departure %>
-</div>
-
-<% @daily_allowances.each do |daily_allowance| %>
+  <% @daily_allowances.each do |daily_allowance| %>
     <div class="trip-arrival">
         
-        <% unless current_user.admin? %>
-            <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
-            <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
-        <% end %>
+      <% unless current_user.admin? %>
+        <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
+        <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
+      <% end %>
 
-        <span class="arrival-icon"></span> Arrival in <%= daily_allowance.destination %> on <%= daily_allowance.arrival %>
+      <span class="arrival-icon"></span> Arrival in <%= daily_allowance.destination %> on <%= daily_allowance.arrival %>
     </div>
-<% end %>
-
-<div class="trip-return">
-    <span class="glyphicon glyphicon-import" aria-hidden="true"></span> Return to Finland on <%= @refund_claim.departure %>
-</div>
+  <% end %>
 
 <% end %>
+<% unless @refund_claim.departure.nil? %>
+  <div class="trip-return">
+    <span class="glyphicon glyphicon-import" aria-hidden="true"></span> Return to Finland on <%= @refund_claim.return_date %>
+  </div>
+<% end %>
+
+
 
 
 <!-- km allowances list -->
 <hr />
 <div class="claims-aside">
-    <div class="claims-header float-left">
-        km allowances
-        <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Only if you have used your own vehicle">
-            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-      </span>
+  <div class="claims-header float-left">
+    km allowances
+    <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Only if you have used your own vehicle">
+      <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+    </span>
+  </div>
+  <% if can? :new, KmAllowance %>
+    <div class="float-right">
+      <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'km_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id} %>
     </div>
-    <% if can? :new, KmAllowance %>
-        <div class="float-right">
-            <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'km_allowances', :action => 'new', :user_id => @user.id, :refund_claim_id => @refund_claim.id} %>
-        </div>
-    <% end %>
-    <div class="clearfix"></div>
+  <% end %>
+  <div class="clearfix"></div>
 </div>
 
 <%= pluralize(@km_allowances.size, 'km allowance') %> found<br />
 
 <% if @km_allowances.size > 0 %>
-<table class="table">
+  <table class="table">
     <tr>
-        <th>Date</th>
-        <th>Route</th>
-        <th>Description</th>
-        <th>km</th>
-        <%= "<th>Actions</th>".html_safe unless current_user.admin? %>
+      <th>Date</th>
+      <th>Route</th>
+      <th>Description</th>
+      <th>km</th>
+      <%= "<th>Actions</th>".html_safe unless current_user.admin? %>
     </tr>
     <% @km_allowances.each do |km_allowance| %>
-    <tr>
+      <tr>
         <td><%= km_allowance.date %></td>
         <td><%= km_allowance.route %></td>
         <td><%= km_allowance.description %></td>
         <td><%= km_allowance.kms %></td>
         <td class="km-actions">
-            <% unless current_user.admin? %>
-                <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
-                <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
-            <% end %>
+          <% unless current_user.admin? %>
+            <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'edit', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
+            <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'delete', :user_id => @user.id, :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
+          <% end %>
         </td>
-    </tr>
+      </tr>
     <% end %>
-</table>
+  </table>
 <% end %>
