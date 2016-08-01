@@ -20,7 +20,7 @@
   <div class="col-sm-3 form-group">
     <%= f.label :kms, "Distance" %>
     <div class="input-group">
-      <%= f.number_field :kms, :class => 'form-control' %>
+      <%= f.number_field :kms, {:class => 'form-control', :step => 0.01, :min => 0.01} %>
       <div class="input-group-addon">km</div>
     </div>
   </div>
