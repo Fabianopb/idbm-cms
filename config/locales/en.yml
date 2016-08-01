@@ -29,4 +29,6 @@ en:
         accommodation_aalto_paid: ""
         events_aalto_paid: ""
         other_description: ""
+      refund_claim:
+        departure: "Departure date"
   hello: "Hello world"

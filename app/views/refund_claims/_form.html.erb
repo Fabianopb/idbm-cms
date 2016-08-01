@@ -7,23 +7,26 @@
   </div>
 </div>
 
+<br />
 <div class="claims-header">Trip information 
   <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="Fill only if you have travelled">
     <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
   </span>
 </div>
+<div class="clear-date-fields">X clear date fields</div>
 
+<br />
 <div class="form-group">
   <%= f.label :departure %>
   <div class="form-inline">
-    <%= f.datetime_select :departure, {:order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control' %>
+    <%= f.datetime_select :departure, {:order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control date-field' %>
   </div>
 </div>
 
 <div class="form-group">
   <%= f.label :return_date %>
   <div class="form-inline">
-    <%= f.datetime_select :return_date, {:order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control' %>
+    <%= f.datetime_select :return_date, {:order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control date-field' %>
   </div>
 </div>
 

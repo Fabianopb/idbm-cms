@@ -300,16 +300,6 @@ footer {
         font-style: italic;
     }
 }
-.clear-radio {
-    font-weight: normal;
-    font-size: 0.9em;
-    font-style: italic;
-    color: $light-blue-darken-3;
-    .clear-selection {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-}
 
 
 /*** USER INFORMATION ***/
@@ -362,6 +352,16 @@ footer {
     .clearfix{
         clear:both
     }
+}
+
+.clear-date-fields {
+    padding: 5px;
+    font-weight: normal;
+    font-size: 0.9em;
+    font-style: italic;
+    text-decoration: underline;
+    color: $light-blue-darken-3;
+    cursor: pointer;
 }
 
 .trip-departure {

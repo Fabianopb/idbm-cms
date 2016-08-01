@@ -16,6 +16,10 @@ $(function(){
             $('.checkboxes').css({'color': '#c62828', 'font-style': 'italic'});
         }
 
+        $('.clear-date-fields').click(function() {
+            $('.date-field').val('');
+        });
+
        
         
         // $('.datetimepicker').datetimepicker();
