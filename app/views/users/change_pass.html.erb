@@ -1,0 +1,34 @@
+<div class="top-buttons">
+  <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'show', :id => @user.id} %>
+</div>
+
+<h3>Change password</h3>
+
+<%= form_for :user, :url => {:action => 'update_pass', :id => @user.id} do |f| %>
+
+	<div class="row">
+  	<div class="col-md-4">
+  		<%= f.label :current_password %>
+  		<%= password_field_tag :current_password, params[:current_password], :class => 'form-control' %>
+  	</div>
+  </div>
+
+  <div class="row">
+  	<div class="col-md-4">
+		  <%= f.label :password %>
+		  <%= f.password_field :password, :class => 'form-control' %>
+  	</div>
+  </div>
+
+  <div class="row">
+  	<div class="col-md-4">
+		  <%= f.label :password_confirmation %>
+		  <%= f.password_field :password_confirmation, :class => 'form-control' %>
+  	</div>
+  </div>
+
+  <div class="form-buttons confirm-buttons">
+  	<%= f.button "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Save".html_safe, :class => 'btn btn-success' %>
+  </div>
+
+<% end %>

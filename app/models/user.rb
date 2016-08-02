@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
             :role,
             presence: true
 
+  # validate :password_change
+
+  # def password_change
+  #   errors.add(:base, "has been restricted from use.") if !current_user.valid_password?(params[:current_password])
+  # end
   
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt

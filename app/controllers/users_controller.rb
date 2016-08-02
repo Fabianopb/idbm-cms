@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "User created!"
-      redirect_to :action => 'show', :id => @user.id
+      redirect_to :action => 'index'
     else
       show_flash_error(@user)
       render 'new'
@@ -41,12 +41,26 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "User updated!"
-      # redirect_to @user ??
       redirect_to :action => 'show', :id => @user.id
     else
-      # render :edit ??
       show_flash_error(@user)
       render 'edit'
+    end
+  end
+
+  def change_pass
+    @user = User.find(params[:id])
+  end
+
+  def update_pass
+    @user = User.find(params[:id])
+    if @user.valid_password?(params[:current_password]) && @user.update_attributes(user_params)
+      flash[:success] = "Password updated!"
+      redirect_to :action => 'show', :id => @user.id
+    else
+      show_flash_error(@user)
+      # flash[:info] = "#{@user.valid_password?(params[:current_password])}"
+      render 'change_pass'
     end
   end
   

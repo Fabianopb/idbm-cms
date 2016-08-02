@@ -94,3 +94,7 @@
 </div>
 
 <% end %>
+
+<% if can? :change_pass, User %>
+    <%= link_to raw("<button type='button' class='btn btn-warning'><span class='glyphicon glyphicon-lock' aria-hidden='true'></span> Change password</button>"), :action => 'change_pass', :id => @user.id %>
+<% end %>
