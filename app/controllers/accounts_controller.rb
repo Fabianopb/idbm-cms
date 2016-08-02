@@ -31,6 +31,7 @@ class AccountsController < ApplicationController
       redirect_to :controller => 'users', :action => 'show', :id => @account.user_id
     else
       show_flash_error(@account)
+      @user = @account.user
       render 'edit'
     end
   end

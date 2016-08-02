@@ -31,4 +31,6 @@ en:
         other_description: ""
       refund_claim:
         departure: "Departure date"
+      account:
+        social_security: "Social security number"
   hello: "Hello world"
