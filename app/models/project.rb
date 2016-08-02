@@ -4,6 +4,8 @@ class Project < ActiveRecord::Base
 
 	scope :sorted, lambda { order("projects.id ASC") }
 
+	validates :project_name, presence: true
+
 	def members
         (self.users.pluck(:first_name, :last_name).map {|user| user.join(' ')}).join(', ')
     end

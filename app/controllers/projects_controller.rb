@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
 	      flash[:success] = "Project created!"
 	      redirect_to :action => 'index'
 	    else
+	    	users_array
 	    	show_flash_error(@project)
 	      render 'new'
 	    end
@@ -38,6 +39,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project updated!"
       redirect_to :action => 'index'
 	    else
+	    	users_array
 	    	show_flash_error(@project)
 	      render 'edit'
 	    end
