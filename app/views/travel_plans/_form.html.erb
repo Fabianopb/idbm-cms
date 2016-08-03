@@ -2,20 +2,20 @@
 
 <div class="row">
   <div class="col-md-8 form-group">
-    <%= f.label :destination %>
+    <%= f.label :destination, :class => 'mandatory' %>
     <%= f.text_field :destination, :class => 'form-control' %>
   </div>
 </div>
 
 <div class="form-group">
-  <%= f.label :departure_date %>
+  <%= f.label :departure_date, :class => 'mandatory' %>
   <div class="form-inline">
     <%= f.date_select :departure_date, {:order => [:day, :month, :year]}, :class => 'form-control' %>
   </div>
 </div>
 
 <div class="form-group">
-  <%= f.label :return_date %>
+  <%= f.label :return_date, :class => 'mandatory' %>
   <div class="form-inline">
     <%= f.date_select :return_date, {:order => [:day, :month, :year]}, :class => 'form-control' %>
   </div>
@@ -23,13 +23,13 @@
 
 <div class="row">
   <div class="col-md-8 form-group">
-    <%= f.label :trip_description %>
+    <%= f.label :trip_description, :class => 'mandatory' %>
     <%= f.text_field :trip_description, :class => 'form-control' %>
   </div>
 </div>
 
 <div class="form-group checkboxes">
-  <%= f.label "Means of transport" %>
+  <%= f.label "Means of transport", :class => 'mandatory' %>
   <%= f.collection_check_boxes :transport_ids, Transport.all, :id, :transport_type do |box| %>
     <div class="boxes">
       <%= box.check_box %>
@@ -40,14 +40,14 @@
 
 <div class="row">
   <div class="col-sm-8 form-group">
-    <%= f.label :tickets_description %>
+    <%= f.label :tickets_description, :class => 'mandatory' %>
     <%= f.text_field :tickets_description, :class => 'form-control' %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-3 form-group">
-    <%= f.label :tickets_cost %>
+    <%= f.label :tickets_cost, :class => 'mandatory' %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
       <%= f.number_field :tickets_cost, {:class => 'form-control', :step => 0.01, :min => 0} %>
@@ -57,12 +57,12 @@
   
 <div class="row">
   <div class="col-sm-3 form-group">
-    <%= f.label :paid_days, "Allowance days" %>
+    <%= f.label :paid_days, "Allowance days", :class => 'mandatory' %>
     <%= f.number_field :paid_days, {:class => 'form-control', :step => 1, :min => 0} %>
   </div>
   
   <div class="col-sm-3 form-group">
-    <%= f.label :daily_allowance, "Daily allowance value" %>
+    <%= f.label :daily_allowance, "Daily allowance value", :class => 'mandatory' %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
       <%= f.number_field :daily_allowance, {:class => 'form-control', :step => 0.01, :min => 0} %>
@@ -72,7 +72,7 @@
 
 <div class="row">
   <div class="col-sm-3 form-group">
-    <%= f.label :accommodation_costs %>
+    <%= f.label :accommodation_costs, :class => 'mandatory' %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
       <%= f.number_field :accommodation_costs, {:class => 'form-control', :step => 0.01, :min => 0} %>
@@ -89,7 +89,7 @@
 
 <div class="row">
   <div class="col-sm-3 form-group">
-    <%= f.label :events_costs %>
+    <%= f.label :events_costs, :class => 'mandatory' %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
       <%= f.number_field :events_costs, {:class => 'form-control', :step => 0.01, :min => 0} %>
@@ -113,7 +113,7 @@
 
 <div class="row">
   <div class="col-sm-3 form-group">
-    <%= f.label :other_costs %>
+    <%= f.label :other_costs, :class => 'mandatory' %>
     <div class="input-group">
       <div class="input-group-addon">€</div>
       <%= f.number_field :other_costs, {:class => 'form-control', :step => 0.01, :min => 0} %>
@@ -122,7 +122,7 @@
 </div>
 
 <div class="form-group">
-  <%= f.label "Team members travelling" %><%= "  <span class='tooltip-wrapper' data-toggle='tooltip' data-placement='right' title='A disabled checkbox means that the user payment information is missing'><span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span></span>".html_safe unless @disabled.empty? %>
+  <%= f.label "Team members travelling", :class => 'mandatory' %><%= "  <span class='tooltip-wrapper' data-toggle='tooltip' data-placement='right' title='A disabled checkbox means that the user payment information is missing'><span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span></span>".html_safe unless @disabled.empty? %>
   <%= f.collection_check_boxes :user_ids, @team, :id, :first_name, {disabled: @disabled} do |box| %>
     <div class="boxes">
       <%= box.check_box %>

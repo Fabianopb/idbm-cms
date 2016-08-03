@@ -1,5 +1,5 @@
 <div class="form-group">
-  <%= f.label :date %>
+  <%= f.label :date, :class => 'mandatory' %>
   <div class="form-inline">
     <%= f.date_select :date, {:order => [:day, :month, :year]}, :class => 'form-control' %>
   </div>
@@ -7,18 +7,18 @@
 
 <div class="row">
   <div class="col-md-8 form-group">
-    <%= f.label :description %>
+    <%= f.label :description, :class => 'mandatory' %>
     <%= f.text_field :description, :class => 'form-control' %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-5 form-group">
-    <%= f.label :route %>
+    <%= f.label :route, :class => 'mandatory' %>
     <%= f.text_field :route, :class => 'form-control' %>
   </div>
   <div class="col-sm-3 form-group">
-    <%= f.label :kms, "Distance" %>
+    <%= f.label :kms, "Distance", :class => 'mandatory' %>
     <div class="input-group">
       <%= f.number_field :kms, {:class => 'form-control', :step => 0.01, :min => 0.01} %>
       <div class="input-group-addon">km</div>

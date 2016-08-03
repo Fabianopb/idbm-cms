@@ -90,6 +90,11 @@ table {
     cursor: help;
 }
 
+.mandatory::after {
+    content: ' *';
+    color: $color-error;
+}
+
 /*** handling forms with errors ***/
 .boxes {
     .field_with_errors {
