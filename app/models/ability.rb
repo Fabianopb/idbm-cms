@@ -4,20 +4,31 @@ class Ability
   def initialize(user)
     
     user ||= User.new
+    
     if user.role == "Admin"
+      
       can :show, Account
-      can :manage, User
-      can [:change_pass, :update_pass], User, :id => user.id
-      cannot [:delete, :destroy], User, :id => user.id
-      can [:read, :update], [RefundClaim, TravelPlan] {|demand| demand.status != "not submitted"}
-      can :manage, Faq
-      can :manage, Project
+      
+      can [:index, :show, :new, :create], User
+      can [:edit, :update, :change_pass, :update_pass], User, :id => user.id
+      can [:delete, :destroy], [User] { |user| !user.admin? }
+
+      can [:index, :show], [RefundClaim, TravelPlan]
+      can [:change_status, :update_status], [RefundClaim, TravelPlan] { |request| request.status != "not submitted" }
+      
+      can :manage, [Faq, Project]
+    
     else
+      
+      can [:show, :edit, :update, :change_pass, :update_pass], User, :id => user.id
+
       can :manage, [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance], :user_id => user.id
-      can :manage, [TravelPlan] {|travel_plan| travel_plan.users.pluck(:id).include?(user.id)}
-      can :create, TravelPlan # create only for team members (creator is mandatory)
-      can [:show, :update, :change_pass, :update_pass], User, :id => user.id
-      can :read, Faq
+
+      can [:index, :show], TravelPlan, :id => user.travel_plans.pluck(:id)
+      # can :manage, [TravelPlan] {|travel_plan| travel_plan.users.pluck(:id).include?(user.id)}
+      
+      can [:index, :show], Faq
+
     end
     
   end

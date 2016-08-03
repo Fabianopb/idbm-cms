@@ -38,11 +38,11 @@
             <li><%= link_to "<span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span>".html_safe, {:controller => "faqs"} %></li>
             
             <!-- menu items for the Admin -->
-            <% if can? :manage, User %>
+            <% if can? :index, User %>
               <li><%= link_to "<span class='glyphicon glyphicon-education' aria-hidden='true'></span>".html_safe, {:controller => "users"} %></li>
             <% end %>
 
-            <% if can? :manage, Project %>
+            <% if can? :index, Project %>
               <li><%= link_to "<span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span>".html_safe, {:controller => "projects"} %></li>
             <% end %>
             

@@ -10,7 +10,7 @@ class TravelPlansController < ApplicationController
     if current_user.admin?
       @travel_plans = TravelPlan.newest_first
     else
-      @travel_plans = @user.travel_plans.newest_first
+      @travel_plans = current_user.travel_plans.newest_first
       account_missing?
     end
   end
@@ -24,7 +24,7 @@ class TravelPlansController < ApplicationController
     @travel_plan = TravelPlan.new(travel_plan_params)
     if @travel_plan.save
       flash[:success] = "Travel plan created!"
-      redirect_to :action => 'index', :user_id => @user.id
+      redirect_to :action => 'index', :user_id => current_user.id
     else
       team_array
       show_flash_error(@travel_plan)
@@ -39,7 +39,7 @@ class TravelPlansController < ApplicationController
   def update
     if @travel_plan.update_attributes(travel_plan_params)
       flash[:success] = "Travel plan updated!"
-      redirect_to :action => 'show', :user_id => @user.id, :id => @travel_plan.id
+      redirect_to :action => 'show', :user_id => current_user.id, :id => @travel_plan.id
     else
       team_array
       show_flash_error(@travel_plan)
@@ -50,7 +50,7 @@ class TravelPlansController < ApplicationController
   def destroy
     TravelPlan.find(params[:id]).destroy
     flash[:success] = "Travel plan destroyed!"
-    redirect_to :action => 'index', :user_id => @user.id
+    redirect_to :action => 'index', :user_id => current_user.id
   end
 
   private
@@ -63,10 +63,10 @@ class TravelPlansController < ApplicationController
     end
 
     def team_array
-      @team = [@user]
+      @team = [current_user]
       @disabled = []
       User.where("role = ?", "Student").each do |user|
-        if user.project == @user.project && @user.id != user.id
+        if user.project == current_user.project && current_user.id != user.id
           @team.push(user)
           @disabled.push(user.id) if user.account.nil?
         end

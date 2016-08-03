@@ -20,10 +20,13 @@
         <p class="card-content"><strong>Status: </strong><%= travel_plan.status %></p>
       </div>
       <div class="card-action">
-        <%= (can? :read, travel_plan) ? (link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :user_id => @user.id, :id => travel_plan.id}) : '<em>draft</em>'.html_safe %>
-        <% unless current_user.admin? %>
-          <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :user_id => @user.id, :id => travel_plan.id} %>
-          <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :user_id => @user.id, :id => travel_plan.id} %>
+        <% if current_user.admin? %>
+          <%= link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => travel_plan.id} if (can? :show, travel_plan) %>
+          <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => travel_plan.id} if (can? :edit, travel_plan) %>
+        <% else %>
+          <%= link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => travel_plan.id} if (can? :show, travel_plan) %>
+          <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => travel_plan.id} if (can? :edit, travel_plan) %>
+          <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => travel_plan.id} if (can? :delete, travel_plan) %>
         <% end %>
       </div>
     </div>

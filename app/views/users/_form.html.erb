@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<% if (@user.id != current_user.id) && (can? :manage, User) %>
+<% if !@user.admin? && (can? :create, User) %>
 
 <div class="row">
   <div class="col-md-12 form-group">
