@@ -2,13 +2,11 @@
 
 	<div class="alert alert-<%= key %>" role="alert">
 
-		<% if key == "success" %>
-			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-		<% else %>
-			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		<% end %>
+		<% icon = key == "success" ? "ok" : "exclamation-sign" %>
 
-	    <%= value %>
+	    <% value.each do |val| %>
+	    	<span class="glyphicon glyphicon-<%= icon %>" aria-hidden="true"></span>&nbsp;<%= val %><br />
+	    <% end %>
 	    
 	    <!-- Button for user to create payment information -->
 	    <% if value == "Payment information missing!" %>

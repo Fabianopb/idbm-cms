@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def show_flash_error(object)
-    flash.now[:danger] = object.errors.full_messages.to_sentence
+    flash.now[:danger] = object.errors.full_messages
   end
   
   private

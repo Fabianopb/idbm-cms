@@ -23,12 +23,12 @@ en:
   activerecord:
     attributes:
       travel_plan:
-        transport_ids: ""
+        transport_ids: "Transports"
         paid_days: "Allowance days"
-        user_ids: ""
-        accommodation_aalto_paid: ""
-        events_aalto_paid: ""
-        other_description: ""
+        user_ids: "You"
+        accommodation_aalto_paid: "Please"
+        events_aalto_paid: "Please"
+        other_description: "You"
       refund_claim:
         departure: "Departure date"
       account:
