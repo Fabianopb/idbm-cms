@@ -54,12 +54,18 @@ class UsersController < ApplicationController
 
   def update_pass
     @user = User.find(params[:id])
-    if @user.valid_password?(params[:current_password]) && @user.update_attributes(user_params)
-      flash[:success] = "Password updated!"
-      redirect_to :action => 'show', :id => @user.id
+    if @user.valid_password?(params[:current_password])
+      @user.enable_strict_validation = true
+      if @user.update_attributes(user_params)
+        flash[:success] = "Password updated!"
+        redirect_to :action => 'show', :id => @user.id
+      else
+        show_flash_error(@user)
+        render 'change_pass'
+      end
     else
+      @user.errors.add(:current_password, "is not valid!")
       show_flash_error(@user)
-      # flash[:info] = "#{@user.valid_password?(params[:current_password])}"
       render 'change_pass'
     end
   end

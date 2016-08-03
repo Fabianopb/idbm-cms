@@ -25,12 +25,13 @@ class User < ActiveRecord::Base
             :role,
             presence: true
 
-  # validate :password_change
+  attr_accessor :enable_strict_validation
+  validate :presence_of_passwords, :if => :enable_strict_validation
 
-  # def password_change
-  #   errors.add(:base, "has been restricted from use.") if !current_user.valid_password?(params[:current_password])
-  # end
-  
+  def presence_of_passwords
+    errors.add(:password, "can't be blank") if password.nil?
+  end
+
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt
   end
