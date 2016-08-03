@@ -4,8 +4,12 @@
 
 		<% icon = key == "success" ? "ok" : "exclamation-sign" %>
 
-	    <% value.each do |val| %>
-	    	<span class="glyphicon glyphicon-<%= icon %>" aria-hidden="true"></span>&nbsp;<%= val %><br />
+		<% if value.kind_of?(Array) %>
+		    <% value.each do |val| %>
+		    	<span class="glyphicon glyphicon-<%= icon %>" aria-hidden="true"></span>&nbsp;<%= val %><br />
+		    <% end %>
+		<% else %>
+			<span class="glyphicon glyphicon-<%= icon %>" aria-hidden="true"></span>&nbsp;<%= value %><br />
 	    <% end %>
 	    
 	    <!-- Button for user to create payment information -->
