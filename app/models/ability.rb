@@ -24,7 +24,8 @@ class Ability
 
       can :manage, [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance], :user_id => user.id
 
-      can [:index, :show], TravelPlan, :id => user.travel_plans.pluck(:id)
+      can [:index, :show, :edit, :update, :delete, :destroy], TravelPlan, :id => user.travel_plans.pluck(:id)
+      can [:new, :create], TravelPlan
       # can :manage, [TravelPlan] {|travel_plan| travel_plan.users.pluck(:id).include?(user.id)}
       
       can [:index, :show], Faq

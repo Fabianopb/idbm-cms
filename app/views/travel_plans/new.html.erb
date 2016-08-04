@@ -1,10 +1,10 @@
 <div class="top-buttons">
-	<%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'index', :user_id => @user.id} %>
+	<%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:action => 'index'} %>
 </div>
 
 <h3>Create new travel plan</h3>
 
-<%= form_for :travel_plan, :url => {:action => 'create', :user_id => @user.id} do |f| %>
+<%= form_for :travel_plan, :url => {:action => 'create'} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 

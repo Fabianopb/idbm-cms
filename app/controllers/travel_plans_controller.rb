@@ -1,7 +1,7 @@
 class TravelPlansController < ApplicationController
   
   before_action :confirm_logged_in
-  before_action :find_user
+  # before_action :find_user
   before_action :set_travel_plan, only: [:show, :edit, :update, :delete]
   
   load_and_authorize_resource
@@ -24,7 +24,7 @@ class TravelPlansController < ApplicationController
     @travel_plan = TravelPlan.new(travel_plan_params)
     if @travel_plan.save
       flash[:success] = "Travel plan created!"
-      redirect_to :action => 'index', :user_id => current_user.id
+      redirect_to :action => 'index'
     else
       team_array
       show_flash_error(@travel_plan)
@@ -39,7 +39,7 @@ class TravelPlansController < ApplicationController
   def update
     if @travel_plan.update_attributes(travel_plan_params)
       flash[:success] = "Travel plan updated!"
-      redirect_to :action => 'show', :user_id => current_user.id, :id => @travel_plan.id
+      redirect_to :action => 'show', :id => @travel_plan.id
     else
       team_array
       show_flash_error(@travel_plan)
@@ -50,7 +50,7 @@ class TravelPlansController < ApplicationController
   def destroy
     TravelPlan.find(params[:id]).destroy
     flash[:success] = "Travel plan destroyed!"
-    redirect_to :action => 'index', :user_id => current_user.id
+    redirect_to :action => 'index'
   end
 
   private

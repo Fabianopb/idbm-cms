@@ -1,6 +1,6 @@
-<% if (can? :new, TravelPlan) && !@user.account.nil? %>
+<% if (can? :new, TravelPlan) && !current_user.account.nil? %>
   <div class="top-buttons">
-    <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:action => 'new', :user_id => @user.id} %>
+    <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:action => 'new'} %>
   </div>
 <% end %>
 
