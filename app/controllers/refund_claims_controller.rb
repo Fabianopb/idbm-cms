@@ -1,7 +1,6 @@
 class RefundClaimsController < ApplicationController
   
   before_action :confirm_logged_in
-  before_action :find_user
   before_action :set_refund_claim, only: [:show, :edit, :update, :delete]
   
   load_and_authorize_resource
@@ -10,7 +9,7 @@ class RefundClaimsController < ApplicationController
     if current_user.admin?
       @refund_claims = RefundClaim.newest_first
     else
-      @refund_claims = @user.refund_claims.newest_first
+      @refund_claims = current_user.refund_claims.newest_first
       account_missing?
     end
   end
@@ -29,7 +28,7 @@ class RefundClaimsController < ApplicationController
     @refund_claim = RefundClaim.new(refund_claim_params)
     if @refund_claim.save
       flash[:success] = "Refund claim created!"
-      redirect_to :action => 'index', :user_id => @user.id
+      redirect_to :action => 'index'
     else
       show_flash_error(@refund_claim)
       render 'new'
@@ -39,7 +38,7 @@ class RefundClaimsController < ApplicationController
   def update
     if @refund_claim.update_attributes(refund_claim_params)
       flash[:success] = "Refund claim updated!"
-      redirect_to :action => 'show', :user_id => @user.id, :id => @refund_claim.id
+      redirect_to :action => 'show', :id => @refund_claim.id
     else
       show_flash_error(@refund_claim)
       render 'edit'
@@ -49,7 +48,7 @@ class RefundClaimsController < ApplicationController
   def destroy
     RefundClaim.find(params[:id]).destroy
     flash[:success] = "Refund claim destroyed!"
-    redirect_to :action => 'index', :user_id => @user.id
+    redirect_to :action => 'index'
   end
 
   private

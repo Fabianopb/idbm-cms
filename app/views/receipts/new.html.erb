@@ -1,10 +1,10 @@
 <div class="top-buttons">
-	<%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id} %>
+	<%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => 'refund_claims', :action => 'show', :id => @refund_claim.id} %>
 </div>
 
 <h3>New Receipt</h3>
 
-<%= form_for :receipt, :url => {:action => 'create', :user_id => @user.id, :refund_claim_id => @refund_claim.id} do |f| %>
+<%= form_for :receipt, :url => {:action => 'create', :refund_claim_id => @refund_claim.id} do |f| %>
 
     <%= render :partial => "form", :locals => {:f => f} %>
 

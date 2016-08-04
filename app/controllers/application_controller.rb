@@ -31,12 +31,6 @@ class ApplicationController < ActionController::Base
         redirect_to sign_in_path
       end
     end
-  
-    def find_user
-      if params[:user_id]
-        @user = User.find(params[:user_id])
-      end
-    end
     
     def find_refund_claim
       if params[:refund_claim_id]
@@ -45,7 +39,7 @@ class ApplicationController < ActionController::Base
     end
 
     def account_missing?
-      if @user.account.nil? && !@user.admin? && (can? :create, Account)
+      if current_user.account.nil? && !current_user.admin? && (can? :create, Account)
         flash.now[:warning] =  "Payment information missing!"
       end
     end

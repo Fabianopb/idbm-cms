@@ -1,7 +1,6 @@
 class KmAllowancesController < ApplicationController
   
   before_action :confirm_logged_in
-  before_action :find_user
   before_action :find_refund_claim
   before_action :set_km_allowance, only: [:edit, :update, :delete]
   
@@ -15,7 +14,7 @@ class KmAllowancesController < ApplicationController
     @km_allowance = KmAllowance.new(km_allowance_params)
     if @km_allowance.save
       flash[:success] = "km allowance created!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
     else
       show_flash_error(@km_allowance)
       render 'new'
@@ -25,7 +24,7 @@ class KmAllowancesController < ApplicationController
   def update
     if @km_allowance.update_attributes(km_allowance_params)
       flash[:success] = "km allowance updated!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
     else
       show_flash_error(@km_allowance)
       render 'edit'
@@ -35,7 +34,7 @@ class KmAllowancesController < ApplicationController
   def destroy
     KmAllowance.find(params[:id]).destroy
     flash[:success] = "km allowance destroyed!"
-    redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
+    redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
   end
   
   private

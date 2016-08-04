@@ -6,14 +6,14 @@ class AccountsController < ApplicationController
   load_and_authorize_resource
   
   def new
-    @account = Account.new({:user_id => @user.id})
+    @account = Account.new({:user_id => current_user.id})
   end
   
   def create
     @account = Account.new(account_params)
     if @account.save
       flash[:success] = "Payment information created!"
-      redirect_to :controller => 'users', :action => 'show', :id => @user.id
+      redirect_to :controller => 'users', :action => 'show', :id => current_user.id
     else
       show_flash_error(@account)
       render 'new'
@@ -31,7 +31,7 @@ class AccountsController < ApplicationController
       redirect_to :controller => 'users', :action => 'show', :id => @account.user_id
     else
       show_flash_error(@account)
-      @user = @account.user
+      current_user = @account.user
       render 'edit'
     end
   end

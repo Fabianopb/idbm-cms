@@ -1,6 +1,6 @@
-<% if (can? :new, RefundClaim) && !@user.account.nil? %>
+<% if (can? :new, RefundClaim) && !current_user.account.nil? %>
   <div class="top-buttons">
-    <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:action => 'new', :user_id => @user.id} %>
+    <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:action => 'new'} %>
   </div>
 <% end %>
 
@@ -22,12 +22,8 @@
         <p class="card-content"><strong>Own car trips: </strong><%= refund_claim.km_allowances.size %></p>
       </div>
       <div class="card-action">
-        <% if current_user.admin? %>
-          <%= (can? :read, refund_claim) ? (link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :user_id => refund_claim.user.id, :id => refund_claim.id}) : '<em>draft</em>'.html_safe %>
-        <% else %>
-          <%= (can? :read, refund_claim) ? (link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :user_id => @user.id, :id => refund_claim.id}) : '<em>draft</em>'.html_safe %>
-          <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :user_id => @user.id, :id => refund_claim.id} %>
-        <% end %>
+        <%= (can? :show, refund_claim) ? (link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => refund_claim.id}) : '<em>draft</em>'.html_safe %>
+        <%= (link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => refund_claim.id}) if (can? :delete, refund_claim) %>
       </div>
     </div>
   </div>

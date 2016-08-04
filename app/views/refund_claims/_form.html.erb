@@ -13,7 +13,14 @@
     <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
   </span>
 </div>
-<div class="clear-date-fields">X clear date fields</div>
+
+<% unless @refund_claim.daily_allowances.nil? %>
+  <span class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" title="You can't clear the dates if this claim has trip destinations">
+    <div class="clear-date-fields-disabled">X clear date fields</div>
+  </span>
+<% else %>
+  <div class="clear-date-fields">X clear date fields</div>
+<% end %>
 
 <br />
 <div class="form-group">
@@ -30,7 +37,7 @@
   </div>
 </div>
 
-<%= f.hidden_field :user_id, value: @user.id %>
+<%= f.hidden_field :user_id, value: current_user.id %>
 <% else %>
 
 <div class="row">

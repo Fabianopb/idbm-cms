@@ -360,6 +360,7 @@ footer {
 }
 
 .clear-date-fields {
+    display: inline-block;
     padding: 5px;
     font-weight: normal;
     font-size: 0.9em;
@@ -367,6 +368,17 @@ footer {
     text-decoration: underline;
     color: $light-blue-darken-3;
     cursor: pointer;
+}
+
+.clear-date-fields-disabled {
+    display: inline-block;
+    padding: 5px;
+    font-weight: normal;
+    font-size: 0.9em;
+    font-style: italic;
+    text-decoration: underline;
+    color: $grey-lighten-1;
+    cursor: not-allowed;
 }
 
 .trip-departure {

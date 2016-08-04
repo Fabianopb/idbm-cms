@@ -1,7 +1,6 @@
 class ReceiptsController < ApplicationController
   
   before_action :confirm_logged_in
-  before_action :find_user
   before_action :find_refund_claim
   before_action :set_receipt, only: [:edit, :update, :delete]
   
@@ -15,7 +14,7 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.new(receipt_params)
     if @receipt.save
       flash[:success] = "Receipt created!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
     else
       show_flash_error(@receipt)
       render 'new'
@@ -25,7 +24,7 @@ class ReceiptsController < ApplicationController
   def update
     if @receipt.update_attributes(receipt_params)
       flash[:success] = "Receipt updated!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
     else
       show_flash_error(@receipt)
       render 'edit'
@@ -35,7 +34,7 @@ class ReceiptsController < ApplicationController
   def destroy
     Receipt.find(params[:id]).destroy
     flash[:success] = "Receipt destroyed!"
-    redirect_to :controller => 'refund_claims', :action => 'show', :user_id => @user.id, :id => @refund_claim.id
+    redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
   end
   
   private
