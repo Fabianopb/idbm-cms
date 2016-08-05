@@ -1,5 +1,5 @@
 <div class="top-buttons">
-    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => 'users', :action => 'show', :id => @user.id} %>
+    <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), {:controller => 'users', :action => 'show', :id => current_user.id} %>
 </div>
 
 <h3>Edit billing info</h3>
