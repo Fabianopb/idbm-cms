@@ -1,0 +1,20 @@
+<div class="modal fade" id="deleteTravelPlan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for :travel_plan, :url => {:action => 'destroy', :id => travel_plan.id} do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Warning!</h4>
+        </div>
+        <div class="modal-body">        
+            <p class="reference-name">Delete travel plan created on <%= travel_plan.created_at %> with destination to <%= travel_plan.destination %>?</p>
+            This will permanently destroy this item!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <%= f.button "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete".html_safe, :class => 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -121,6 +121,17 @@ table {
 
 .panel-footer {
     background-color: transparent;
+    a {
+        color:$light-blue-darken-2;
+    }
+}
+
+.modal-title {
+    padding-bottom: 0;
+}
+
+.modal-footer {
+    text-align: center;
 }
 
 /*** HEADER, MAIN and FOOTER ***/

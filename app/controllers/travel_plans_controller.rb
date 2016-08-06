@@ -2,7 +2,7 @@ class TravelPlansController < ApplicationController
   
   before_action :confirm_logged_in
   # before_action :find_user
-  before_action :set_travel_plan, only: [:show, :edit, :update, :delete]
+  before_action :set_travel_plan, only: [:show, :edit, :update]
   
   load_and_authorize_resource
 
