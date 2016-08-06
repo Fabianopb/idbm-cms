@@ -17,7 +17,8 @@
     <% if can? :manage, Faq %>
       <div class="panel-footer">
         <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => faq.id} %>
-        <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => faq.id} %>
+        <a href="#" data-toggle="modal" data-target="#deleteFaq<%= faq.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+        <%= render :partial => "delete", :locals => {:faq => faq} %>
       </div>
     <% end %>
   </div>
