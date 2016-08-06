@@ -25,7 +25,10 @@
                 <td class="actions">
                     <%= link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => user.id} if (can? :show, user) %>
                     <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => user.id} if (can? :edit, user) %>
-                    <%= (link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => user.id}) if (can? :delete, user) %>
+                    <% if can? :delete, user %>
+                      <a href="#" data-toggle="modal" data-target="#deleteUser<%= user.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+                      <%= render :partial => "delete", :locals => {:user => user} %>
+                    <% end %>
                 </td>
               </tr>
             <% end %>
