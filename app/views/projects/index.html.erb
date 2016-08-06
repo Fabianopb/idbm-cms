@@ -33,7 +33,8 @@
                 <td><%= project.members %></td>
                 <td class="actions">
                     <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => project.id} %>
-                    <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'delete', :id => project.id} %>
+                    <a href="#" data-toggle="modal" data-target="#deleteProject<%= project.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+                    <%= render :partial => "delete", :locals => {:project => project} %>
                 </td>
               </tr>
             <% end %>
