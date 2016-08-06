@@ -1,0 +1,20 @@
+<div class="modal fade" id="deleteReceipt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for :receipt, :url => {:controller => 'receipts', :action => 'destroy', :id => receipt.id} do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Warning!</h4>
+        </div>
+        <div class="modal-body">        
+            <p class="reference-name">Delete receipt created on <%= receipt.created_at %> with description "<%= receipt.description %>" and value of <%= "#{receipt.value} #{receipt.currency}"%>?</p>
+            This will permanently destroy this item!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <%= f.button "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete".html_safe, :class => 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,7 @@ class KmAllowancesController < ApplicationController
     @km_allowance = KmAllowance.new(km_allowance_params)
     if @km_allowance.save
       flash[:success] = "km allowance created!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @km_allowance.refund_claim.id
     else
       show_flash_error(@km_allowance)
       render 'new'
@@ -24,7 +24,7 @@ class KmAllowancesController < ApplicationController
   def update
     if @km_allowance.update_attributes(km_allowance_params)
       flash[:success] = "km allowance updated!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @km_allowance.refund_claim.id
     else
       show_flash_error(@km_allowance)
       render 'edit'
@@ -34,7 +34,7 @@ class KmAllowancesController < ApplicationController
   def destroy
     KmAllowance.find(params[:id]).destroy
     flash[:success] = "km allowance destroyed!"
-    redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
+    redirect_to :controller => 'refund_claims', :action => 'show', :id => @km_allowance.refund_claim.id
   end
   
   private

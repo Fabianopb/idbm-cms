@@ -15,7 +15,7 @@ class DailyAllowancesController < ApplicationController
     @daily_allowance = DailyAllowance.new(daily_allowance_params)
     if @daily_allowance.save
       flash[:success] = "Trip destination created!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @daily_allowance.refund_claim.id
     else
       show_flash_error(@daily_allowance)
       render 'new'
@@ -25,7 +25,7 @@ class DailyAllowancesController < ApplicationController
   def update
     if @daily_allowance.update_attributes(daily_allowance_params)
       flash[:success] = "Trip destination updated!"
-      redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
+      redirect_to :controller => 'refund_claims', :action => 'show', :id => @daily_allowance.refund_claim.id
     else
       show_flash_error(@daily_allowance)
       render 'edit'
@@ -35,7 +35,7 @@ class DailyAllowancesController < ApplicationController
   def destroy
     DailyAllowance.find(params[:id]).destroy
     flash[:success] = "Trip destination destroyed!"
-    redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
+    redirect_to :controller => 'refund_claims', :action => 'show', :id => @daily_allowance.refund_claim.id
   end
   
   private

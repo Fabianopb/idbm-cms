@@ -43,8 +43,9 @@
             </div>
             <% unless current_user.admin? %>
                 <div class="card-action">
-                <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'receipts', :action => 'edit', :refund_claim_id => @refund_claim.id, :id => receipt.id} %>
-                <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'receipts', :action => 'delete', :refund_claim_id => @refund_claim.id, :id => receipt.id} %>
+                  <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'receipts', :action => 'edit', :refund_claim_id => @refund_claim.id, :id => receipt.id} %>
+                  <a href="#" data-toggle="modal" data-target="#deleteReceipt"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+                  <%= render :partial => "receipts/delete", :locals => {:receipt => receipt} %>
                 </div>
             <% end %>
         </div>
@@ -85,7 +86,8 @@
           
         <% unless current_user.admin? %>
           <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'edit', :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
-          <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'daily_allowances', :action => 'delete', :refund_claim_id => @refund_claim.id, :id => daily_allowance.id} %>
+          <a href="#" data-toggle="modal" data-target="#deleteDailyAllowance"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+          <%= render :partial => "daily_allowances/delete", :locals => {:daily_allowance => daily_allowance} %>
         <% end %>
 
         <span class="arrival-icon"></span> Arrival in <%= daily_allowance.destination %> on <%= daily_allowance.arrival %>
@@ -140,7 +142,8 @@
         <td class="km-actions">
           <% unless current_user.admin? %>
             <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'edit', :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
-            <%= link_to "<span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'delete', :refund_claim_id => @refund_claim.id, :id => km_allowance.id} %>
+            <a href="#" data-toggle="modal" data-target="#deleteKmAllowance"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+            <%= render :partial => "km_allowances/delete", :locals => {:km_allowance => km_allowance} %>
           <% end %>
         </td>
       </tr>
