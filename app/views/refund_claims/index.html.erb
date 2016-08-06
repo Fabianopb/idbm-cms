@@ -24,7 +24,7 @@
       <div class="card-action">
         <%= (link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => refund_claim.id}) if (can? :show, refund_claim) %>
         <% if can? :delete, refund_claim %>
-          <a href="#" data-toggle="modal" data-target="#deleteRefundClaim"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+          <a href="#" data-toggle="modal" data-target="#deleteRefundClaim<%= refund_claim.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
           <%= render :partial => "delete", :locals => {:refund_claim => refund_claim} %>
         <% end %>
       </div>

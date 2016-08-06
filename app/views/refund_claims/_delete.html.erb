@@ -1,4 +1,4 @@
-<div class="modal fade" id="deleteRefundClaim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="deleteRefundClaim<%= refund_claim.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <%= form_for :refund_claim, :url => {:action => 'destroy', :id => refund_claim.id} do |f| %>
