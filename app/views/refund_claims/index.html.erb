@@ -13,20 +13,16 @@
   <div class="col-md-4 col-sm-6">
     <div class="card">
       <div class="card-body">
+        <%= link_to "<div class='card-show'></div>".html_safe, {:action => 'show', :id => refund_claim.id} if (can? :show, refund_claim) %>
         <p class="card-title"><%= refund_claim.description %></p>
         <%= "<p class='card-content'><strong>Student: </strong>#{refund_claim.user.name}</p>".html_safe if current_user.admin? %>
         <p class="card-content"><strong>Created at: </strong><%= refund_claim.created_at %></p>
         <p class="card-content"><strong>Receipts: </strong><%= refund_claim.receipts.size %></p>
         <p class="card-content"><strong>Trips: </strong><%= refund_claim.daily_allowances.size %></p>
         <p class="card-content"><strong>Own car trips: </strong><%= refund_claim.km_allowances.size %></p>
-        <p class="card-content"><strong>Status: </strong><%= refund_claim.status %></p>
       </div>
       <div class="card-action">
-        <%= (link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => refund_claim.id}) if (can? :show, refund_claim) %>
-        <% if can? :delete, refund_claim %>
-          <a href="#" data-toggle="modal" data-target="#deleteRefundClaim<%= refund_claim.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
-          <%= render :partial => "delete", :locals => {:refund_claim => refund_claim} %>
-        <% end %>
+        <strong>Status: </strong><%= refund_claim.status %>
       </div>
     </div>
   </div>

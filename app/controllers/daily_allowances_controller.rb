@@ -2,6 +2,7 @@ class DailyAllowancesController < ApplicationController
   
   before_action :confirm_logged_in
   before_action :find_refund_claim
+  before_action :validate_refund_claim_status, only: [:new, :create]
   before_action :set_daily_allowance, only: [:edit, :update, :delete]
   before_action :authorize_new_daily_allowance, only: [:new, :create]
   

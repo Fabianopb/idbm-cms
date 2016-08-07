@@ -2,6 +2,7 @@ class KmAllowancesController < ApplicationController
   
   before_action :confirm_logged_in
   before_action :find_refund_claim
+  before_action :validate_refund_claim_status, only: [:new, :create]
   before_action :set_km_allowance, only: [:edit, :update, :delete]
   
   load_and_authorize_resource

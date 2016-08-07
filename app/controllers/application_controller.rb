@@ -38,6 +38,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def validate_refund_claim_status
+      if @refund_claim.status == 'sent for approval' || @refund_claim.status == 'approved'
+        flash[:warning] =  "You are not authorized to access this page."
+        redirect_to :controller => 'refund_claims', :action => 'index'
+      end
+    end
+
     def account_missing?
       if current_user.account.nil? && !current_user.admin? && (can? :create, Account)
         flash.now[:warning] =  "Payment information missing!"

@@ -1,0 +1,36 @@
+<div class="modal fade" id="changeStatus<%= default_statuses.index(new_status) %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for :refund_claim, :url => {:action => 'update', :id => refund_claim.id} do |f| %>
+        <%= f.hidden_field :status, value: new_status %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">
+            <% if new_status == default_statuses[1] %>
+              Send for approval
+            <% elsif new_status == default_statuses[2] %>
+              Require revision
+            <% elsif new_status == default_statuses[3] %>
+              Approve
+            <% end %>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <p class="reference-approve">
+            <% if new_status == default_statuses[1] %>
+              Do you want to send the refund claim created on <%= refund_claim.created_at %> with description "<%= refund_claim.description %>" for approval?
+            <% elsif new_status == default_statuses[2] %>
+              Do you want to require revision of the refund claim created on <%= refund_claim.created_at %> with description "<%= refund_claim.description %>"?
+            <% elsif new_status == default_statuses[3] %>
+              Do you want to approve the refund claim created on <%= refund_claim.created_at %> with description "<%= refund_claim.description %>"?
+            <% end %>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <%= f.button "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Confirm".html_safe, :class => 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

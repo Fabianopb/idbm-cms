@@ -18,7 +18,7 @@
     </span>
     <% if can? :delete, @travel_plan %>
         <span class="top-nav display-inline">
-            <button type='button' class='btn btn-danger' data-toggle="modal" data-target="#deleteTravelPlan<%= @travel_plan.id %>"><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete</button>
+            <button type='button' class='btn btn-danger' data-toggle="modal" data-target="#deleteTravelPlan"><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete</button>
             <%= render :partial => "delete", :locals => {:travel_plan => @travel_plan} %>
         </span>
     <% end %>
