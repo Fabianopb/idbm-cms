@@ -22,7 +22,7 @@
         <p class="card-content"><strong>Own car trips: </strong><%= refund_claim.km_allowances.size %></p>
       </div>
       <div class="card-action">
-        <strong>Status: </strong><%= refund_claim.status %>
+        <span class="<%= status_color(refund_claim.status) %>"></span><%= refund_claim.status.upcase %>
       </div>
     </div>
   </div>

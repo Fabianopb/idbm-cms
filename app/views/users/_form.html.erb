@@ -29,18 +29,12 @@
 <div class="form-group">
   <%= f.label :birth_date, :class => 'mandatory' %>
   <div class="form-inline">
-    <%= f.date_select :birth_date, {:start_year => 1960, :end_year => 2000, :order => [:day, :month, :year]}, :class => 'form-control' %>
+    <%= f.date_select :birth_date, {:start_year => 1960, :end_year => 2000, :order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control' %>
   </div>
 </div>
 
-<% if can? :create, User %>
-
-<div class="row">
-  <div class="col-md-12 form-group">
-    <%= f.label :role, :class => 'mandatory' %>
-    <div><%= f.radio_button(:role, "Admin") %> Admin</div>
-    <div><%= f.radio_button(:role, "Student") %> Student</div>
-  </div>
-</div>
-
+<% if current_user.admin? %>
+  <%= f.hidden_field :role, value: 'Student' %>
+<% elsif current_user.role = "sudo" %>
+  <%= f.hidden_field :role, value: 'Admin' %>
 <% end %>

@@ -18,7 +18,9 @@
         <p class="card-content"><strong>Departure: </strong><%= travel_plan.departure_date %></p>
         <p class="card-content"><strong>Return: </strong><%= travel_plan.return_date %></p>
         <p class="card-content"><strong>Travellers: </strong><%= travel_plan.travellers %></p>
-        <p class="card-content"><strong>Status: </strong><%= travel_plan.status %></p>
+      </div>
+      <div class="card-action">
+        <span class="<%= status_color(travel_plan.status) %>"></span><%= travel_plan.status.upcase %>
       </div>
     </div>
   </div>

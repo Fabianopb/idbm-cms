@@ -5,7 +5,9 @@
 //colors
 $white: #fff;
 $black: #000;
-$color-error: #c62828;
+$color-error: #f44336;
+$color-attention: #ffeb3b;
+$color-ok: #4caf50;
 
 $blue-grey-lighten-5: #eceff1;
 $blue-grey-lighten-4: #cfd8dc;
@@ -103,6 +105,31 @@ table {
 .mandatory::after {
     content: ' *';
     color: $color-error;
+}
+
+.current-status-base {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    margin-right: 6px;
+}
+
+.current-status-red {
+    @extend .current-status-base;
+    background-color: $color-error;
+}
+
+.current-status-yellow {
+    @extend .current-status-base;
+    background-color: $color-attention;
+}
+
+.current-status-green {
+    @extend .current-status-base;
+    background-color: $color-ok;
 }
 
 /*** handling forms with errors ***/

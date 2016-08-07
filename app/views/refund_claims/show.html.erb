@@ -3,7 +3,7 @@
 </div>
 
 <p><strong>Description: </strong><%= @refund_claim.description %></p>
-<p><strong>Status: </strong><%= @refund_claim.status %></p>
+<p><span class="<%= status_color(@refund_claim.status) %>"></span><%= @refund_claim.status.upcase %></p>
 
 <% if can? :send_for_approval, @refund_claim %>
     <span class="top-nav display-inline">

@@ -6,7 +6,7 @@
 
 <h3>Travel plan: <%= @travel_plan.destination %></h3>
 <p><strong>Created at: </strong><%= @travel_plan.created_at %></p>
-<p><strong>Status: </strong><%= @travel_plan.status %></p>
+<p><span class="<%= status_color(@travel_plan.status) %>"></span><%= @travel_plan.status.upcase %></p>
 
 <% if can? :send_for_approval, @travel_plan %>
     <span class="top-nav display-inline">
