@@ -63,6 +63,10 @@ table {
     margin-top: 10px;
 }
 
+.display-inline {
+    display: inline-block;
+}
+
 .top-nav::after {
     content:''; display: block; clear: both;
     margin-bottom: 20px;
@@ -83,7 +87,13 @@ table {
 .reference-name {
     font-style: bold;
     font-size: 1.3em;
-    color: red;
+    color: $color-error;
+}
+
+.reference-approve {
+    font-style: bold;
+    font-size: 1.2em;
+    color: green;
 }
 
 .tooltip-wrapper {
@@ -223,11 +233,21 @@ footer {
 
 /*** CARDS STYLES ***/
 .card {
+    position: relative;
     padding: 20px; margin: 20px 0;
     border-radius: 2px;
     background-color: $grey-lighten-5;
     
     @extend .shadow;
+
+    .card-show {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        border-style: solid;
+        border-width: 0 16px 16px 0;
+        border-color: transparent $light-blue-darken-2 transparent transparent;
+    }
     
     .card-title {
         font-size: 1.4em;

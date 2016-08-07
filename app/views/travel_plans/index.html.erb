@@ -13,19 +13,12 @@
   <div class="col-md-4 col-sm-6">
     <div class="card">
       <div class="card-body">
+        <%= link_to "<div class='card-show'></div>".html_safe, {:action => 'show', :id => travel_plan.id} if (can? :show, travel_plan) %>
         <p class="card-title"><%= travel_plan.destination %></p>
         <p class="card-content"><strong>Departure: </strong><%= travel_plan.departure_date %></p>
         <p class="card-content"><strong>Return: </strong><%= travel_plan.return_date %></p>
         <p class="card-content"><strong>Travellers: </strong><%= travel_plan.travellers %></p>
         <p class="card-content"><strong>Status: </strong><%= travel_plan.status %></p>
-      </div>
-      <div class="card-action">
-        <%= link_to "<span class='glyphicon glyphicon-eye-open standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'show', :id => travel_plan.id} if (can? :show, travel_plan) %>
-        <%= link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:action => 'edit', :id => travel_plan.id} if (can? :edit, travel_plan) %>
-        <% if can? :delete, travel_plan %>
-          <a href="#" data-toggle="modal" data-target="#deleteTravelPlan<%= travel_plan.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
-          <%= render :partial => "delete", :locals => {:travel_plan => travel_plan} %>
-        <% end %>
       </div>
     </div>
   </div>

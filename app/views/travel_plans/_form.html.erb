@@ -136,7 +136,7 @@
 <div class="row">
   <div class="col-sm-4 form-group">
     <%= f.label :status %>
-    <%= f.select :status, ['not submitted', 'requires revision', 'under analysis', 'approved'], {}, {:class => 'form-control'} %>
+    <%= f.select :status, default_statuses, {}, {:class => 'form-control'} %>
   </div>
 </div>
 

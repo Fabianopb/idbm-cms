@@ -32,7 +32,7 @@ class TravelPlan < ActiveRecord::Base
   def trip_dates
     errors.add(:departure_date, "can't be in the past") if departure_date < Date.today
     errors.add(:return_date, "can't be in the past") if return_date < Date.today
-    errors.add(:return_date, "can't be before departure date") if return_date <= departure_date
+    errors.add(:return_date, "can't be before departure date") if return_date < departure_date
   end
 
   def transport_types
