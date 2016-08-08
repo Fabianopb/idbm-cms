@@ -12,12 +12,14 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6 form-group">
-    <%= f.label :username, :class => 'mandatory' %>
-    <%= f.text_field :username, :class => 'form-control' %>
+<% if can? :edit, @user %>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <%= f.label :username, :class => 'mandatory' %>
+      <%= f.text_field :username, :class => 'form-control' %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="row">
   <div class="col-md-6 form-group">
@@ -26,12 +28,14 @@
   </div>
 </div>
 
-<div class="form-group">
-  <%= f.label :birth_date, :class => 'mandatory' %>
-  <div class="form-inline">
-    <%= f.date_select :birth_date, {:start_year => 1960, :end_year => 2000, :order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control' %>
+<% if can? :edit, @user %>
+  <div class="form-group">
+    <%= f.label :birth_date, :class => 'mandatory' %>
+    <div class="form-inline">
+      <%= f.date_select :birth_date, {:start_year => 1960, :end_year => 2000, :order => [:day, :month, :year], :include_blank => true, :default => nil}, :class => 'form-control' %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <% if current_user.admin? %>
   <%= f.hidden_field :role, value: 'Student' %>

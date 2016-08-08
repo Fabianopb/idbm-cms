@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4>Hello <%= @user.name %>,</h1>
+    <p>
+      Welcome to the IDBM Industry Project management system. You will use this system during your first year in IDBM to claim expenses and create travel plans related to your Industry Project.
+    </p>
+    <p>
+      Here is your <em>username</em> and <em>password</em>. For safety reasons, please <strong>change your password</strong> when you first log into the website.
+    </p>
+    <pre>
+      Username: <%= @user.username %><br>
+      Password: <%= @user.password %><br>
+    </pre>
+    <p>
+      To login to the website, just follow this link: <%= @url %>.
+    </p>
+    <p>
+      Don't hesitate to contact us in case you have any questions.
+    </p>
+    <p>
+      Best regards,<br>
+      <em><strong>IDBM</strong></em>
+    </p>
+  </body>
+</html>
