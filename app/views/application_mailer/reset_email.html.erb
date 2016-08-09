@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4>Hello <%= @user.name %>,</h1>
+    <p>
+      You have requested your password to be reset.
+    </p>
+    <p>
+      Here is your one-time link to reset your password: <%= edit_password_reset_url(@user.perishable_token) %>.
+    </p>
+    <p>
+      Write your password down and keep it in a safe place to avoid forgetting.
+    </p>
+    <p>
+      Don't hesitate to contact us in case you have any questions.
+    </p>
+    <p>
+      Best regards,<br>
+      <em><strong>IDBM</strong></em>
+    </p>
+  </body>
+</html>

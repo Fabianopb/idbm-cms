@@ -19,19 +19,20 @@ class User < ActiveRecord::Base
 
   validates :first_name,
             :last_name,
-            :e_mail,
+            :email,
             :role,
             presence: true
   
   validates :username, presence: true, uniqueness: true
 
-  validates :birth_date, presence: true, :on => :update
+  attr_accessor :validate_birth_date
+  validates :birth_date, presence: true, :if => :validate_birth_date
 
   attr_accessor :enable_strict_validation
   validate :presence_of_passwords, :if => :enable_strict_validation
 
   def set_username
-    self.username = "#{self.e_mail}"
+    self.username = "#{self.email}"
   end
 
   def set_password
@@ -64,6 +65,11 @@ class User < ActiveRecord::Base
 
   def project
     self.projects.pluck(:project_name).join
+  end
+
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    ApplicationMailer.reset_email(self).deliver_now
   end
   
 end

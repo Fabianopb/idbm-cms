@@ -57,6 +57,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.valid_password?(params[:current_password])
       @user.enable_strict_validation = true
+      @user.validate_birth_date = true
       if @user.update_attributes(user_params)
         flash[:success] = "Password updated!"
         redirect_to :action => 'show', :id => @user.id
@@ -85,9 +86,9 @@ class UsersController < ApplicationController
     
     def user_params
       if current_user.role == "Admin"
-        params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :password_confirmation, :birth_date, :role)
+        params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :birth_date, :role)
       else
-        params.require(:user).permit(:first_name, :last_name, :username, :e_mail, :password, :password_confirmation, :birth_date)
+        params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :birth_date)
       end
     end
     

@@ -1,0 +1,16 @@
+<div class="top-buttons">
+  <%= link_to raw("<button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> Back</button>"), root_url %>
+</div>
+
+<h3>Reset password</h3>
+
+<%= form_tag password_resets_path, method: :create do %>
+
+  <div class="form-group">
+    <%= label_tag :email, 'E-mail' %>
+    <%= email_field_tag :email, nil, class: 'form-control' %>
+  </div>
+
+  <%= submit_tag 'Send reset instructions', class: 'btn btn-primary' %>
+
+<% end %>
