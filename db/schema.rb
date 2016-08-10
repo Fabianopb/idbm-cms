@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160809181514) do
     t.string   "city"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.date     "birth_date"
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
@@ -166,12 +167,11 @@ ActiveRecord::Schema.define(version: 20160809181514) do
     t.string   "email"
     t.string   "crypted_password"
     t.string   "role"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.date     "birth_date",        default: '1900-01-01'
-    t.integer  "login_count",       default: 0,            null: false
+    t.integer  "login_count",       default: 0, null: false
     t.string   "perishable_token"
   end
 

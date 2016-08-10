@@ -3,6 +3,7 @@ class AddAuthColumnsToUsers < ActiveRecord::Migration
   	add_column :users, :login_count, :integer, :null => false, :default => 0
   	add_column :users, :perishable_token, :string
   	rename_column :users, :e_mail, :email
-  	change_column :users, :birth_date, :date, :default => '1900-01-01'
+  	remove_column :users, :birth_date, :date
+  	add_column :accounts, :birth_date, :date, :default => nil
   end
 end

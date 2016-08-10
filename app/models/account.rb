@@ -7,6 +7,7 @@ class Account < ActiveRecord::Base
   validates :social_security,	presence: true, format: SSN_REGEX
 
 	validates	:phone_number,
+						:birth_date,
 						:iban,
 						:swift,
 						:address,
