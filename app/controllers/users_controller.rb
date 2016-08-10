@@ -57,7 +57,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.valid_password?(params[:current_password])
       @user.enable_strict_validation = true
-      @user.validate_birth_date = true
       if @user.update_attributes(user_params)
         flash[:success] = "Password updated!"
         redirect_to :action => 'show', :id => @user.id

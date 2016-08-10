@@ -13,20 +13,17 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :projects
 
-
   before_validation :set_username, on: :create
   before_validation :set_password, on: :create
 
   validates :first_name,
             :last_name,
-            :email,
+            :birth_date,
             :role,
             presence: true
   
+  validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
-
-  attr_accessor :validate_birth_date
-  validates :birth_date, presence: true, :if => :validate_birth_date
 
   attr_accessor :enable_strict_validation
   validate :presence_of_passwords, :if => :enable_strict_validation
