@@ -77,8 +77,9 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
+    TravelPlan.all.each { |plan| plan.destroy if plan.user_ids == [] }
     flash[:success] = "User destroyed!"
-    redirect_to :action => 'index' #, notice: 'User was successfully destroyed.'
+    redirect_to :action => 'index'
   end
 
   private

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_one :account
   
   has_and_belongs_to_many :travel_plans
-  has_many :refund_claims
+  has_many :refund_claims, :dependent => :destroy
   
   has_many :receipts
   has_many :daily_allowances
@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :comments
 
   has_and_belongs_to_many :projects
+
+  USERNAME_REGEX = /[a-zA-Z0-9_\.@]/
 
   before_validation :set_username, on: :create
   before_validation :set_password, on: :create
@@ -22,7 +24,7 @@ class User < ActiveRecord::Base
             presence: true
   
   validates :email, presence: true, uniqueness: true
-  validates :username, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true, :format => USERNAME_REGEX
 
   attr_accessor :enable_strict_validation
   validate :presence_of_passwords, :if => :enable_strict_validation
