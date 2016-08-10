@@ -1,6 +1,6 @@
 <% flash.each do |key, value| %>
 
-	<div class="alert alert-<%= key %>" role="alert">
+	<div class="alert alert-<%= key %> position-relative" role="alert">
 
 		<% icon = key == "success" ? "ok" : "exclamation-sign" %>
 
@@ -14,7 +14,7 @@
 	    
 	    <!-- Button for user to create payment information -->
 	    <% if value == "Payment information missing!" %>
-	    	<%= link_to raw("<button type='button' class='btn btn-warning'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Create now!</button>"), :controller => 'accounts', :action => 'new', :user_id => @user.id %>
+	    	<%= link_to raw("<button type='button' class='btn btn-warning add-account'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Add now!</button>"), :controller => 'accounts', :action => 'new', :user_id => current_user.id %>
 	    <% end %>
 
 	</div>

@@ -65,6 +65,10 @@ table {
     margin-top: 10px;
 }
 
+.position-relative {
+    position: relative;
+}
+
 .display-inline {
     display: inline-block;
 }
@@ -387,6 +391,13 @@ footer {
 
 .user-index .actions {
     a { color:$light-blue-darken-2; }
+}
+
+.add-account {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /*** REFUND CLAIMS ***/
