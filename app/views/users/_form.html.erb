@@ -28,8 +28,12 @@
   </div>
 </div>
 
-<% if current_user.admin? %>
-  <%= f.hidden_field :role, value: 'Student' %>
-<% elsif current_user.role = "sudo" %>
-  <%= f.hidden_field :role, value: 'Admin' %>
+<% if current_user.SUDO? %>
+  <div class="row">
+    <div class="col-sm-6 form-group boxes">
+      <%= f.label :role %>
+      <div class="boxes"><%= f.radio_button(:role, 'Student') %> Student</div>
+      <div class="boxes"><%= f.radio_button(:role, 'Admin') %> Admin</div>
+    </div>
+  </div>
 <% end %>

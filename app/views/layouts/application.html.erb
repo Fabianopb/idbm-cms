@@ -26,18 +26,23 @@
       <td class="navigation">
         <% if current_user %>
           <ul>
-      
+            
             <li><%= link_to "<span class='glyphicon glyphicon-home' aria-hidden='true'></span>".html_safe, {:controller => 'main'} %></li>
             
-            <li><%= link_to "<span class='glyphicon glyphicon-plane' aria-hidden='true'></span>".html_safe, {:controller => "travel_plans"} %></li>
-            
-            <li><%= link_to "<span class='glyphicon glyphicon-euro' aria-hidden='true'></span>".html_safe, {:controller => "refund_claims"} %></li>
-            
+            <% if can? :index, TravelPlan %>
+              <li><%= link_to "<span class='glyphicon glyphicon-plane' aria-hidden='true'></span>".html_safe, {:controller => "travel_plans"} %></li>
+            <% end %>
+
+            <% if can? :index, RefundClaim %>
+              <li><%= link_to "<span class='glyphicon glyphicon-euro' aria-hidden='true'></span>".html_safe, {:controller => "refund_claims"} %></li>
+            <% end %>
+
             <li><%= link_to "<span class='glyphicon glyphicon-user' aria-hidden='true'></span>".html_safe, {:controller => "users", :action => "show", :id => current_user.id} %></li>
             
-            <li><%= link_to "<span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span>".html_safe, {:controller => "faqs"} %></li>
-            
-            <!-- menu items for the Admin -->
+            <% if can? :index, Faq %>
+              <li><%= link_to "<span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span>".html_safe, {:controller => "faqs"} %></li>
+            <% end %>
+
             <% if can? :index, User %>
               <li><%= link_to "<span class='glyphicon glyphicon-education' aria-hidden='true'></span>".html_safe, {:controller => "users"} %></li>
             <% end %>

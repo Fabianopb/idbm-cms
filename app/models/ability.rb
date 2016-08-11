@@ -4,8 +4,15 @@ class Ability
   def initialize(user)
   
     user ||= User.new
+
+    if user.role == "SUDO"
+
+      can :manage, User
+      cannot [:delete, :detroy], User, :id => user.id
+      cannot [:edit, :update, :change_pass, :update_pass], [User] { |u| u.id != user.id }
+      can :show, Account
     
-    if user.role == "Admin"
+    elsif user.role == "Admin"
       
       can :show, Account
       
@@ -19,7 +26,7 @@ class Ability
       
       can [:manage], [Faq, Project]
     
-    else
+    elsif user.role == "Student"
       
       can [:show, :edit, :update, :change_pass, :update_pass], User, :id => user.id
 

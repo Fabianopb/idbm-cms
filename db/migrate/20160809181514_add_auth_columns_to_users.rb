@@ -5,5 +5,6 @@ class AddAuthColumnsToUsers < ActiveRecord::Migration
   	rename_column :users, :e_mail, :email
   	remove_column :users, :birth_date, :date
   	add_column :accounts, :birth_date, :date
+  	change_column :users, :role, :string, :default => 'Student'
   end
 end

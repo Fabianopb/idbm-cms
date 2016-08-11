@@ -166,12 +166,12 @@ ActiveRecord::Schema.define(version: 20160809181514) do
     t.string   "username"
     t.string   "email"
     t.string   "crypted_password"
-    t.string   "role"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "role",              default: "Student"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.integer  "login_count",       default: 0, null: false
+    t.integer  "login_count",       default: 0,         null: false
     t.string   "perishable_token"
   end
 

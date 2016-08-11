@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def index
     # @users = User.all_except(current_user).sorted
-    @users = User.sorted
+    @users = User.all_except('SUDO').sorted
   end
 
   def show
@@ -85,11 +85,7 @@ class UsersController < ApplicationController
   private
     
     def user_params
-      if current_user.role != "Student"
-        params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :role)
-      else
-        params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
-      end
+      params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
     end
     
 end

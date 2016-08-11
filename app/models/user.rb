@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   
 
   scope :sorted, -> { order("users.role ASC", "users.first_name ASC") }
-  scope :all_except, ->(user) { where(["id != ?", user.id]) }
+  scope :all_except, ->(role) { where(["role != ?", role]) }
   
 
   def name
@@ -58,7 +58,15 @@ class User < ActiveRecord::Base
   end
   
   def admin?
-    self.role == "Admin" ? true : false
+    self.role == "Admin"
+  end
+
+  def student?
+    self.role == "Student"
+  end
+
+  def SUDO?
+    self.role == "SUDO"
   end
 
   def project
