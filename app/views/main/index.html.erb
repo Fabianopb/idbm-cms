@@ -1,4 +1,4 @@
-<% if current_user.account.nil? && !current_user.admin? %>
+<% if current_user.account.nil? && current_user.student? %>
     <p>First things to do:</p>
     <ul>
         <li><%= link_to "Review your personal information", {:controller => 'users', :action => 'edit', :id => current_user.id} %></li>
