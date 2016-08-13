@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20160813133633) do
     t.datetime "departure"
     t.datetime "return_date"
     t.decimal  "refundable",  default: 0.0
+    t.boolean  "posting",     default: false
   end
 
   add_index "refund_claims", ["user_id"], name: "index_refund_claims_on_user_id", using: :btree

@@ -37,6 +37,16 @@
   </div>
 </div>
 
+<% if !current_user.project.nil? %>
+  <div class="form-group confirm-buttons">
+    <%= f.label :posting, "Industry Project expense?" %>
+    <div class="form-inline">
+      <%= f.check_box :posting %>
+      Mark this field if this refund claim is for your Industry Project
+    </div>
+  </div>
+<% end %>
+
 <%= f.hidden_field :user_id, value: current_user.id %>
 <% else %>
 
