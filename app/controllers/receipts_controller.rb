@@ -47,5 +47,9 @@ class ReceiptsController < ApplicationController
     def receipt_params
       params.require(:receipt).permit(:refund_claim_id, :expense_date, :description, :value, :currency, :user_id)
     end
+
+    def set_page_title
+      @page_title = "Receipts"
+    end
   
 end

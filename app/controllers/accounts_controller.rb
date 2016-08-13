@@ -40,5 +40,9 @@ class AccountsController < ApplicationController
   def account_params
     params.require(:account).permit(:user_id, :birth_date, :social_security, :phone_number, :iban, :swift, :address, :postal_code, :city, :project)
   end
+
+  def set_page_title
+    @page_title = "Billing info"
+  end
   
 end

@@ -10,4 +10,11 @@ class CommentsController < ApplicationController
 
   def delete
   end
+
+  private
+
+  def set_page_title
+    @page_title = "Comments"
+  end
+
 end

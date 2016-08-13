@@ -35,5 +35,9 @@ class PasswordResetsController < ApplicationController
     def password_reset_params
       params.require(:user).permit(:password, :password_confirmation)
     end
+
+    def set_page_title
+      @page_title = "Reset password"
+    end
     
 end

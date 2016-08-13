@@ -47,5 +47,9 @@ class KmAllowancesController < ApplicationController
     def km_allowance_params
       params.require(:km_allowance).permit(:refund_claim_id, :date, :route, :kms, :description, :user_id)
     end
+
+    def set_page_title
+      @page_title = "km allowance"
+    end
   
 end

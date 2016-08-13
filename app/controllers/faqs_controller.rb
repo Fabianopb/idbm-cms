@@ -56,5 +56,9 @@ class FaqsController < ApplicationController
     def faq_params
       params.require(:faq).permit(:question, :answer, :position)
     end
+
+    def set_page_title
+      @page_title = "FAQ"
+    end
     
 end

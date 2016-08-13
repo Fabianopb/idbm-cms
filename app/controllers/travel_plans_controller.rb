@@ -72,4 +72,8 @@ class TravelPlansController < ApplicationController
         end
       end
     end
+
+    def set_page_title
+      @page_title = "Travel plans"
+    end
 end

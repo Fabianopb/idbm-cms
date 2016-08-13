@@ -55,5 +55,9 @@ class DailyAllowancesController < ApplicationController
         redirect_to :controller => 'refund_claims', :action => 'show', :id => @refund_claim.id
       end
     end
+
+    def set_page_title
+      @page_title = "Trip info"
+    end
   
 end

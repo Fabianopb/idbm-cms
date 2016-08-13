@@ -25,4 +25,9 @@ class UserSessionsController < ApplicationController
   def user_session_params
     params.require(:user_session).permit(:username, :password, :remember_me)
   end
+
+  def set_page_title
+    @page_title = "Session"
+  end
+
 end

@@ -71,4 +71,8 @@ class ProjectsController < ApplicationController
 			end
 		end
 
+		def set_page_title
+	    @page_title = "Projects"
+	  end
+
 end

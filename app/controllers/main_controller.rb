@@ -6,5 +6,11 @@ class MainController < ApplicationController
   def index
     
   end
+
+  private
+
+  def set_page_title
+    @page_title = "Home"
+  end
   
 end

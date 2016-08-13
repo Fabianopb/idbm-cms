@@ -59,4 +59,8 @@ class RefundClaimsController < ApplicationController
     def refund_claim_params
       params.require(:refund_claim).permit(:user_id, :description, :status, :departure, :return_date)
     end
+
+    def set_page_title
+      @page_title = "Refund claims"
+    end
 end
