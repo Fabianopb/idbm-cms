@@ -34,7 +34,7 @@ $light-blue-darken-4: #01579b;
 
 //classes to extend
 .shadow {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, .2);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .3);
 }
 
 /*** BASIC STYLES ***/
@@ -206,8 +206,8 @@ header {
 
 
 .main-area {
-    
-    height: 500px;
+    // 100% of portview height minus header and footer
+    min-height: calc(100vh - 60px - 30px);
     width: 100%;
     border-collapse: collapse;
     margin: 0; padding: 0;
@@ -247,8 +247,19 @@ header {
 }
 
 footer {
-    padding: 20px;
-    background-color: $blue-grey;
+    position: relative;
+    height: 30px;
+    color: $white;
+    background-color: $grey-darken-3;
+    // text-align: right;
+    font-size: 0.8em;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .3) inset;
+
+    span {
+        position: relative;
+        top: 35%;
+        margin-left: 10px;
+    }
 }
 
 /*** FORM STYLES ***/
