@@ -8,7 +8,7 @@ class RefundClaim < ActiveRecord::Base
   
   scope :newest_first, lambda { order("refund_claims.created_at DESC") }
 
-  validates :description, presence: true
+  validates :description, :refundable, :status, presence: true
   validate :trip_dates
 
   def trip_dates
@@ -22,5 +22,9 @@ class RefundClaim < ActiveRecord::Base
 	  errors.add(:departure, "can't be blank if you have a return date") if departure.nil? && !return_date.nil?
 	  errors.add(:return_date, "can't be blank if you have a departure date") if return_date.nil? && !departure.nil?
 	end
+
+  def approved?
+    self.status == "approved"
+  end
 
 end

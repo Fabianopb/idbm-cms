@@ -10,21 +10,23 @@
 
 <div class="row">
   <% @refund_claims.each do |refund_claim| %>
-  <div class="col-md-4 col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <%= link_to "<div class='card-show'></div>".html_safe, {:action => 'show', :id => refund_claim.id} if (can? :show, refund_claim) %>
-        <p class="card-title"><%= refund_claim.description %></p>
-        <%= "<p class='card-content'><strong>Student: </strong>#{refund_claim.user.name}</p>".html_safe if current_user.admin? %>
-        <p class="card-content"><strong>Created on: </strong><%= datetime_format(refund_claim.created_at) %></p>
-        <p class="card-content"><strong>Receipts: </strong><%= refund_claim.receipts.size %></p>
-        <p class="card-content"><strong>Trips: </strong><%= refund_claim.daily_allowances.size %></p>
-        <p class="card-content"><strong>Own car trips: </strong><%= refund_claim.km_allowances.size %></p>
-      </div>
-      <div class="card-action">
-        <span class="<%= status_color(refund_claim.status) %>"></span><%= refund_claim.status.upcase %>
+    <div class="col-md-4 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <%= link_to "<div class='card-show'></div>".html_safe, {:action => 'show', :id => refund_claim.id} if (can? :show, refund_claim) %>
+          <p class="card-title"><%= refund_claim.description %></p>
+          <%= "<p class='card-content'><strong>Student: </strong>#{refund_claim.user.name}</p>".html_safe if current_user.admin? %>
+          <p class="card-content"><strong>Created on: </strong><%= datetime_format(refund_claim.created_at) %></p>
+          <p class="card-content"><strong>Receipts: </strong><%= refund_claim.receipts.size %></p>
+          <p class="card-content"><strong>Trips: </strong><%= refund_claim.daily_allowances.size %></p>
+          <p class="card-content"><strong>Own car trips: </strong><%= refund_claim.km_allowances.size %></p>
+        </div>
+        <div class="card-action">
+          <span class="<%= status_color(refund_claim.status) %>"></span>
+          <%= refund_claim.status.upcase %>
+          <%= "| #{monetary(refund_claim.refundable)} EUR" if refund_claim.refundable > 0 && refund_claim.approved? %>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
 </div>

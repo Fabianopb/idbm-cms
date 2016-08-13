@@ -23,6 +23,17 @@
               Do you want to require revision of the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>"?
             <% elsif new_status == default_statuses[3] %>
               Do you want to approve the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>"?
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 form-group">
+                  <%= f.label :refundable, "Total approved for refund",:class => 'mandatory' %>
+                  <div class="input-group">
+                    <div class="input-group-addon">€</div>
+                    <%= f.number_field :refundable, {:class => 'form-control', :step => 0.01, :min => 0} %>
+                  </div>
+                </div>
+                <div class="col-sm-3"></div>
+              </div>
             <% end %>
           </p>
         </div>
