@@ -7,7 +7,7 @@
           <h4 class="modal-title" id="myModalLabel">Warning!</h4>
         </div>
         <div class="modal-body">        
-            <p class="reference-name">Delete km allowance of <%= km_allowance.kms %> kms and route "<%= km_allowance.route %>"?</p>
+            <p class="reference-name">Delete km allowance of <%= distance(km_allowance.kms) %> and route "<%= km_allowance.route %>"?</p>
             This will permanently destroy this item!
         </div>
         <div class="modal-footer">

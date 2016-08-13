@@ -19,7 +19,7 @@
   </div>
   <div class="col-sm-2 form-group">
     <%= f.label :currency, :class => 'mandatory' %>
-    <%= f.select :currency, ['BRL','EUR','USD'], {}, {:class => 'form-control'} %>
+    <%= f.select :currency, currencies_list, {}, {:class => 'form-control'} %>
   </div>
 </div>
 

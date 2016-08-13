@@ -5,7 +5,7 @@
 </div>
 
 <h3>Travel plan: <%= @travel_plan.destination %></h3>
-<p><strong>Created at: </strong><%= @travel_plan.created_at %></p>
+<p><strong>Created on: </strong><%= datetime_format(@travel_plan.created_at) %></p>
 <p><span class="<%= status_color(@travel_plan.status) %>"></span><%= @travel_plan.status.upcase %></p>
 
 <% if can? :send_for_approval, @travel_plan %>
@@ -51,7 +51,7 @@
         </td>
         <td>
             <p class="travelplan-field-name">Date of birth</p>
-            <p><%= user.account.birth_date %></p>
+            <p><%= simpledate_format(user.account.birth_date) %></p>
         </td>
     </tr>
     
@@ -75,7 +75,7 @@
     <tr>
         <td colspan="3">
             <p class="travelplan-field-name">Destination, time of departure and arrival</p>
-            <p><%= "#{@travel_plan.destination}, departure on #{@travel_plan.departure_date}, return on #{@travel_plan.return_date}" %></p>
+            <p><%= "#{@travel_plan.destination}, departure on #{date_format(@travel_plan.departure_date)}, return on #{date_format(@travel_plan.return_date)}" %></p>
         </td>
     </tr>
     
@@ -121,7 +121,7 @@
         </td>
         <td class="td-costs">
             <p class="travelplan-field-name">EUR</p>
-            <p><%= @travel_plan.tickets_cost %></p>
+            <p><%= monetary(@travel_plan.tickets_cost) %></p>
         </td>
         
     </tr>
@@ -129,11 +129,11 @@
     <tr>
         <td colspan="3">
             <p class="travelplan-field-name">Daily allowance</p>
-            <p><%= "#{@travel_plan.paid_days} days, #{@travel_plan.daily_allowance} EUR per day." %></p>
+            <p><%= "#{@travel_plan.paid_days} days, #{monetary(@travel_plan.daily_allowance)} EUR per day." %></p>
         </td>
         <td class="td-costs">
             <p class="travelplan-field-name">EUR</p>
-            <p><%= @travel_plan.total_allowance %></p>
+            <p><%= monetary(@travel_plan.total_allowance) %></p>
         </td>
     </tr>
     
@@ -146,7 +146,7 @@
         <td><p>to be paid by Aalto University</p></td>
         <td rowspan="2" class="td-costs">
             <p class="travelplan-field-name">EUR</p>
-            <p><%= @travel_plan.accommodation_costs %></p>
+            <p><%= monetary(@travel_plan.accommodation_costs) %></p>
         </td>
     </tr>
     <tr>
@@ -163,7 +163,7 @@
         <td><p>to be paid by Aalto University</p></td>
         <td rowspan="2" class="td-costs">
             <p class="travelplan-field-name">EUR</p>
-            <p><%= @travel_plan.events_costs %></p>
+            <p><%= monetary(@travel_plan.events_costs) %></p>
         </td>
     </tr>
     <tr>
@@ -178,7 +178,7 @@
         </td>
         <td class="td-costs">
             <p class="travelplan-field-name">EUR</p>
-            <p><%= @travel_plan.other_costs %></p>
+            <p><%= monetary(@travel_plan.other_costs) %></p>
         </td>
     </tr>
     
@@ -189,7 +189,7 @@
         </td>
         <td class="td-costs">
             <p class="travelplan-field-name">EUR</p>
-            <p><%= @travel_plan.total_costs %></p>
+            <p><%= monetary(@travel_plan.total_costs) %></p>
         </td>
     </tr>
     

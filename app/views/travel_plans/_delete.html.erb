@@ -7,7 +7,7 @@
           <h4 class="modal-title" id="myModalLabel">Warning!</h4>
         </div>
         <div class="modal-body">        
-            <p class="reference-name">Delete travel plan created on <%= travel_plan.created_at %> with destination to <%= travel_plan.destination %>?</p>
+            <p class="reference-name">Delete travel plan created on <%= datetime_format(travel_plan.created_at) %> with destination to <%= travel_plan.destination %>?</p>
             This will permanently destroy this item!
         </div>
         <div class="modal-footer">

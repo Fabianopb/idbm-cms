@@ -44,7 +44,7 @@
             <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
       </span>
     </div>
-    <% if can? :edit, @refund_claim && !current_user.admin? %>
+    <% if (can? :edit, @refund_claim) && current_user.student? %>
         <div class="float-right">
             <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'receipts', :action => 'new', :refund_claim_id => @refund_claim.id} %>
         </div>
@@ -59,8 +59,8 @@
     <div class="col-md-4 col-sm-6">
         <div class="card">
             <div class="card-body">
-                <p class="card-title"><%= receipt.expense_date %></p>
-                <p class="card-content"><strong>Value: </strong><%= "#{receipt.value} #{receipt.currency}" %></p>
+                <p class="card-title"><%= date_format(receipt.expense_date) %></p>
+                <p class="card-content"><strong>Value: </strong><%= full_value(receipt.value, receipt.currency) %></p>
                 <p class="card-content"><strong>Description: </strong><%= receipt.description %></p>
             </div>
               <div class="card-action">
@@ -85,7 +85,7 @@
               <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
         </span>
       </div>
-      <% if can? :edit, @refund_claim && !current_user.admin? %>
+      <% if (can? :edit, @refund_claim) && current_user.student? %>
           <div class="float-right">
               <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'daily_allowances', :action => 'new', :refund_claim_id => @refund_claim.id} %>
           </div>
@@ -97,7 +97,7 @@
 
   <% unless @refund_claim.departure.nil? %>
     <div class="trip-departure">
-      <span class="glyphicon glyphicon-export" aria-hidden="true"></span> Departure from Finland on <%= @refund_claim.departure %>
+      <span class="glyphicon glyphicon-export" aria-hidden="true"></span> Departure from Finland on <%= datetime_format(@refund_claim.departure) %>
     </div>
   <% end %>
 
@@ -110,14 +110,14 @@
             <a href="#" data-toggle="modal" data-target="#deleteDailyAllowance<%= daily_allowance.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
             <%= render :partial => "daily_allowances/delete", :locals => {:daily_allowance => daily_allowance} %>
           <% end %>
-        <span class="arrival-icon"></span> Arrival in <%= daily_allowance.destination %> on <%= daily_allowance.arrival %>
+        <span class="arrival-icon"></span> Arrival in <%= daily_allowance.destination %> on <%= datetime_format(daily_allowance.arrival) %>
       </div>
     <% end %>
 
   <% end %>
   <% unless @refund_claim.departure.nil? %>
     <div class="trip-return">
-      <span class="glyphicon glyphicon-import" aria-hidden="true"></span> Return to Finland on <%= @refund_claim.return_date %>
+      <span class="glyphicon glyphicon-import" aria-hidden="true"></span> Return to Finland on <%= datetime_format(@refund_claim.return_date) %>
     </div>
   <% end %>
 
@@ -134,7 +134,7 @@
       <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
     </span>
   </div>
-  <% if can? :edit, @refund_claim && !current_user.admin? %>
+  <% if (can? :edit, @refund_claim) && current_user.student? %>
     <div class="float-right">
       <%= link_to raw("<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> New</button>"), {:controller => 'km_allowances', :action => 'new', :refund_claim_id => @refund_claim.id} %>
     </div>
@@ -150,17 +150,17 @@
       <th>Date</th>
       <th>Route</th>
       <th>Description</th>
-      <th>km</th>
+      <th>Dist</th>
       <% if (can? :edit, KmAllowance) || (can? :delete, KmAllowance) %>
         <th>Actions</th>
       <% end %>
     </tr>
     <% @km_allowances.each do |km_allowance| %>
       <tr>
-        <td><%= km_allowance.date %></td>
+        <td><%= date_format(km_allowance.date) %></td>
         <td><%= km_allowance.route %></td>
         <td><%= km_allowance.description %></td>
-        <td><%= km_allowance.kms %></td>
+        <td><%= distance(km_allowance.kms) %></td>
         <% if (can? :edit, km_allowance) || (can? :delete, km_allowance) %>
           <td class="km-actions">
               <%= (link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'km_allowances', :action => 'edit', :refund_claim_id => @refund_claim.id, :id => km_allowance.id}) if can? :edit, km_allowance %>

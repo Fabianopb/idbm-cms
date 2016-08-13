@@ -18,11 +18,11 @@
         <div class="modal-body">
           <p class="reference-approve">
             <% if new_status == default_statuses[1] %>
-              Do you want to send the travel plan created on <%= travel_plan.created_at %> with destination to <%= travel_plan.destination %> for approval?
+              Do you want to send the travel plan created on <%= datetime_format(travel_plan.created_at) %> with destination to <%= travel_plan.destination %> for approval?
             <% elsif new_status == default_statuses[2] %>
-              Do you want to require revision of the travel plan created on <%= travel_plan.created_at %> with destination to <%= travel_plan.destination %>?
+              Do you want to require revision of the travel plan created on <%= datetime_format(travel_plan.created_at) %> with destination to <%= travel_plan.destination %>?
             <% elsif new_status == default_statuses[3] %>
-              Do you want to approve the travel plan created on <%= travel_plan.created_at %> with destination to <%= travel_plan.destination %>?
+              Do you want to approve the travel plan created on <%= datetime_format(travel_plan.created_at) %> with destination to <%= travel_plan.destination %>?
             <% end %>
           </p>
         </div>

@@ -9,6 +9,6 @@ class Receipt < ActiveRecord::Base
   					:description,
   					:value,
   					:currency,
-  					presence: true 			
+  					presence: true
 
 end

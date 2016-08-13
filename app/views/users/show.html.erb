@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <th class="th-userinfo">Date of birth</th>
-                <td class="td-userinfo"><%= @account.birth_date %></td>
+                <td class="td-userinfo"><%= simpledate_format(@account.birth_date) %></td>
             </tr>
             <tr>
                 <th class="th-userinfo">Phone number</th>

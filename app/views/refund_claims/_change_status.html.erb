@@ -18,11 +18,11 @@
         <div class="modal-body">
           <p class="reference-approve">
             <% if new_status == default_statuses[1] %>
-              Do you want to send the refund claim created on <%= refund_claim.created_at %> with description "<%= refund_claim.description %>" for approval?
+              Do you want to send the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>" for approval?
             <% elsif new_status == default_statuses[2] %>
-              Do you want to require revision of the refund claim created on <%= refund_claim.created_at %> with description "<%= refund_claim.description %>"?
+              Do you want to require revision of the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>"?
             <% elsif new_status == default_statuses[3] %>
-              Do you want to approve the refund claim created on <%= refund_claim.created_at %> with description "<%= refund_claim.description %>"?
+              Do you want to approve the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>"?
             <% end %>
           </p>
         </div>

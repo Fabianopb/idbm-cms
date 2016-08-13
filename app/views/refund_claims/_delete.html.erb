@@ -7,7 +7,7 @@
           <h4 class="modal-title" id="myModalLabel">Warning!</h4>
         </div>
         <div class="modal-body">        
-            <p class="reference-name">Delete refund claim created on <%= refund_claim.created_at %> with description "<%= refund_claim.description %>"?</p>
+            <p class="reference-name">Delete refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>"?</p>
             This will permanently destroy this item!
         </div>
         <div class="modal-footer">
