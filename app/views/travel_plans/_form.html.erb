@@ -121,15 +121,27 @@
   </div>
 </div>
 
-<div class="form-group">
-  <%= f.label "Team members travelling", :class => 'mandatory' %><%= "  <span class='tooltip-wrapper' data-toggle='tooltip' data-placement='right' title='A disabled checkbox means that the user payment information is missing'><span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span></span>".html_safe unless @disabled.empty? %>
-  <%= f.collection_check_boxes :user_ids, @team, :id, :first_name, {disabled: @disabled} do |box| %>
-    <div class="boxes">
-      <%= box.check_box %>
-      <span <%= "class=disabled-checkbox" if @disabled.include?(box.value) %>><%= box.label %></span>
+<% unless current_user.projects.empty? %>
+  <div class="form-group">
+    <%= f.label "Team members travelling", :class => 'mandatory' %><%= "  <span class='tooltip-wrapper' data-toggle='tooltip' data-placement='right' title='A disabled checkbox means that the user payment information is missing'><span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span></span>".html_safe unless @disabled.empty? %>
+    <%= f.collection_check_boxes :user_ids, @team, :id, :first_name, {disabled: @disabled} do |box| %>
+      <div class="boxes">
+        <%= box.check_box %>
+        <span <%= "class=disabled-checkbox" if @disabled.include?(box.value) %>><%= box.label %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group confirm-buttons">
+    <%= f.label :posting, "Industry Project expense?" %>
+    <div class="form-inline">
+      <%= f.check_box :posting %>
+      Mark this field if this travel plan is related to your Industry Project
     </div>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <%= f.hidden_field :user_ids, multiple: true, value: current_user.id %>
+<% end %>
 
 <% else %>
 

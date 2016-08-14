@@ -27,4 +27,8 @@ class RefundClaim < ActiveRecord::Base
     self.status == "approved"
   end
 
+  def sent_for_approval?
+    self.status == "sent for approval"
+  end
+
 end

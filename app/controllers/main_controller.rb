@@ -4,7 +4,17 @@ class MainController < ApplicationController
   before_action :confirm_logged_in
   
   def index
-    
+    if current_user.student?
+    	@user = current_user
+    	@refund_claims = @user.refund_claims
+    	@travel_plans = @user.travel_plans
+    	@projects = @user.projects
+    else
+    	@user = User.all
+    	@refund_claims = RefundClaim.all
+    	@travel_plans = TravelPlan.all
+    	@projects = Project.all
+    end
   end
 
   private

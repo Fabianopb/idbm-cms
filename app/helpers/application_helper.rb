@@ -440,7 +440,7 @@ module ApplicationHelper
 	end
 
 	def simpledate_format(date)
-		date.strftime('%d-%m-%Y')
+		date.strftime('%d.%m.%Y')
 	end
 
 	def date_format(date)

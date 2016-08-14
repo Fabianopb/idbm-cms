@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
     end
 
     def account_missing?
-      if current_user.account.nil? && !current_user.admin? && (can? :create, Account)
+      if current_user.account.nil? && current_user.student? && (can? :create, Account)
         flash.now[:warning] =  "Payment information missing!"
       end
     end

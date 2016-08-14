@@ -2,5 +2,6 @@ class AddRefundClaimTotal < ActiveRecord::Migration
   def change
   	add_column :refund_claims, :refundable, :decimal, :default => 0
   	add_column :refund_claims, :posting, :boolean, :default => false
+  	add_column :travel_plans, :posting, :boolean, :default => false
   end
 end

@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20160813133633) do
     t.string   "status",                   default: "not submitted"
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
+    t.boolean  "posting",                  default: false
   end
 
   create_table "travel_plans_users", id: false, force: :cascade do |t|

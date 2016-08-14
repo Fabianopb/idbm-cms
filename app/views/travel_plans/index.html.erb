@@ -15,6 +15,7 @@
       <div class="card-body">
         <%= link_to "<div class='card-show'></div>".html_safe, {:action => 'show', :id => travel_plan.id} if (can? :show, travel_plan) %>
         <p class="card-title"><%= travel_plan.destination %></p>
+        <p class="card-content"><%= travel_plan.posting ? "Travel plan for the <em>#{travel_plan.user.project}</em> project".html_safe : '<em>Not related to the Industry Project</em>'.html_safe %></p>
         <p class="card-content"><strong>Departure: </strong><%= date_format(travel_plan.departure_date) %></p>
         <p class="card-content"><strong>Return: </strong><%= date_format(travel_plan.return_date) %></p>
         <p class="card-content"><strong>Travellers: </strong><%= travel_plan.travellers %></p>

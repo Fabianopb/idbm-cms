@@ -77,5 +77,43 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     ApplicationMailer.reset_email(self).deliver_now
   end
+
+  def total_refunded
+    total = 0
+    self.refund_claims.map { |n| total = total + n.refundable if n.posting }
+    total
+  end
+
+  def refunded_claims
+    total = 0
+    self.refund_claims.map { |n| total = total + 1 if n.approved? && n.posting }
+    total
+    # total = self.refund_claims.inject {|memo, n| memo + n }
+    # "x"
+  end
+
+  def on_hold_claims
+    total = 0
+    self.refund_claims.map { |n| total = total + 1 if n.sent_for_approval? && n.posting }
+    total
+  end
+
+  def total_plans
+    total = 0
+    self.travel_plans.map { |n| total = total + n.total_costs if n.posting }
+    total
+  end
+
+  def past_plans
+    total = 0
+    self.travel_plans.map { |n| total = total + 1 if n.departure_date < Date.today && n.posting }
+    total
+  end
+
+  def future_plans
+    total = 0
+    self.travel_plans.map { |n| total = total + 1 if n.departure_date > Date.today && n.posting }
+    total
+  end
   
 end

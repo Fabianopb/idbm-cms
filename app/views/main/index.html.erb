@@ -1,9 +1,9 @@
 <% if current_user.account.nil? && current_user.student? %>
     <p>First things to do:</p>
     <ul>
-        <li><%= link_to "Review your personal information", {:controller => 'users', :action => 'edit', :id => current_user.id} %></li>
-        <li><%= link_to "Change your password", {:controller => 'users', :action => 'change_pass', :id => current_user.id} %></li>
-        <li><%= link_to "Add your billing information", {:controller => 'accounts', :action => 'new', :user_id => current_user.id} %></li>
+        <li><%= link_to "Review your personal information", {:controller => 'users', :action => 'edit', :id => @user.id} %></li>
+        <li><%= link_to "Change your password", {:controller => 'users', :action => 'change_pass', :id => @user.id} %></li>
+        <li><%= link_to "Add your billing information", {:controller => 'accounts', :action => 'new', :user_id => @user.id} %></li>
     </ul>
 <% end %>
 
@@ -12,7 +12,24 @@
     <div class="home-container">
       <div class="home-container-title">Refund claims</div>
         <div class="home-container-body">
-          <!-- LINHAS DE CONTEÚDO -->
+          <% if @refund_claims.empty? %>
+            <em>No refund claims yet!</em>
+          <% else %>
+            <table class="table">
+              <% @refund_claims.each do |refund_claim| %>           
+                <tr>
+                  <th class="home-item-date">
+                    <%= simpledate_format(refund_claim.created_at) %>
+                  </th>
+                  <td rowspan="2" class="home-item-value"><%= refund_claim.approved? ? "#{monetary(refund_claim.refundable)} EUR" : "---" %></td>
+                  <td rowspan="2" class="home-item-status"><span class="<%= status_color(refund_claim.status) %>"></span></td>
+                </tr>  
+                <tr>
+                  <td class="no-border"><%= refund_claim.description %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
       </div>
     </div>
   </div>
@@ -20,7 +37,24 @@
     <div class="home-container">
       <div class="home-container-title">Travel plans</div>
         <div class="home-container-body">
-          <!-- LINHAS DE CONTEÚDO -->
+          <% if @travel_plans.empty? %>
+            <em>No travel plans yet!</em>
+          <% else %>
+            <table class="table">
+              <% @travel_plans.each do |travel_plan| %>           
+                <tr>
+                  <th class="home-item-date">
+                    <%= simpledate_format(travel_plan.created_at) %>
+                  </th>
+                  <td rowspan="2" class="home-item-value"><%= "#{monetary(travel_plan.total_costs)} EUR" %></td>
+                  <td rowspan="2" class="home-item-status"><span class="<%= status_color(travel_plan.status) %>"></span></td>
+                </tr>  
+                <tr>
+                  <td class="no-border"><%= travel_plan.trip_description %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
       </div>
     </div>
   </div>
@@ -29,9 +63,28 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="home-container">
-      <div class="home-container-title">Team budget</div>
+      <div class="home-container-title">Project expenses<%= ": #{@user.project}" if current_user.student? %></div>
         <div class="home-container-body">
-          <!-- LINHAS DE CONTEÚDO -->
+          <table class="table">
+            <tr class="home-team-header">
+              <td>Team member</td>
+              <td align="right">Realized (claims)</td>
+              <td align="center">(Approved / Waiting)</td>
+              <td align="right">Planned (travel plans)</td>
+              <td align="center">(Past / Future)</td>
+            </tr>
+            <% @projects.each do |project| %>
+            <% project.users.each do |member| %>
+              <tr>
+                <td><%= member.name %><%= " (#{project.project_name})" unless current_user.student? %></td>
+                <td align="right" class="border-left"><%= "#{monetary(member.total_refunded)} EUR" %></td>
+                <td align="center"><%= "#{member.refunded_claims} / #{member.on_hold_claims}" %></td>
+                <td align="right" class="border-left"><%= "#{monetary(member.total_plans)} EUR" %></td>
+                <td align="center"><%= "#{member.past_plans} / #{member.future_plans}" %></td>
+              </tr>
+            <% end %>
+            <% end %>
+          </table>
       </div>
     </div>
   </div>
