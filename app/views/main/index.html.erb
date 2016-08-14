@@ -50,7 +50,7 @@
                   <td rowspan="2" class="home-item-status"><span class="<%= status_color(travel_plan.status) %>"></span></td>
                 </tr>  
                 <tr>
-                  <td class="no-border"><%= travel_plan.trip_description %></td>
+                  <td class="no-border"><%= "#{travel_plan.destination}: #{travel_plan.trip_description}" %></td>
                 </tr>
               <% end %>
             </table>

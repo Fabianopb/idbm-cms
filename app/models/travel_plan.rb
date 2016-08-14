@@ -67,7 +67,6 @@ class TravelPlan < ActiveRecord::Base
     errors.add(:user_ids, "must choose at least one team member") if user_ids.empty?
   end
 
-
   # Helper methods
 
   def travellers
@@ -80,6 +79,10 @@ class TravelPlan < ActiveRecord::Base
   
   def total_costs
     tickets_cost + total_allowance + accommodation_costs + events_costs + other_costs
+  end
+
+  def project
+    self.users.first.projects.first.project_name
   end
     
 end
