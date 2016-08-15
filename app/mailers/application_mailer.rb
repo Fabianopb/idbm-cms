@@ -1,15 +1,15 @@
 class ApplicationMailer < ActionMailer::Base
-	default from: 'fabianopbrito@gmail.com'
+	default from: 'idbm321@gmail.com'
 
   def welcome_email(user)
     @user = user
-    @url  = 'http://localhost:3000/sign_in'
+    @url  = 'https://safe-earth-52111.herokuapp.com/'
     delivery_options = {
 		  :address              => "smtp.gmail.com",
 		  :port                 => 587,
 		  :domain               => 'gmail.com',
-		  :user_name            => 'fabianopbrito@gmail.com',
-		  :password             => 'drila0506',
+		  :user_name            => 'idbm321@gmail.com',
+		  :password             => 'idbm2014',
 		  :authentication       => 'plain',
 		  :enable_starttls_auto => true  
 		}
@@ -22,8 +22,8 @@ class ApplicationMailer < ActionMailer::Base
 		  :address              => "smtp.gmail.com",
 		  :port                 => 587,
 		  :domain               => 'gmail.com',
-		  :user_name            => 'fabianopbrito@gmail.com',
-		  :password             => 'drila0506',
+		  :user_name            => 'idbm321@gmail.com',
+		  :password             => 'idbm2014',
 		  :authentication       => 'plain',
 		  :enable_starttls_auto => true  
 		}
