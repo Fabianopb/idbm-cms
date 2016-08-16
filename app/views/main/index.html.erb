@@ -65,26 +65,30 @@
     <div class="home-container">
       <div class="home-container-title">Project expenses<%= ": #{@user.project}" if current_user.student? %></div>
         <div class="home-container-body">
-          <table class="table">
-            <tr class="home-team-header">
-              <td>Team member</td>
-              <td align="right">Realized (claims)</td>
-              <td align="center">(Approved / Waiting)</td>
-              <td align="right">Planned (travel plans)</td>
-              <td align="center">(Past / Future)</td>
-            </tr>
-            <% @projects.each do |project| %>
-            <% project.users.each do |member| %>
-              <tr>
-                <td><%= member.name %><%= " (#{project.project_name})" unless current_user.student? %></td>
-                <td align="right" class="border-left"><%= "#{monetary(member.total_refunded)} EUR" %></td>
-                <td align="center"><%= "#{member.refunded_claims} / #{member.on_hold_claims}" %></td>
-                <td align="right" class="border-left"><%= "#{monetary(member.total_plans)} EUR" %></td>
-                <td align="center"><%= "#{member.past_plans} / #{member.future_plans}" %></td>
+          <% if @projects.empty? %>
+            <em>No project expenses yet!</em>
+          <% else %>
+            <table class="table">
+              <tr class="home-team-header">
+                <td>Team member</td>
+                <td align="right">Realized (claims)</td>
+                <td align="center">(Approved / Waiting)</td>
+                <td align="right">Planned (travel plans)</td>
+                <td align="center">(Past / Future)</td>
               </tr>
-            <% end %>
-            <% end %>
-          </table>
+              <% @projects.each do |project| %>
+              <% project.users.each do |member| %>
+                <tr>
+                  <td><%= member.name %><%= " (#{project.project_name})" unless current_user.student? %></td>
+                  <td align="right" class="border-left"><%= "#{monetary(member.total_refunded)} EUR" %></td>
+                  <td align="center"><%= "#{member.refunded_claims} / #{member.on_hold_claims}" %></td>
+                  <td align="right" class="border-left"><%= "#{monetary(member.total_plans)} EUR" %></td>
+                  <td align="center"><%= "#{member.past_plans} / #{member.future_plans}" %></td>
+                </tr>
+              <% end %>
+              <% end %>
+            </table>
+          <% end %>
       </div>
     </div>
   </div>
