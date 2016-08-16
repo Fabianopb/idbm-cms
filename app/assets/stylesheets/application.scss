@@ -139,6 +139,14 @@ table {
     background-color: $color-ok;
 }
 
+.forgot-pass {
+    text-align: right;
+    padding-top: 16px;
+    a {
+        color: $light-blue-darken-1;
+    }
+}
+
 /*** handling forms with errors ***/
 .boxes {
     .field_with_errors {

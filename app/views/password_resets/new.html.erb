@@ -4,13 +4,18 @@
 
 <h3>Reset password</h3>
 
+<p>Please enter your e-mail to receive instructions on how to reset your password.</p>
+
 <%= form_tag password_resets_path, method: :create do %>
+	
+	<div class="row">
+	  <div class="col-sm-4 form-group">
+	    <%= email_field_tag :email, nil, class: 'form-control', placeholder: 'e-mail' %>
+	  </div>
+	</div>
 
-  <div class="form-group">
-    <%= label_tag :email, 'E-mail' %>
-    <%= email_field_tag :email, nil, class: 'form-control' %>
+	<div class="form-buttons confirm-buttons">
+	  <%= submit_tag 'Submit', class: 'btn btn-info' %>
   </div>
-
-  <%= submit_tag 'Send reset instructions', class: 'btn btn-primary' %>
 
 <% end %>
