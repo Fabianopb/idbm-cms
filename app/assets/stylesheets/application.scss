@@ -45,6 +45,7 @@ body {
     color: $grey-darken-3;
     margin: 0 auto; padding: 0;
     max-width: 1500px;
+    height: 100%;
 }
 
 h1, h2, h3 {
@@ -218,7 +219,7 @@ header {
 
 .main-area {
     // 100% of portview height minus header and footer
-    min-height: calc(100vh - 60px - 30px);
+    height: calc(100vh - 90px);
     width: 100%;
     border-collapse: collapse;
     margin: 0; padding: 0;
