@@ -15,8 +15,10 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    current_user_session.destroy
-    flash[:success] = "See you!"
+    if current_user_session
+      current_user_session.destroy
+      flash[:success] = "See you!"
+    end
     redirect_to root_path
   end
 
