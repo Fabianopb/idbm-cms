@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   belongs_to :user
 
-  SSN_REGEX = /([0-9]{6})+(-[0-9]{3})+[A-Z]/
+  SSN_REGEX = /([0-9]{6})+(-[0-9A-Z]{4})/
   POSTAL_REGEX = /[0-9]{5}/
 
   validates :social_security,	presence: true, format: SSN_REGEX
