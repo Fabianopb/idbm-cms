@@ -32,7 +32,8 @@ class Ability
 
       can [:manage], [Account, RefundClaim, Receipt, DailyAllowance, KmAllowance], :user_id => user.id
       cannot [:edit, :update, :delete, :destroy], [Receipt, DailyAllowance, KmAllowance] { |item| item.refund_claim.status == 'sent for approval' || item.refund_claim.status == 'approved' }
-      cannot [:send_for_approval, :edit, :update], [RefundClaim] { |request| request.status == 'sent for approval' || request.status == 'approved' }
+      cannot [:edit, :update], [RefundClaim] { |request| request.status == 'sent for approval' || request.status == 'approved' }
+      cannot [:send_for_approval], [RefundClaim] { |request| request.status == 'sent for approval' || request.status == 'approved' || (request.receipts.empty? && request.daily_allowances.empty? && request.km_allowances.empty?) }
       cannot [:require_revision, :approve], RefundClaim
 
       can [:index, :show, :edit, :update, :delete, :destroy], TravelPlan, :id => user.travel_plans.pluck(:id)
