@@ -261,6 +261,7 @@ module ApplicationHelper
 
 	def currencies_list
 		[
+			"EUR - Euro Member Countries",
 			"AED - United Arab Emirates Dirham",
 			"AFN - Afghanistan Afghani",
 			"ALL - Albania Lek",
