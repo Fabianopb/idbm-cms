@@ -381,6 +381,14 @@ footer {
         border-width: 0 16px 16px 0;
         border-color: transparent $light-blue-darken-2 transparent transparent;
     }
+
+    .card-paperclip {
+        position: absolute;
+        right: 4px;
+        top: 6px;
+        font-size: 1.2em;
+        color: $light-blue-darken-2;
+    }
     
     .card-title {
         font-size: 1.4em;

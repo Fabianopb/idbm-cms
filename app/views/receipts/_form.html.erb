@@ -23,5 +23,12 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-8 form-group">
+    <%= f.label :attachment, "Attachment (only pdf)" %>
+    <%= f.file_field :attachment %>
+  </div>
+</div>
+
 <%= f.hidden_field :refund_claim_id, value: @refund_claim.id %>
 <%= f.hidden_field :user_id, value: current_user.id %>

@@ -57,24 +57,25 @@
 <%= pluralize(@receipts.size, 'receipt') %> found<br />
 
 <div class="row">
-    <% @receipts.each do |receipt| %>
-    <div class="col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <p class="card-title"><%= date_format(receipt.expense_date) %></p>
-                <p class="card-content"><strong>Value: </strong><%= full_value(receipt.value, receipt.currency) %></p>
-                <p class="card-content"><strong>Description: </strong><%= receipt.description %></p>
-            </div>
-              <div class="card-action">
-                <%= (link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'receipts', :action => 'edit', :refund_claim_id => @refund_claim.id, :id => receipt.id}) if can? :edit, receipt %>
-                <% if can? :delete, receipt %>
-                  <a href="#" data-toggle="modal" data-target="#deleteReceipt<%= receipt.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
-                  <%= render :partial => "receipts/delete", :locals => {:receipt => receipt} %>
-                <% end %>
-              </div>
-        </div>
+  <% @receipts.each do |receipt| %>
+  <div class="col-md-4 col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <%= (link_to "<div class='card-paperclip'><span class='glyphicon glyphicon-paperclip standard-actions' aria-hidden='true'></span></div>".html_safe, receipt.attachment.url, target: "_blank") if !receipt.attachment.url.nil? %>
+        <p class="card-title"><%= date_format(receipt.expense_date) %></p>
+        <p class="card-content"><strong>Value: </strong><%= full_value(receipt.value, receipt.currency) %></p>
+        <p class="card-content"><strong>Description: </strong><%= receipt.description %></p>
+      </div>
+      <div class="card-action">
+        <%= (link_to "<span class='glyphicon glyphicon-pencil standard-actions' aria-hidden='true'></span>".html_safe, {:controller => 'receipts', :action => 'edit', :refund_claim_id => @refund_claim.id, :id => receipt.id}) if can? :edit, receipt %>
+        <% if can? :delete, receipt %>
+          <a href="#" data-toggle="modal" data-target="#deleteReceipt<%= receipt.id %>"><span class='glyphicon glyphicon-remove standard-actions' aria-hidden='true'></span></a>
+          <%= render :partial => "receipts/delete", :locals => {:receipt => receipt} %>
+        <% end %>
+      </div>
     </div>
-    <% end %>
+  </div>
+  <% end %>
 </div>
 
 <% unless @refund_claim.departure.nil? %>

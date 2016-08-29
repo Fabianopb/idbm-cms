@@ -45,7 +45,7 @@ class ReceiptsController < ApplicationController
     end
     
     def receipt_params
-      params.require(:receipt).permit(:refund_claim_id, :expense_date, :description, :value, :currency, :user_id)
+      params.require(:receipt).permit(:refund_claim_id, :expense_date, :description, :value, :currency, :attachment, :user_id)
     end
 
     def set_page_title
