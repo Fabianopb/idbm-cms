@@ -38,6 +38,9 @@ gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
 gem 'acts_as_list', '~> 0.7.2'
 
+gem 'carrierwave', '~> 0.11.2'
+gem 'fog', '~> 1.38'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
