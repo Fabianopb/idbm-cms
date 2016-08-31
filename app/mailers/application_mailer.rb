@@ -5,12 +5,12 @@ class ApplicationMailer < ActionMailer::Base
     @user = user
     @url  = 'https://safe-earth-52111.herokuapp.com/'
     delivery_options = {
-		  :address              => "smtp.gmail.com",
-		  :port                 => 587,
-		  :domain               => 'gmail.com',
-		  :user_name            => 'idbm321@gmail.com',
-		  :password             => 'idbm2014',
-		  :authentication       => 'plain',
+		  :address              => "smtp.sendgrid.net",
+		  :port                 => '587',
+		  :authentication       => :plain,
+		  :user_name            => ENV['SENDGRID_USERNAME'],
+		  :password             => ENV['SENDGRID_PASSWORD'],
+		  :domain               => 'heroku.com',
 		  :enable_starttls_auto => true  
 		}
     mail(to: @user.email, subject: 'Welcome to IDBM Industry Project!', delivery_method_options: delivery_options)
@@ -19,12 +19,12 @@ class ApplicationMailer < ActionMailer::Base
   def reset_email(user)
   	@user = user
   	delivery_options = {
-		  :address              => "smtp.gmail.com",
-		  :port                 => 587,
-		  :domain               => 'gmail.com',
-		  :user_name            => 'idbm321@gmail.com',
-		  :password             => 'idbm2014',
-		  :authentication       => 'plain',
+		  :address              => "smtp.sendgrid.net",
+		  :port                 => '587',
+		  :authentication       => :plain,
+		  :user_name            => ENV['SENDGRID_USERNAME'],
+		  :password             => ENV['SENDGRID_PASSWORD'],
+		  :domain               => 'heroku.com',
 		  :enable_starttls_auto => true  
 		}
     mail(to: @user.email, subject: 'IDBM Password reset instructions', delivery_method_options: delivery_options)
