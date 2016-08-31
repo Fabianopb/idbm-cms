@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-	default from: 'IDBM Programme'
+	default from: 'idbm321@gmail.com'
 
   def welcome_email(user)
     @user = user
