@@ -41,6 +41,8 @@ gem 'acts_as_list', '~> 0.7.2'
 gem 'carrierwave', '~> 0.11.2'
 gem 'fog', '~> 1.38'
 
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -14,3 +14,6 @@
 /mocks
 /public
 .env
+
+# Ignore application configuration
+/config/application.yml
