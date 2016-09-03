@@ -38,6 +38,14 @@
     </span>
 <% end %>
 
+<% unless @travel_plan.comment.nil? || @travel_plan.comment.empty? %>
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h2 class="panel-title">Revision comment</h2>
+    </div>
+    <div class="panel-body"><em>"<%= @travel_plan.comment %>"</em></div>
+  </div>
+<% end %>
 
 <p class="travelplan-header">BASIC INFORMATION</p>
 <table class="table table-bordered travel-costs">

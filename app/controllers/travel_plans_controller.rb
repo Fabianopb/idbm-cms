@@ -59,7 +59,7 @@ class TravelPlansController < ApplicationController
     end
    
     def travel_plan_params
-      params.require(:travel_plan).permit(:destination, :departure_date, :return_date, :trip_description, :tickets_description, :tickets_cost, :paid_days, :daily_allowance, :accommodation_costs, :accommodation_aalto_paid, :events_costs, :events_aalto_paid, :other_description, :other_costs, :status, :posting, :transport_ids => [], :user_ids => [])
+      params.require(:travel_plan).permit(:destination, :departure_date, :return_date, :trip_description, :tickets_description, :tickets_cost, :paid_days, :daily_allowance, :accommodation_costs, :accommodation_aalto_paid, :events_costs, :events_aalto_paid, :other_description, :other_costs, :status, :posting, :comment, :transport_ids => [], :user_ids => [])
     end
 
     def team_array

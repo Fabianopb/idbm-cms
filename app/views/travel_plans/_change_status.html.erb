@@ -21,8 +21,15 @@
               Do you want to send the travel plan created on <%= datetime_format(travel_plan.created_at) %> with destination to <%= travel_plan.destination %> for approval?
             <% elsif new_status == default_statuses[2] %>
               Do you want to require revision of the travel plan created on <%= datetime_format(travel_plan.created_at) %> with destination to <%= travel_plan.destination %>?
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <%= f.label :comment %>
+                  <%= f.text_area :comment, :rows => '3', :class => 'form-control no-resize' %>
+                </div>
+              </div>
             <% elsif new_status == default_statuses[3] %>
               Do you want to approve the travel plan created on <%= datetime_format(travel_plan.created_at) %> with destination to <%= travel_plan.destination %>?
+              <%= f.hidden_field :comment, value: nil %>
             <% end %>
           </p>
         </div>

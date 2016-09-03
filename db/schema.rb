@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20160903111949) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.boolean  "posting",                  default: false
+    t.text     "comment"
   end
 
   create_table "travel_plans_users", id: false, force: :cascade do |t|
