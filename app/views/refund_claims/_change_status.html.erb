@@ -21,6 +21,12 @@
               Do you want to send the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>" for approval?
             <% elsif new_status == default_statuses[2] %>
               Do you want to require revision of the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>"?
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <%= f.label :comment %>
+                  <%= f.text_area :comment, :rows => '3', :class => 'form-control no-resize' %>
+                </div>
+              </div>
             <% elsif new_status == default_statuses[3] %>
               Do you want to approve the refund claim created on <%= datetime_format(refund_claim.created_at) %> with description "<%= refund_claim.description %>"?
               <div class="row">
@@ -34,6 +40,7 @@
                 </div>
                 <div class="col-sm-3"></div>
               </div>
+              <%= f.hidden_field :comment, value: nil %>
             <% end %>
           </p>
         </div>

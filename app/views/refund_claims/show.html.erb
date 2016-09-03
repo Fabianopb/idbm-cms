@@ -37,6 +37,15 @@
     </span>
 <% end %>
 
+<% unless @refund_claim.comment.nil? || @refund_claim.comment.empty? %>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h2 class="panel-title">Revision comment</h2>
+    </div>
+    <div class="panel-body"><em>"<%= @refund_claim.comment %>"</em></div>
+  </div>
+<% end %>
+
 <!-- RECEIPTS LIST -->
 <hr />
 <div class="claims-aside">

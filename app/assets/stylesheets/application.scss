@@ -148,6 +148,10 @@ table {
     }
 }
 
+.no-resize {
+    resize: none;
+}
+
 /*** handling forms with errors ***/
 .boxes {
     .field_with_errors {

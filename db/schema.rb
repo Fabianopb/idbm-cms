@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829150011) do
+ActiveRecord::Schema.define(version: 20160903111949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,18 +31,6 @@ ActiveRecord::Schema.define(version: 20160829150011) do
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
-
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.text     "comment_text"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "daily_allowances", force: :cascade do |t|
     t.integer  "refund_claim_id"
@@ -117,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160829150011) do
     t.datetime "return_date"
     t.decimal  "refundable",  default: 0.0
     t.boolean  "posting",     default: false
+    t.text     "comment"
   end
 
   add_index "refund_claims", ["user_id"], name: "index_refund_claims_on_user_id", using: :btree
