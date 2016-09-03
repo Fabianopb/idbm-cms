@@ -148,6 +148,23 @@ table {
     }
 }
 
+.fix-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.selectable-row {
+    transition: background-color .5s;
+    cursor: pointer;
+}
+.selectable-row:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+.selectable-row-text, .selectable-row-text:hover {
+    color: $grey-darken-3;
+    text-decoration: none;
+}
+
 .no-resize {
     resize: none;
 }

@@ -15,20 +15,25 @@
           <% if @refund_claims.empty? %>
             <em>No refund claims yet!</em>
           <% else %>
-            <table class="table">
-              <% @refund_claims.each do |refund_claim| %>           
-                <tr>
-                  <th class="home-item-date">
-                    <%= simpledate_format(refund_claim.created_at) %>
-                  </th>
-                  <td rowspan="2" class="home-item-value"><%= refund_claim.approved? ? "#{monetary(refund_claim.refundable)} EUR" : "---" %></td>
-                  <td rowspan="2" class="home-item-status"><span class="<%= status_color(refund_claim.status) %>"></span></td>
-                </tr>  
-                <tr>
-                  <td class="no-border"><%= refund_claim.description %></td>
-                </tr>
+            <% @refund_claims.each do |refund_claim| %>
+              <%= link_to({:controller => 'refund_claims', :action => 'show', :id => refund_claim.id }, :class => 'selectable-row-text') do %>
+                <div class="selectable-row">
+                  <table class="table fix-margin">
+                    <tr>
+                    <th class="home-item-date">
+                      <%= simpledate_format(refund_claim.created_at) %>
+                    </th>
+                    <td rowspan="2" class="home-item-value"><%= refund_claim.approved? ? "#{monetary(refund_claim.refundable)} EUR" : "---" %></td>
+                    <td rowspan="2" class="home-item-status"><span class="<%= status_color(refund_claim.status) %>"></span></td>
+                    </tr>  
+                    <tr>
+                      <td class="no-border"><%= refund_claim.description %></td>
+                    </tr>
+                  </table>
+                </div>
               <% end %>
-            </table>
+            <% end %>
+            
           <% end %>
       </div>
     </div>
@@ -40,20 +45,24 @@
           <% if @travel_plans.empty? %>
             <em>No travel plans yet!</em>
           <% else %>
-            <table class="table">
-              <% @travel_plans.each do |travel_plan| %>           
-                <tr>
-                  <th class="home-item-date">
-                    <%= simpledate_format(travel_plan.created_at) %>
-                  </th>
-                  <td rowspan="2" class="home-item-value"><%= "#{monetary(travel_plan.total_costs)} EUR" %></td>
-                  <td rowspan="2" class="home-item-status"><span class="<%= status_color(travel_plan.status) %>"></span></td>
-                </tr>  
-                <tr>
-                  <td class="no-border"><%= "#{travel_plan.destination}: #{travel_plan.trip_description}" %></td>
-                </tr>
+            <% @travel_plans.each do |travel_plan| %>
+              <%= link_to({:controller => 'travel_plans', :action => 'show', :id => travel_plan.id }, :class => 'selectable-row-text') do %>
+                <div class="selectable-row">
+                  <table class="table fix-margin">
+                    <tr>
+                      <th class="home-item-date">
+                        <%= simpledate_format(travel_plan.created_at) %>
+                      </th>
+                      <td rowspan="2" class="home-item-value"><%= "#{monetary(travel_plan.total_costs)} EUR" %></td>
+                      <td rowspan="2" class="home-item-status"><span class="<%= status_color(travel_plan.status) %>"></span></td>
+                    </tr>  
+                    <tr>
+                      <td class="no-border"><%= "#{travel_plan.destination}: #{travel_plan.trip_description}" %></td>
+                    </tr>
+                  </table>
+                </div>
               <% end %>
-            </table>
+            <% end %>
           <% end %>
       </div>
     </div>
