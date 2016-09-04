@@ -53,6 +53,19 @@
     </div>
 
 </span>
+<span class="screen-hide">
+  <div class="row">
+    <div class="col-xs-4">
+      <%= image_tag "aalto_logo.png", :alt => "Aalto Logo", :class => 'aalto-logo' %>
+    </div>
+    <div class="col-xs-4">
+      AALTO UNIVERSITY
+    </div>
+    <div class="col-xs-4">
+      TRAVEL PLAN
+    </div>
+  </div>
+</span>
 
 <p class="travelplan-header">BASIC INFORMATION</p>
 <table class="table table-bordered travel-costs">
@@ -120,7 +133,9 @@
     <tr>
         <td colspan="3">
             <p class="travelplan-field-name">Source of funding, project number</p>
-            <p></p>
+            <p>
+              <%= @travel_plan.posting ? @travel_plan.project : '<br />'.html_safe %>
+            </p>
         </td>
     </tr>
     
@@ -209,3 +224,32 @@
     </tr>
     
 </table>
+
+<span class="screen-hide">
+  <table class="table table-bordered travel-costs signature">
+    <% @travel_plan.users.each do |user| %>
+      <tr>
+        <td><p class="travelplan-field-name">Date</p><br /></td>
+        <td><p class="travelplan-field-name">Signature</p><br /></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <p class="travelplan-header">PERMISSION FOR JOURNEY</p>
+  <table class="table table-bordered travel-costs">
+    <tr>
+      <td width="15%" rowspan="3"><p class="travelplan-field-name">Approval</p></td>
+      <td width="5%"></td>
+      <td width="10%"><p class="travelplan-field-name">Yes</p></td>
+      <td rowspan="2" colspan="2"><p class="travelplan-field-name">Further clarification</p></td>
+    </tr>
+    <tr>
+      <td width="5%"></td>
+      <td width="10%"><p class="travelplan-field-name">No</p></td>
+    </tr>
+    <tr>
+      <td width="40%" colspan="3"><p class="travelplan-field-name">Date</p><br /></td>
+      <td width="40%"><p class="travelplan-field-name">Signature and clarification of signature</p><br /></td>
+    </tr>
+  </table>
+</span>

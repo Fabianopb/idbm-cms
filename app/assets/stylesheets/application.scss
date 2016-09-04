@@ -1,3 +1,7 @@
+/*
+ *= require_self
+ */
+
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
@@ -167,6 +171,10 @@ table {
 
 .no-resize {
     resize: none;
+}
+
+.screen-hide * {
+    display: none;
 }
 
 /*** handling forms with errors ***/
